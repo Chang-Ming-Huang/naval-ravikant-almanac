@@ -1,0 +1,59 @@
+{
+  "name": "naval-ravikant-almanac",
+  "version": "2.0.0",
+  "description": "Interactive presentation website showcasing Naval Ravikant's wisdom with 34 interactive cards featuring detailed popup content for deep learning and presentations",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "python3 scripts/server.py",
+    "serve": "python3 scripts/server.py",
+    "dev": "python3 scripts/server.py 3000",
+    "build": "mkdir -p build && cp -r src/* build/",
+    "test": "npx playwright test --config=config/playwright.config.js",
+    "test:simple": "npx playwright test --config=config/playwright-simple.config.js",
+    "test:debug": "npx playwright test --config=config/playwright.config.js --debug",
+    "test:report": "npx playwright show-report",
+    "install-playwright": "npm install @executeautomation/playwright-mcp-server",
+    "setup-playwright": "npx playwright install",
+    "setup": "npm install && npx playwright install",
+    "clean": "rm -rf build/ playwright-report/ test-results/",
+    "preview": "python3 scripts/server.py --dir=build"
+  },
+  "keywords": [
+    "naval-ravikant",
+    "almanac",
+    "wealth",
+    "happiness",
+    "philosophy",
+    "interactive",
+    "presentation",
+    "wisdom",
+    "popup",
+    "educational",
+    "mobile-friendly",
+    "responsive"
+  ],
+  "author": "Claude Code",
+  "license": "MIT",
+  "devDependencies": {
+    "@executeautomation/playwright-mcp-server": "^1.0.0",
+    "@playwright/test": "^1.54.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/naval-ravikant-almanac.git"
+  },
+  "homepage": "https://your-username.github.io/naval-ravikant-almanac",
+  "bugs": {
+    "url": "https://github.com/your-username/naval-ravikant-almanac/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "Chrome >= 90",
+    "Firefox >= 88",
+    "Safari >= 14",
+    "Edge >= 90"
+  ]
+}
