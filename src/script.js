@@ -1115,6 +1115,12 @@ function initializePopupSystem() {
         popupApplication.innerHTML = data.application;
         popupKeypoints.innerHTML = data.keypoints;
         
+        // Reset popup scroll position to top
+        const popupContent = document.querySelector('.popup-content');
+        if (popupContent) {
+            popupContent.scrollTop = 0;
+        }
+        
         disableScroll();
         popupOverlay.classList.add('active');
         
