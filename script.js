@@ -1095,7 +1095,17 @@ function initializePopupSystem() {
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        window.scrollTo(0, scrollY);
+        // Use instant scrolling to prevent animation
+        try {
+            window.scrollTo({
+                top: scrollY,
+                left: 0,
+                behavior: 'instant'
+            });
+        } catch (e) {
+            // Fallback for older browsers
+            window.scrollTo(0, scrollY);
+        }
     }
     
     function showPopup(data) {
