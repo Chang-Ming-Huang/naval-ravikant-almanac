@@ -5,8 +5,13 @@
     box-sizing: border-box;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -14,6 +19,8 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 /* Navigation */
@@ -107,6 +114,8 @@ body {
 .hero::before {
     content: '';
     position: absolute;
+    top: -50%;
+    left: -50%;
     width: 200%;
     height: 200%;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
@@ -697,6 +706,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
     .hamburger {
         display: flex;
     }
@@ -738,6 +751,7 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
+        padding: 0 1.5rem;
     }
     
     .hero-title {
@@ -759,6 +773,15 @@ body {
     
     .section-title {
         font-size: 2rem;
+    }
+    
+    .card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .card-icon {
+        font-size: 2.2rem;
+        margin-right: 0.7rem;
     }
     
     .grid-container,
@@ -787,6 +810,18 @@ body {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .hero-container {
+        padding: 0 1rem;
+    }
+    
     .hero-title {
         font-size: 2rem;
     }
@@ -799,8 +834,18 @@ body {
         font-size: 1rem;
     }
     
+    .section {
+        padding: 3rem 0;
+    }
+    
     .section-title {
         font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 3rem;
     }
     
     .btn {
@@ -811,7 +856,46 @@ body {
     .card,
     .happiness-principle,
     .philosophy-card {
+        padding: 1.2rem;
+        min-height: 160px;
+    }
+    
+    .card-icon {
+        font-size: 2rem;
+        margin-right: 0.6rem;
+    }
+    
+    .card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .choice-item {
+        padding: 1.2rem;
+    }
+    
+    .choice-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    .happiness-tips {
         padding: 1.5rem;
+    }
+    
+    .happiness-tips h3 {
+        font-size: 1.3rem;
+    }
+    
+    .insight-item {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .insight-icon {
+        font-size: 1.3rem;
+    }
+    
+    .insight-item p {
+        font-size: 0.9rem;
     }
     
     .qa-grid {
