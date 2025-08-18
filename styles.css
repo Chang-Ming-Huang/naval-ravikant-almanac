@@ -933,6 +933,15 @@ body {
         margin-right: 0.7rem;
     }
     
+    .card,
+    .happiness-principle,
+    .philosophy-card,
+    .thinking-card,
+    .glossary-item {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+    
     .grid-container,
     .happiness-grid,
     .glossary-grid,
@@ -984,6 +993,8 @@ body {
     
     .qa-item {
         padding: 1.5rem;
+        max-width: 90%;
+        margin: 0 auto;
     }
     
     .qa-question {
@@ -997,6 +1008,8 @@ body {
     
     .guide-item {
         padding: 1.5rem;
+        max-width: 90%;
+        margin: 0 auto;
     }
     
     .guide-item h4 {
@@ -1011,6 +1024,8 @@ body {
     
     .qa-quote .quote {
         padding: 2rem;
+        max-width: 90%;
+        margin: 0 auto;
     }
     
     .qa-quote .quote blockquote {
@@ -1081,6 +1096,8 @@ body {
     .philosophy-card {
         padding: 1.2rem;
         min-height: 160px;
+        max-width: 85%;
+        margin: 0 auto;
     }
     
     .card-icon {
@@ -1094,6 +1111,8 @@ body {
     
     .choice-item {
         padding: 1.2rem;
+        max-width: 85%;
+        margin: 0 auto;
     }
     
     .choice-item h4 {
@@ -1102,6 +1121,8 @@ body {
     
     .happiness-tips {
         padding: 1.5rem;
+        max-width: 90%;
+        margin: 0 auto;
     }
     
     .happiness-tips h3 {
@@ -1153,6 +1174,8 @@ body {
     
     .qa-item {
         padding: 1.2rem;
+        max-width: 85%;
+        margin: 0 auto;
     }
     
     .qa-question {
@@ -1168,6 +1191,8 @@ body {
     
     .guide-item {
         padding: 1.2rem;
+        max-width: 85%;
+        margin: 0 auto;
     }
     
     .guide-item h4 {
