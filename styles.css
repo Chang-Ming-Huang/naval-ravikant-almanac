@@ -1172,21 +1172,21 @@ body {
 /* Mobile responsiveness for popups */
 @media (max-width: 768px) {
     .popup-overlay {
-        padding: 0.5rem;
+        padding: 2rem 1rem;
     }
     
     .popup-container {
-        max-height: 98vh;
+        max-height: 85vh;
         border-radius: 20px;
         width: 100%;
-        max-width: calc(100vw - 1rem);
+        max-width: calc(100vw - 2rem);
     }
     
     .popup-header {
         padding: 1rem 1rem 0.5rem 1rem;
         position: sticky;
         top: 0;
-        background: rgba(255, 255, 255, 0.95);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         backdrop-filter: blur(10px);
         border-radius: 20px 20px 0 0;
         z-index: 10;
@@ -1200,7 +1200,7 @@ body {
     
     .popup-content {
         padding: 1rem;
-        max-height: calc(98vh - 80px);
+        max-height: calc(85vh - 80px);
         font-size: 0.9rem;
     }
     
@@ -1260,9 +1260,14 @@ body {
 
 /* Extra small screens */
 @media (max-width: 480px) {
+    .popup-overlay {
+        padding: 1.5rem 0.5rem;
+    }
+    
     .popup-container {
         border-radius: 15px;
-        max-height: 100vh;
+        max-height: 85vh;
+        max-width: calc(100vw - 1rem);
     }
     
     .popup-header {
@@ -1275,7 +1280,7 @@ body {
     
     .popup-content {
         font-size: 0.85rem;
-        max-height: calc(100vh - 70px);
+        max-height: calc(85vh - 70px);
     }
     
     .popup-close {

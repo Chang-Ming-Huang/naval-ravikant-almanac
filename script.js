@@ -1031,13 +1031,35 @@ function initializePopupSystem() {
         
         // Touch events for better mobile interaction
         let touchStarted = false;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchMoved = false;
+        const touchMoveThreshold = 10; // pixels
         
-        card.addEventListener('touchstart', function() {
+        card.addEventListener('touchstart', function(e) {
             touchStarted = true;
+            touchMoved = false;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        });
+        
+        card.addEventListener('touchmove', function(e) {
+            if (touchStarted) {
+                const touch = e.touches[0];
+                const moveX = Math.abs(touch.clientX - touchStartX);
+                const moveY = Math.abs(touch.clientY - touchStartY);
+                
+                // If user moved finger more than threshold, consider it a scroll/swipe
+                if (moveX > touchMoveThreshold || moveY > touchMoveThreshold) {
+                    touchMoved = true;
+                }
+            }
         });
         
         card.addEventListener('touchend', function(e) {
-            if (touchStarted) {
+            if (touchStarted && !touchMoved) {
+                // Only trigger popup if touch didn't move significantly (true tap)
                 e.preventDefault();
                 const popupId = this.getAttribute('data-popup');
                 const data = popupData[popupId];
@@ -1047,10 +1069,12 @@ function initializePopupSystem() {
                 }
             }
             touchStarted = false;
+            touchMoved = false;
         });
         
         card.addEventListener('touchcancel', function() {
             touchStarted = false;
+            touchMoved = false;
         });
     });
     
