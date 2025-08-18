@@ -1172,11 +1172,11 @@ body {
 /* Mobile responsiveness for popups */
 @media (max-width: 768px) {
     .popup-overlay {
-        padding: 2rem 1rem;
+        padding: 3rem 1rem;
     }
     
     .popup-container {
-        max-height: 85vh;
+        max-height: 75vh;
         border-radius: 20px;
         width: 100%;
         max-width: calc(100vw - 2rem);
@@ -1200,7 +1200,7 @@ body {
     
     .popup-content {
         padding: 1rem;
-        max-height: calc(85vh - 80px);
+        max-height: calc(75vh - 80px);
         font-size: 0.9rem;
     }
     
@@ -1261,12 +1261,12 @@ body {
 /* Extra small screens */
 @media (max-width: 480px) {
     .popup-overlay {
-        padding: 1.5rem 0.5rem;
+        padding: 2.5rem 0.5rem;
     }
     
     .popup-container {
         border-radius: 15px;
-        max-height: 85vh;
+        max-height: 70vh;
         max-width: calc(100vw - 1rem);
     }
     
@@ -1280,7 +1280,7 @@ body {
     
     .popup-content {
         font-size: 0.85rem;
-        max-height: calc(85vh - 70px);
+        max-height: calc(70vh - 70px);
     }
     
     .popup-close {
