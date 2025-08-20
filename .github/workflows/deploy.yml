@@ -29,8 +29,12 @@ jobs:
     - name: Build project
       run: |
         mkdir -p build
-        cp -r src/* build/
-        # Copy any additional assets if needed
+        cp index.html build/
+        cp script.js build/
+        cp -r css/ build/css/
+        cp -r js/ build/js/ || true
+        # Copy design mockups for reference
+        cp design-*.html build/ || true
 
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'

@@ -2,12 +2,12 @@
   "name": "naval-ravikant-almanac",
   "version": "2.0.0",
   "description": "Interactive presentation website showcasing Naval Ravikant's wisdom with 34 interactive cards featuring detailed popup content for deep learning and presentations",
-  "main": "src/index.html",
+  "main": "index.html",
   "scripts": {
-    "start": "python3 scripts/server.py",
-    "serve": "python3 scripts/server.py",
-    "dev": "python3 scripts/server.py 3000",
-    "build": "mkdir -p build && cp -r src/* build/",
+    "start": "npx http-server . -p 8080 -c-1",
+    "serve": "npx http-server . -p 8080 -c-1",
+    "dev": "npx http-server . -p 3000 -c-1",
+    "build": "mkdir -p build && cp index.html script.js build/ && cp -r css/ build/css/ && cp design-*.html build/ 2>/dev/null || true",
     "test": "npx playwright test --config=config/playwright.config.js",
     "test:simple": "npx playwright test --config=config/playwright-simple.config.js",
     "test:debug": "npx playwright test --config=config/playwright.config.js --debug",
@@ -16,7 +16,7 @@
     "setup-playwright": "npx playwright install",
     "setup": "npm install && npx playwright install",
     "clean": "rm -rf build/ playwright-report/ test-results/",
-    "preview": "python3 scripts/server.py --dir=build"
+    "preview": "npx http-server build/ -p 8080 -c-1"
   },
   "keywords": [
     "naval-ravikant",
@@ -36,7 +36,8 @@
   "license": "MIT",
   "devDependencies": {
     "@executeautomation/playwright-mcp-server": "^1.0.0",
-    "@playwright/test": "^1.54.2"
+    "@playwright/test": "^1.54.2",
+    "http-server": "^14.1.1"
   },
   "repository": {
     "type": "git",
