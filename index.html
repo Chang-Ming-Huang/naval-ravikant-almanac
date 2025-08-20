@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>納瓦爾寶典 - 智慧精華</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Modular CSS imports -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -44,7 +49,7 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="floating-card">
+                <div class="card card--glass card--center card--floating">
                     <h3>核心概念</h3>
                     <p>"把自己產品化"</p>
                 </div>
@@ -59,7 +64,7 @@
                 <p class="section-subtitle">財富不是靠運氣，而是透過正確的選擇和系統性的設計</p>
                 
                 <div class="grid-container">
-                    <div class="card" data-popup="wealth-vs-money">
+                    <div class="card card--solid" data-popup="wealth-vs-money">
                         <div class="card-header">
                             <div class="card-icon">💰</div>
                             <h3>財富 vs 金錢</h3>
@@ -67,7 +72,7 @@
                         <p>財富是在你睡覺時仍能為你賺錢的資產，而金錢只是一種社會信用。追求財富而非金錢，因為財富帶來真正的自由。</p>
                     </div>
                     
-                    <div class="card" data-popup="productize-yourself">
+                    <div class="card card--solid" data-popup="productize-yourself">
                         <div class="card-header">
                             <div class="card-icon">🎯</div>
                             <h3>把自己產品化</h3>
@@ -75,7 +80,7 @@
                         <p>結合獨特知識、槓桿效應和責任感，創造一個持續運轉的系統，讓機會主動找上你。</p>
                     </div>
                     
-                    <div class="card" data-popup="four-types-luck">
+                    <div class="card card--solid" data-popup="four-types-luck">
                         <div class="card-header">
                             <div class="card-icon">⚡</div>
                             <h3>四種運氣</h3>
@@ -83,7 +88,7 @@
                         <p>盲目運氣、努力運氣、準備運氣、獨特角色運氣。第四種是最強大的，當你成為獨一無二的自己時，好運成為必然。</p>
                     </div>
                     
-                    <div class="card" data-popup="leverage-effect">
+                    <div class="card card--solid" data-popup="leverage-effect">
                         <div class="card-header">
                             <div class="card-icon">🚀</div>
                             <h3>槓桿效應</h3>
@@ -107,22 +112,22 @@
                 <p class="section-subtitle">快樂源自內心的平靜與滿足，而非外在的物質或成就</p>
                 
                 <div class="happiness-grid">
-                    <div class="happiness-principle" data-popup="reduce-desires">
+                    <div class="card card--glass-light card--center" data-popup="reduce-desires">
                         <h3>🧘‍♂️ 減少慾望</h3>
                         <p>慾望是你與自己訂下的契約，承諾在得到某物前不會快樂。減少不必要的慾望，接受事物的現況。</p>
                     </div>
                     
-                    <div class="happiness-principle" data-popup="live-present">
+                    <div class="card card--glass-light card--center" data-popup="live-present">
                         <h3>⏰ 活在當下</h3>
                         <p>透過冥想、運動、閱讀等方式，讓自己回到當下，感受當前的幸福，培養專注力。</p>
                     </div>
                     
-                    <div class="happiness-principle" data-popup="choose-happiness">
+                    <div class="card card--glass-light card--center" data-popup="choose-happiness">
                         <h3>🌟 選擇快樂</h3>
                         <p>快樂、愛、熱情都不是從外在「找到」的東西，而是內心做出的「選擇」。</p>
                     </div>
                     
-                    <div class="happiness-principle" data-popup="authentic-self">
+                    <div class="card card--glass-light card--center" data-popup="authentic-self">
                         <h3>🎭 真誠自我</h3>
                         <p>活出最真實的自己，退出永無止境的競爭，因為在「做自己」這條路上，沒有人能與你競爭。</p>
                     </div>
@@ -147,7 +152,7 @@
                 <p class="section-subtitle">判斷力遠比單純的努力更為關鍵</p>
                 
                 <div class="thinking-grid">
-                    <div class="thinking-card" data-popup="judgment-over-effort">
+                    <div class="card card--glass" data-popup="judgment-over-effort">
                         <div class="card-header">
                             <div class="card-icon">🧠</div>
                             <h3>判斷力 > 努力</h3>
@@ -155,7 +160,7 @@
                         <p>許多人高估了「努力」與成功的關聯，卻低估了「判斷力」的重要性。在槓桿時代，一個正確的決定往往就能大獲全勝。</p>
                     </div>
                     
-                    <div class="thinking-card" data-popup="learning-fundamentals">
+                    <div class="card card--glass" data-popup="learning-fundamentals">
                         <div class="card-header">
                             <div class="card-icon">📚</div>
                             <h3>學習基礎知識</h3>
@@ -163,7 +168,7 @@
                         <p>建立強大的知識基礎，包括微觀經濟學、賽局理論、心理學、倫理學、數學和計算機等學科，這些是提升判斷力的基石。</p>
                     </div>
                     
-                    <div class="thinking-card" data-popup="extensive-reading">
+                    <div class="card card--glass" data-popup="extensive-reading">
                         <div class="card-header">
                             <div class="card-icon">📖</div>
                             <h3>大量閱讀</h3>
@@ -171,7 +176,7 @@
                         <p>「讀你喜愛的書，直到你愛上閱讀」。每天閱讀一小時的科學、數學、哲學，七年內就能躋身少數成功人士之列。</p>
                     </div>
                     
-                    <div class="thinking-card" data-popup="question-beliefs">
+                    <div class="card card--glass" data-popup="question-beliefs">
                         <div class="card-header">
                             <div class="card-icon">🔍</div>
                             <h3>質疑信念</h3>
@@ -210,17 +215,17 @@
                 <p class="section-subtitle">超越傳統成功定義，追求真正的自主、快樂與財富</p>
                 
                 <div class="philosophy-grid">
-                    <div class="philosophy-card" data-popup="long-term-games">
+                    <div class="card card--glass-light" data-popup="long-term-games">
                         <h3>🎯 長期賽局</h3>
                         <p>生命中所有的重大回報都來自於複利。與願意玩長期賽局的人合作，因為信任和複利效應會隨時間累積。</p>
                     </div>
                     
-                    <div class="philosophy-card" data-popup="positive-sum-games">
+                    <div class="card card--glass-light" data-popup="positive-sum-games">
                         <h3>⚖️ 正和遊戲</h3>
                         <p>有意識地選擇正和遊戲，讓所有參與者共同創造價值並從中獲益，遠離零和遊戲的惡性競爭。</p>
                     </div>
                     
-                    <div class="philosophy-card" data-popup="continuous-improvement">
+                    <div class="card card--glass-light" data-popup="continuous-improvement">
                         <h3>🌱 持續精進</h3>
                         <p>個性、職涯和團隊都需要持續改版，成為更好的自己需要不斷編輯信念、升級自我身份認知。</p>
                     </div>
@@ -229,15 +234,15 @@
                 <div class="life-choices">
                     <h3>年輕人的三大重要選擇</h3>
                     <div class="choices-grid">
-                        <div class="choice-item" data-popup="career-choice">
+                        <div class="card card--center card--choice" data-popup="career-choice">
                             <h4>💼 要做什麼</h4>
                             <p>選擇有長期發展前景的職業，在自己選擇的領域裡做到全球頂尖</p>
                         </div>
-                        <div class="choice-item" data-popup="location-choice">
+                        <div class="card card--center card--choice" data-popup="location-choice">
                             <h4>🏡 住在哪裡</h4>
                             <p>一個城市可能要居住數十年，地點決定了你的生活品質和機會</p>
                         </div>
-                        <div class="choice-item" data-popup="partner-choice">
+                        <div class="card card--center card--choice" data-popup="partner-choice">
                             <h4>🤝 和誰合作</h4>
                             <p>選擇聰明、有活力且正直誠信的商業夥伴，避免與消極悲觀的人合作</p>
                         </div>
@@ -250,19 +255,19 @@
             <div class="container">
                 <h2 class="section-title">關鍵詞彙</h2>
                 <div class="glossary-grid">
-                    <div class="glossary-item" data-popup="productize-yourself-definition">
+                    <div class="card card--solid card--accent card--glossary" data-popup="productize-yourself-definition">
                         <h4>把自己產品化</h4>
                         <p>將個人獨特知識、責任感與槓桿效應結合，打造獨一無二且有價值的自己</p>
                     </div>
-                    <div class="glossary-item" data-popup="specific-knowledge-definition">
+                    <div class="card card--solid card--accent card--glossary" data-popup="specific-knowledge-definition">
                         <h4>獨特知識</h4>
                         <p>你獨有、無法被簡單複製的技能或知識體系，來自興趣、天賦和長時間鑽研</p>
                     </div>
-                    <div class="glossary-item" data-popup="zero-marginal-cost">
+                    <div class="card card--solid card--accent card--glossary" data-popup="zero-marginal-cost">
                         <h4>零邊際成本產品</h4>
                         <p>每多生產一件產品成本極低甚至為零，如軟體、線上課程等數位內容</p>
                     </div>
-                    <div class="glossary-item" data-popup="compound-interest-definition">
+                    <div class="card card--solid card--accent card--glossary" data-popup="compound-interest-definition">
                         <h4>複利效應</h4>
                         <p>財富、知識、關係等隨時間推移而指數級增長的效應</p>
                     </div>
@@ -279,22 +284,22 @@
                     <div class="qa-category">
                         <h3 class="qa-category-title">🎯 基本概念</h3>
                         <div class="qa-grid">
-                            <div class="qa-item" data-popup="what-is-specific-knowledge">
+                            <div class="card card--glass" data-popup="what-is-specific-knowledge">
                                 <h4 class="qa-question">什麼是「獨特知識」？我該如何尋找它？</h4>
                                 <p class="qa-answer">獨特知識是一種無法透過標準教育習得的個人技能與天賦組合。它對你而言像是玩樂，但對他人卻像工作。尋找它的最佳途徑，是放下對熱門趨勢的追逐，轉而追隨你內心最真切的好奇心與熱情。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="wealth-money-status-definition">
+                            <div class="card card--glass" data-popup="wealth-money-status-definition">
                                 <h4 class="qa-question">納瓦爾如何定義「財富、金錢、地位」？</h4>
                                 <p class="qa-answer">財富是「在你睡覺時仍能賺錢的資產」，是關於所有權的正和遊戲；金錢是「用來交換時間與財富的媒介」；而地位則是「在社會階層中的排名」，是一種零和遊戲。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="leverage-for-ordinary-people">
+                            <div class="card card--glass" data-popup="leverage-for-ordinary-people">
                                 <h4 class="qa-question">「槓桿」是什麼意思？普通人如何運用它？</h4>
                                 <p class="qa-answer">槓桿是一種能放大你個人努力與影響力的工具。對普通人而言，最可行的是「無需許可」的程式碼與媒體槓桿。例如，透過寫部落格、YouTube頻道、播客或開發軟體來創造指數型成長的潛力。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="happiness-as-skill">
+                            <div class="card card--glass" data-popup="happiness-as-skill">
                                 <h4 class="qa-question">為什麼說「幸福是一種可以學習的技能」？</h4>
                                 <p class="qa-answer">納瓦爾認為，幸福不是外在事物賦予的，而是一種內在的狀態，可以透過習慣與心態的調整來培養。你可以像學習健身一樣，透過冥想、減少慾望、活在當下等心靈實踐來提升幸福感。</p>
                             </div>
@@ -304,22 +309,22 @@
                     <div class="qa-category">
                         <h3 class="qa-category-title">💡 實踐應用</h3>
                         <div class="qa-grid">
-                            <div class="qa-item" data-popup="how-to-get-rich-without-luck">
+                            <div class="card card--glass" data-popup="how-to-get-rich-without-luck">
                                 <h4 class="qa-question">如何實現「不靠運氣致富」？</h4>
                                 <p class="qa-answer">將隨機的運氣轉變為可控的運氣。透過培養獨特知識、運用槓桿以及長期堅持，讓自己成為某個領域不可或缺的人物，讓好的機會主動找上你。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="exit-competition">
+                            <div class="card card--glass" data-popup="exit-competition">
                                 <h4 class="qa-question">如何應用書中「退出競爭」的觀念？</h4>
                                 <p class="qa-answer">「退出競爭」並非放棄努力，而是停止模仿他人。當你追隨自己的好奇心與熱情，培養出獨特知識，並將其轉化為無法複製的產品時，你就進入了無人能與你競爭的領域。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="integrate-daily-life">
+                            <div class="card card--glass" data-popup="integrate-daily-life">
                                 <h4 class="qa-question">如何將書中的理念融入日常生活？</h4>
                                 <p class="qa-answer">從小處著手，透過「小賭注」開始實驗。從冥想、每日運動、或學習新技能開始，將書中的心智模型內化為思維習慣。先從納瓦爾的優先順序：健康 > 幸福 > 財富開始建立基石。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="reading-philosophy">
+                            <div class="card card--glass" data-popup="reading-philosophy">
                                 <h4 class="qa-question">納瓦爾對「閱讀」有什麼特別的建議？</h4>
                                 <p class="qa-answer">他認為閱讀是人生的終極元技能，可以被用來換取任何其他技能。建議「讀你喜愛的書，直到你愛上閱讀」，特別強調哲學、數學與科學的經典，培養獨立思考與清晰判斷的能力。</p>
                             </div>
@@ -329,22 +334,22 @@
                     <div class="qa-category">
                         <h3 class="qa-category-title">🧘‍♂️ 心靈哲學</h3>
                         <div class="qa-grid">
-                            <div class="qa-item" data-popup="desire-as-pain-source">
+                            <div class="card card--glass" data-popup="desire-as-pain-source">
                                 <h4 class="qa-question">為什麼納瓦爾說「慾望是痛苦的根源」？</h4>
                                 <p class="qa-answer">他認為，每一個慾望都是你與自己訂下的一份痛苦契約，它讓你感到不快樂，直到你實現它為止。慾望是無止境的，追求越多，痛苦也越多。因此，減少慾望是獲得內在平靜的關鍵。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="health-philosophy">
+                            <div class="card card--glass" data-popup="health-philosophy">
                                 <h4 class="qa-question">納瓦爾的健康哲學是什麼？</h4>
                                 <p class="qa-answer">納瓦爾將健康放在人生優先順序的首位，甚至高於工作與家庭。他的健康公式是：健康 = 運動 + 飲食 + 睡眠。每天早晨運動、少吃糖並確保充足睡眠，作為做出良好決策的基石。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="judgment-over-effort">
+                            <div class="card card--glass" data-popup="judgment-over-effort">
                                 <h4 class="qa-question">為何強調「判斷力」比「努力」更重要？</h4>
                                 <p class="qa-answer">在槓桿與資訊唾手可得的時代，一個正確的判斷所帶來的影響力，遠遠超過單純的時間與勞力投入。在關鍵時刻做出正確選擇的能力，才是真正的稀缺資源。</p>
                             </div>
                             
-                            <div class="qa-item" data-popup="compound-effects">
+                            <div class="card card--glass" data-popup="compound-effects">
                                 <h4 class="qa-question">書中的「複利效應」包括哪些方面？</h4>
                                 <p class="qa-answer">複利效應不僅限於金錢，還包括人際關係（信任與名譽的累積）、知識（學習與思維的迭代）、以及健康（習慣的累積）。生活中所有有價值的東西都來自於複利。</p>
                             </div>
@@ -447,6 +452,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
