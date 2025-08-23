@@ -1,203 +1,302 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with this multi-style JSON website system.
 
 ## Project Overview
 
-This is an interactive presentation website showcasing Naval Ravikant's wisdom from "The Almanack of Naval Ravikant" (《納瓦爾寶典》). It's a modern, elegant single-page application built with vanilla HTML, CSS, and JavaScript, featuring smooth animations, responsive design, and a comprehensive interactive popup system designed for presentations and deep learning.
+This is a revolutionary JSON-driven multi-style website system that demonstrates how a single content source can power multiple completely different visual designs. Using Naval Ravikant's wisdom from "The Almanack of Naval Ravikant" (《納瓦爾寶典》) as example content, we've created Zen minimalist and Luxury premium styles that share the same data source.
+
+**Key Innovation**: Same JSON content, infinite visual possibilities.
 
 ## Architecture & Structure
 
-### Core Website Files
-- `index.html` - Main HTML file with semantic structure using sections: hero, wealth, happiness, thinking, philosophy, and glossary
-- `styles.css` - CSS with modern features (Grid, Flexbox, CSS variables, animations, responsive design)
-- `script.js` - Vanilla JavaScript handling navigation, animations, parallax effects, and interactive features
+### Core System Files
+- `data/content.json` - Single source of truth for all website content
+- `js/content-loader.js` - Content loader for Zen minimalist style
+- `js/luxury-content-loader.js` - Content loader for Luxury premium style
+- `design-1-zen-tailwind.html` - Zen style page using Tailwind CSS
+- `design-2-luxury-tailwind.html` - Luxury style page using Tailwind CSS
+- `test-pages.html` - Testing overview page for all styles
 
-### Content Structure
-The website follows a card-based layout system with **34 interactive cards** total, each with detailed popup content:
-- **致富 (Wealth)** - 4 interactive cards in 2x2 grid about wealth building concepts
-- **快樂 (Happiness)** - 4 interactive cards in 2x2 grid about happiness principles  
-- **思考 (Thinking)** - 4 interactive cards in 2x2 grid about judgment and learning
-- **哲學 (Philosophy)** - 6 interactive cards (3 philosophy concepts + 3 life choice items)
-- **關鍵詞彙 (Glossary)** - 4 interactive cards in 2x2 grid with key term definitions
-- **Q&A Section** - 12 interactive cards with comprehensive Q&A content
+### GitHub Pages Setup
+**Important**: 由於我們會推上 github 並用 github page 作為展示頁面，所以 root 資料夾中必定要有一個 index.html 當作入口頁面。
 
-### Design System
-- **Responsive Breakpoints**: 1024px (tablet), 768px (mobile nav), 600px (single column)
-- **Color Scheme**: Each section has unique gradient backgrounds with consistent card styling
-- **Typography**: Inter font family with semantic heading hierarchy
-- **Animations**: Fade-in animations, hover effects, parallax scrolling, smooth scroll behavior
-- **Interactive Elements**: Glass-morphism popup design with backdrop blur effects
-- **Mobile Optimization**: Touch-friendly interactions with enhanced mobile experience
+For GitHub Pages deployment, we need to create an `index.html` file in the root directory that serves as the entry point.
+
+### JSON Data Structure
+The unified content structure in `data/content.json`:
+
+```json
+{
+  "meta": {
+    "title": "Website title",
+    "subtitle": "Website subtitle",
+    "description": "Website description",
+    "copyright": "Copyright notice"
+  },
+  "navigation": {
+    "logo": "Logo text",
+    "menuItems": [
+      { "id": "section-id", "label": "Menu text", "href": "#section-id" }
+    ]
+  },
+  "hero": {
+    "title": "Main title",
+    "subtitle": "Subtitle",
+    "description": "Hero description",
+    "buttons": [
+      { "text": "Button text", "href": "#target", "type": "primary|secondary" }
+    ]
+  },
+  "sections": {
+    "wealth": {
+      "title": "Section title",
+      "subtitle": "Section subtitle", 
+      "quote": "Inspirational quote (optional)",
+      "cards": [
+        {
+          "id": "card-id",
+          "icon": "emoji",
+          "title": "Card title",
+          "description": "Card description"
+        }
+      ]
+    }
+  }
+}
+```
+
+## Content Loader Architecture
+
+### Base ContentLoader (js/content-loader.js)
+- Designed for Zen minimalist style
+- Loads content from `data/content.json`
+- Renders content into appropriate DOM elements
+- Handles loading states and error fallback
+- Maintains clean, minimal styling approach
+
+### LuxuryContentLoader (js/luxury-content-loader.js)  
+- Designed for Luxury premium style
+- Extends base functionality with luxury-specific rendering
+- Adds premium animations and 3D effects
+- Implements luxury color schemes and gradients
+- Handles particle effects and advanced interactions
+
+### Content Loader Methods
+Both loaders implement these core methods:
+- `loadContent()` - Fetch and parse JSON data
+- `renderMeta()` - Update document title and meta tags
+- `renderNavigation()` - Render navigation menu
+- `renderHero()` - Render hero section
+- `renderSection(sectionId)` - Render specific content sections
+- `renderCards()` - Render card grids
+- `renderFooter()` - Render footer content
+- `init()` - Initialize and render all content
 
 ## Development Commands
 
 ### Local Development Server
 ```bash
-# Recommended - Custom Python server with auto-browser opening
-python3 server.py [port]
+# Start development server
+npm run dev                     # Port 3000
+npm start                      # Port 3000  
+npm run serve                  # Port 3000
 
-# NPM scripts
-npm start                    # Start server on port 8000
-npm run dev                 # Start server on port 3000
-npm run serve               # Alternative start command
-
-# Traditional Python server
-python3 -m http.server 8000
+# Alternative method
+npx http-server . -p 3000 -c-1
 ```
 
-### Testing Commands
+### Build and Deploy
 ```bash
-# Install Playwright and dependencies
-npm install
-npx playwright install
+# Build for production
+npm run build                  # Copy files to build/ directory
 
-# Run all tests
-npx playwright test
-npm run test-website
+# Preview build
+npm run preview               # Serve build directory
 
-# Run specific test files
-npx playwright test tests/website.spec.js
-npx playwright test test-navigation.spec.js
-
-# Debug mode and reports
-npx playwright test --debug
-npx playwright show-report
-
-# Use simplified config for standalone testing
-npx playwright test --config=playwright-simple.config.js
+# Clean build directory
+npm run clean                 # Remove build/ directory
 ```
 
-### Setup Commands
-```bash
-# Cross-platform setup scripts
-./setup.sh          # Linux/Mac
-setup.bat            # Windows
+## Style System Architecture
 
-# Manual Playwright MCP server setup
-npm run install-playwright
-npm run setup-playwright
+### Zen Minimalist Style (design-1-zen-tailwind.html)
+- **Design Philosophy**: Clean, minimal, content-focused
+- **Color Palette**: Warm creams, gold accents (`zen-cream`, `zen-gold`)
+- **Typography**: Crimson Pro (serif) + Inter (sans-serif)
+- **Features**: Subtle animations, clean lines, gentle hover effects
+- **CSS Framework**: Tailwind CSS with custom color configuration
+
+### Luxury Premium Style (design-2-luxury-tailwind.html)
+- **Design Philosophy**: High-end, visually striking, premium feel
+- **Color Palette**: Dark backgrounds, gold gradients (`luxury-navy`, `luxury-gold`)
+- **Typography**: Playfair Display (serif) + Source Sans Pro (sans-serif)  
+- **Features**: 3D effects, particle animations, shimmer effects, glass-morphism
+- **CSS Framework**: Tailwind CSS with luxury color configuration
+
+## Adding New Styles
+
+### 1. Create Content Loader
+```javascript
+// js/your-style-content-loader.js
+class YourStyleContentLoader {
+    constructor() {
+        this.content = null;
+        this.isLoaded = false;
+    }
+
+    async loadContent() {
+        const response = await fetch('./data/content.json');
+        this.content = await response.json();
+        return this.content;
+    }
+
+    // Implement rendering methods specific to your style
+    renderSection(sectionId) {
+        // Custom rendering logic for your style
+    }
+
+    async init() {
+        await this.loadContent();
+        // Render all sections
+    }
+}
+
+window.yourStyleContentLoader = new YourStyleContentLoader();
 ```
 
-## CSS Architecture
-
-### Layout System
-- **Grid-based layouts**: All 4-card sections use `grid-template-columns: repeat(2, 1fr)` for consistent 2x2 grids
-- **Card components**: Standardized card styling with hover effects, min-heights, and flexbox alignment
-- **Responsive design**: Mobile-first approach with collapsing grids to single column
-
-### Key CSS Classes
-- `.grid-container`, `.happiness-grid`, `.thinking-grid`, `.glossary-grid` - 2x2 grid layouts
-- `.card`, `.happiness-principle`, `.thinking-card`, `.glossary-item` - Card components with data-popup attributes
-- `.hero`, `.section` - Main layout containers
-- `.navbar` - Fixed navigation with mobile hamburger menu
-- `.popup-overlay`, `.popup-container`, `.popup-content` - Interactive popup system
-- `.qa-item`, `.choice-item`, `.philosophy-card` - Specialized interactive elements
-
-## JavaScript Features
-
-### Core Functionality
-- **Smooth scrolling navigation** with active state highlighting
-- **Parallax effects** for hero section (optimized to prevent layout issues)
-- **Mobile navigation** with hamburger menu toggle
-- **Scroll progress indicator** at top of page
-- **Floating action button** for back-to-top functionality
-- **Interactive popup system** with 34 detailed content popups
-- **Touch-optimized interactions** for mobile devices
-
-### Popup System
-- **34 Interactive Cards**: Each with data-popup attributes linking to detailed content
-- **Structured Content**: Each popup contains 概述 (Overview), 深度解析 (Analysis), 實際應用 (Application), 關鍵要點 (Key Points)
-- **Mobile Optimized**: Touch events, scroll management, responsive design
-- **Accessibility**: Keyboard navigation, focus management, screen reader support
-- **Glass-morphism Design**: Modern backdrop blur effects with smooth animations
-
-### Animation System
-- **Intersection Observer** for fade-in animations on scroll
-- **Staggered animations** with calculated delays for grid items
-- **Hover effects** with transform preservation
-- **Touch feedback** with scale animations on mobile
-- **Easter egg**: Konami code (`↑↑↓↓←→←→BA`) triggers rainbow background
-
-## Testing Architecture
-
-### Test Structure
-- `tests/website.spec.js` - Comprehensive website functionality tests
-- `test-navigation.spec.js` - Focused navigation interaction tests
-- `test-page.html` - Interactive testing interface with iframe
-
-### Playwright MCP Integration
-- `mcp_config.json` - Configuration for Claude Code MCP server
-- Enables automated browser testing, screenshot capture, and responsive testing
-- Supports browser automation for navigation testing and UI verification
+### 2. Create Style Page
+```html
+<!-- design-3-your-style.html -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <!-- Your style-specific CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'your-style': {
+                            // Your color palette
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Your HTML structure -->
+    
+    <script src="./js/your-style-content-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            document.body.classList.add('loading');
+            try {
+                await window.yourStyleContentLoader.init();
+            } finally {
+                document.body.classList.remove('loading');
+            }
+        });
+    </script>
+</body>
+</html>
+```
 
 ## Content Management
 
-### Source Content
-- `content.md` - Raw content in Chinese about Naval Ravikant's philosophy
-- `questions.md` - Study guide and test questions based on the content
-- Content is organized around key themes: wealth building, happiness, thinking, and life philosophy
+### Updating Content
+1. Edit `data/content.json` - all changes automatically reflect across all styles
+2. Content structure must match expected format for all loaders
+3. Test changes across all style implementations
 
-### Content Architecture
-The website translates Naval Ravikant's concepts into structured, interactive sections:
-1. **"把自己產品化" (Productize Yourself)** - Core concept about creating personal leverage
-2. **Four types of luck** - From blind luck to unique character-driven opportunities  
-3. **Wealth vs Money vs Status** - Fundamental distinctions about value creation
-4. **Positive-sum vs Zero-sum games** - Framework for life decisions
-5. **Judgment over effort** - Emphasis on decision-making quality
+### Adding New Sections
+1. Add section data to `data/content.json` under `sections`
+2. Update content loaders to handle new section in `renderSection()` method
+3. Add corresponding HTML structure in style pages
+4. Test responsive behavior across all breakpoints
 
-### Interactive Content Features
-- **Presentation Ready**: Each popup serves as detailed speaker notes for presentations
-- **Comprehensive Coverage**: 34 topics covering all major concepts from Naval's philosophy
-- **Structured Learning**: Content organized with clear sections for easy understanding
-- **Mobile Friendly**: Full functionality on mobile devices for on-the-go learning
+### Internationalization Preparation
+The architecture naturally supports multiple languages:
+- Create `data/content-en.json`, `data/content-zh.json`, etc.
+- Modify loaders to accept language parameter
+- Implement language switching in navigation
 
-## Development Notes
+## Browser Compatibility & Performance
 
-### Layout Consistency
-All 4-card sections must maintain 2x2 grid layouts. When adding new sections, use the established grid classes and ensure responsive behavior is maintained across all breakpoints.
+### Supported Browsers
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
 
-### Navigation System
-The navigation uses anchor links with smooth scrolling. Section IDs must match navigation hrefs: `#hero`, `#wealth`, `#happiness`, `#thinking`, `#philosophy`, `#qa`. JavaScript handles active state management and mobile menu behavior.
+### Performance Features
+- Async content loading with loading states
+- Tailwind CSS for optimized styling
+- Event delegation for optimal DOM manipulation
+- Lazy loading preparation for future expansion
+- Minimal JavaScript footprint
 
-### Interactive Elements System
-- **Data Attributes**: All interactive cards use `data-popup` attributes with unique identifiers
-- **Popup Content**: Stored in JavaScript `popupData` object with structured content
-- **Event Handling**: Click and touch events for desktop and mobile compatibility
-- **Content Structure**: Each popup follows the format: title, overview, analysis, application, keypoints
+### Mobile Optimization
+- Responsive design across all styles
+- Touch-friendly interactions
+- Optimized animations for mobile devices
+- Progressive enhancement approach
 
-### Performance Considerations
-- CSS animations use `transform` for optimal performance
-- Images and fonts are loaded from CDN (Google Fonts)
-- JavaScript uses event delegation and optimized DOM queries
-- Parallax effects are throttled to prevent performance issues
-- Popup system optimized for smooth animations and mobile performance
-- Scroll management prevents background scrolling when popups are active
+## Testing & Quality Assurance
 
-### Browser Compatibility
-- Targets modern browsers (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)
-- Uses modern CSS features (Grid, custom properties, backdrop-filter)
-- Touch events for mobile compatibility
-- Graceful degradation for older browsers
+### Visual Testing
+- Use `test-pages.html` to compare all styles side-by-side
+- Test responsive behavior at different breakpoints
+- Verify content consistency across all styles
 
-## Presentation Usage
+### Content Validation
+- Ensure all required JSON fields are present
+- Test loading error scenarios and fallbacks
+- Verify accessibility of dynamically generated content
 
-### How to Use for Presentations
-1. **Start Server**: Run `python3 server.py` to start local server
-2. **Navigate Sections**: Use the main navigation to move between topics
-3. **Interactive Content**: Click any card to open detailed popup with speaker notes
-4. **Mobile Support**: Full functionality on tablets and phones for portable presentations
-5. **Structured Content**: Each popup provides comprehensive talking points organized by:
-   - **概述 (Overview)**: Brief introduction to the concept
-   - **深度解析 (Analysis)**: Detailed explanation with examples
-   - **實際應用 (Application)**: Practical implementation steps
-   - **關鍵要點 (Key Points)**: Summary of main takeaways
+## Deployment Considerations
 
-### Content Coverage
-The website covers all major themes from Naval Ravikant's philosophy:
-- Wealth creation and financial independence
-- Happiness and mental well-being
-- Decision-making and judgment
-- Life philosophy and choices
-- Key terminology and concepts
-- Comprehensive Q&A section
+### GitHub Pages Setup
+1. Ensure `index.html` exists in root (entry point requirement)
+2. All assets must be served over HTTPS
+3. Relative paths required for proper GitHub Pages functionality
+4. Consider creating `index.html` that redirects to `test-pages.html`
+
+### Production Build
+- Use `npm run build` to create optimized build directory
+- Verify all JSON files and assets are included
+- Test build directory with `npm run preview`
+
+## Development Best Practices
+
+### Content Loader Development
+- Always implement error handling and fallback content
+- Maintain consistent API across different style loaders
+- Use semantic HTML structure for accessibility
+- Follow responsive design principles
+
+### Style Development  
+- Use Tailwind CSS utility classes for consistency
+- Implement proper loading states and transitions
+- Ensure keyboard navigation support
+- Test across multiple devices and browsers
+
+### Content Structure
+- Keep JSON structure flat and simple
+- Use consistent naming conventions
+- Include all necessary metadata
+- Plan for future expansion and localization
+
+## Architecture Benefits
+
+1. **Separation of Concerns**: Content, styling, and behavior are completely separate
+2. **Scalability**: Easy to add unlimited new visual styles
+3. **Maintainability**: Content updates apply to all styles automatically  
+4. **Flexibility**: Each style can have completely different UX/UI approaches
+5. **Performance**: Lightweight system with minimal JavaScript
+6. **Accessibility**: Semantic HTML structure maintained across all styles
+
+This architecture demonstrates the power of content-design separation and provides a foundation for building sophisticated multi-brand, multi-theme, or multi-audience websites.

@@ -1,51 +1,42 @@
 {
-  "name": "naval-ravikant-almanac",
-  "version": "2.0.0",
-  "description": "Interactive presentation website showcasing Naval Ravikant's wisdom with 34 interactive cards featuring detailed popup content for deep learning and presentations",
-  "main": "index.html",
+  "name": "multi-style-json-website",
+  "version": "3.0.0",
+  "description": "A JSON-driven multi-style website system - same content, multiple visual designs. Features Zen and Luxury themes for Naval Ravikant's wisdom.",
+  "main": "test-pages.html",
   "scripts": {
-    "start": "npx http-server . -p 8080 -c-1",
-    "serve": "npx http-server . -p 8080 -c-1",
+    "start": "npx http-server . -p 3000 -c-1",
+    "serve": "npx http-server . -p 3000 -c-1",
     "dev": "npx http-server . -p 3000 -c-1",
-    "build": "mkdir -p build && cp index.html script.js build/ && cp -r css/ build/css/ && cp design-*.html build/ 2>/dev/null || true",
-    "test": "npx playwright test --config=config/playwright.config.js",
-    "test:simple": "npx playwright test --config=config/playwright-simple.config.js",
-    "test:debug": "npx playwright test --config=config/playwright.config.js --debug",
-    "test:report": "npx playwright show-report",
-    "install-playwright": "npm install @executeautomation/playwright-mcp-server",
-    "setup-playwright": "npx playwright install",
-    "setup": "npm install && npx playwright install",
-    "clean": "rm -rf build/ playwright-report/ test-results/",
-    "preview": "npx http-server build/ -p 8080 -c-1"
+    "build": "mkdir -p build && cp -r data/ js/ docs/ design-*.html test-pages.html package.json LICENSE README.md build/",
+    "clean": "rm -rf build/",
+    "preview": "npx http-server build/ -p 3000 -c-1"
   },
   "keywords": [
+    "json-driven",
+    "multi-style",
+    "website-themes",
+    "content-management",
+    "tailwind-css",
+    "zen-design",
+    "luxury-design",
     "naval-ravikant",
-    "almanac",
-    "wealth",
-    "happiness",
-    "philosophy",
-    "interactive",
-    "presentation",
     "wisdom",
-    "popup",
-    "educational",
-    "mobile-friendly",
-    "responsive"
+    "responsive",
+    "modular",
+    "scalable"
   ],
   "author": "Claude Code",
   "license": "MIT",
   "devDependencies": {
-    "@executeautomation/playwright-mcp-server": "^1.0.0",
-    "@playwright/test": "^1.54.2",
     "http-server": "^14.1.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/naval-ravikant-almanac.git"
+    "url": "https://github.com/your-username/multi-style-json-website.git"
   },
-  "homepage": "https://your-username.github.io/naval-ravikant-almanac",
+  "homepage": "https://your-username.github.io/multi-style-json-website",
   "bugs": {
-    "url": "https://github.com/your-username/naval-ravikant-almanac/issues"
+    "url": "https://github.com/your-username/multi-style-json-website/issues"
   },
   "engines": {
     "node": ">=14.0.0",
