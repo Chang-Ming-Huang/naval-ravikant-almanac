@@ -149,9 +149,9 @@ class RetroContentLoader {
 
             // 復古風格的漸層背景變化
             const gradients = [
-                'from-retro-pink via-retro-purple to-retro-blue',
-                'from-retro-cyan via-retro-blue to-retro-purple',
-                'from-retro-yellow via-retro-pink to-retro-purple',
+                'from-retro-orange via-retro-yellow to-retro-cyan',
+                'from-retro-cyan via-retro-blue to-retro-green',
+                'from-retro-yellow via-retro-orange to-retro-pink',
                 'from-retro-green via-retro-cyan to-retro-blue'
             ];
             const gradientClass = gradients[index % gradients.length];
