@@ -30,11 +30,11 @@ jobs:
       run: |
         mkdir -p build
         cp index.html build/
-        cp script.js build/
-        cp -r css/ build/css/
-        cp -r js/ build/js/ || true
-        # Copy design mockups for reference
-        cp design-*.html build/ || true
+        cp -r pages/ build/pages/
+        cp -r js/ build/js/
+        cp -r data/ build/data/
+        cp LICENSE build/
+        cp README.md build/
 
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
