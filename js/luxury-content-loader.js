@@ -110,12 +110,11 @@ class LuxuryContentLoader {
             buttonsContainer.innerHTML = hero.buttons.map(button => {
                 const isPrimary = button.type === 'primary';
                 const classes = isPrimary 
-                    ? "luxury-btn-primary group relative inline-flex items-center justify-center px-12 py-5 bg-gold-gradient text-luxury-navy font-bold text-lg rounded-2xl shadow-2xl hover:shadow-luxury-gold/50 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
-                    : "luxury-btn-secondary group relative inline-flex items-center justify-center px-12 py-5 bg-transparent text-luxury-gold font-bold text-lg border-3 border-luxury-gold rounded-2xl hover:bg-luxury-gold hover:text-luxury-navy hover:-translate-y-2 transition-all duration-500 overflow-hidden";
+                    ? "luxury-btn-primary group relative inline-flex items-center justify-center px-12 py-5 bg-gold-gradient text-luxury-navy font-bold text-lg rounded-2xl shadow-2xl hover:shadow-luxury-gold/50 hover:-translate-y-1 transition-all duration-300"
+                    : "luxury-btn-secondary inline-flex items-center justify-center px-12 py-5 bg-transparent text-luxury-gold font-bold text-lg border-3 border-luxury-gold rounded-2xl hover:bg-luxury-gold hover:text-luxury-navy transition-all duration-300";
                 
                 return `<a href="${button.href}" class="${classes}">
                     <span class="relative z-10">${button.text}</span>
-                    <div class="absolute inset-0 bg-shimmer-gradient opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500"></div>
                 </a>`;
             }).join('');
         }
@@ -161,25 +160,16 @@ class LuxuryContentLoader {
                 : '';
 
             return `
-                <div class="luxury-card group relative bg-luxury-white rounded-3xl p-10 shadow-2xl hover:shadow-luxury-gold/30 hover:-translate-y-4 transition-all duration-700 cursor-pointer border-2 border-luxury-border hover:border-luxury-gold card-3d opacity-0 animate-fade-in-up ${animationDelay} ${colSpanClass}">
-                    <!-- Luxury gradient overlay -->
-                    <div class="absolute inset-0 bg-gold-gradient opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-700"></div>
-                    
-                    <!-- Shimmer effect -->
-                    <div class="absolute inset-0 bg-shimmer-gradient opacity-0 group-hover:opacity-100 group-hover:animate-shimmer rounded-3xl transition-opacity duration-700"></div>
-                    
+                <div class="luxury-card group relative bg-luxury-white rounded-3xl p-10 shadow-2xl hover:shadow-luxury-gold/30 hover:-translate-y-1 transition-all duration-300 cursor-pointer border-2 border-luxury-border hover:border-luxury-gold ${colSpanClass}">
                     <div class="relative z-10">
-                        <!-- Floating icon with glow -->
+                        <!-- Icon and title -->
                         <div class="flex items-center gap-6 mb-8">
-                            <div class="text-5xl opacity-90 animate-float group-hover:animate-glow transition-all duration-500">${card.icon}</div>
-                            <h3 class="font-serif text-3xl font-semibold text-luxury-charcoal group-hover:text-luxury-gold transition-colors duration-500 text-shadow-luxury">${card.title}</h3>
+                            <div class="text-5xl opacity-90">${card.icon}</div>
+                            <h3 class="font-serif text-3xl font-semibold text-luxury-charcoal">${card.title}</h3>
                         </div>
                         
-                        <!-- Premium description -->
-                        <p class="text-luxury-text-light text-lg leading-relaxed group-hover:text-luxury-charcoal transition-colors duration-500 font-light">${card.description}</p>
-                        
-                        <!-- Premium accent line -->
-                        <div class="absolute bottom-0 left-0 w-0 h-1 bg-gold-gradient rounded-full group-hover:w-full transition-all duration-700"></div>
+                        <!-- Description -->
+                        <p class="text-luxury-text-light text-lg leading-relaxed font-light">${card.description}</p>
                     </div>
                 </div>
             `;

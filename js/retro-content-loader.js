@@ -167,7 +167,7 @@ class RetroContentLoader {
                     <div class="relative z-10">
                         <!-- Retro header -->
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="retro-icon-bg w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                            <div class="retro-icon-bg w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
                                 <span class="text-4xl filter drop-shadow-lg">${card.icon}</span>
                             </div>
                             <div>

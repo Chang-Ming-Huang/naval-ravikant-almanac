@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(npx playwright install:*)",
+      "Bash(npm test)",
+      "Bash(npm run:*)",
+      "Bash(grep:*)",
+      "Bash(mv:*)",
+      "Bash(rmdir:*)",
+      "Bash(gh:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(cp:*)",
+      "Bash(git commit:*)",
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(npx http-server:*)",
+      "Bash(git rm:*)",
+      "Bash(git mv:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  }
+}
