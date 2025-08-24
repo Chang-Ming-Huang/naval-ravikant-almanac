@@ -19,7 +19,7 @@ export default {
   dimensions: [Light, Formal, Loose, Flat],
   
   // 頁面 URL
-  url: 'pages/design-1-zen-tailwind.html',
+  url: 'pages/zen.html',
   buttonText: '體驗 Zen 風格 →',
   
   // 特殊的顏色配置 (覆蓋維度預設值)

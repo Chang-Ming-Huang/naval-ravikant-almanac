@@ -19,7 +19,7 @@ export default {
   dimensions: [Dark, Formal, Compact, Dimensional],
   
   // 頁面 URL
-  url: 'pages/design-2-luxury-tailwind.html',
+  url: 'pages/luxury.html',
   buttonText: '體驗 Luxury 風格 →',
   
   // 特殊的顏色配置 (覆蓋維度預設值)

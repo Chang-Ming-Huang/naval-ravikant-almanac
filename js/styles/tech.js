@@ -19,7 +19,7 @@ export default {
   dimensions: [Dark, Casual, Compact, Dimensional],
   
   // 頁面 URL
-  url: 'pages/design-3-tech-tailwind.html',
+  url: 'pages/tech.html',
   buttonText: '體驗 Tech 風格 →',
   
   // 特殊的顏色配置 (覆蓋維度預設值)  

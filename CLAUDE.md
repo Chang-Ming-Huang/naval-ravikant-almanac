@@ -106,7 +106,7 @@ The unified content structure in `data/content.json`:
 - **Performance Optimized**: Single loader instance with style-specific rendering
 
 ### Legacy Content Loaders (js/legacy/)
-- **js/content-loader.js** - Original Zen style loader (maintained for compatibility)
+- **js/zen-content-loader.js** - Original Zen style loader (maintained for compatibility)
 - **js/luxury-content-loader.js** - Original Luxury style loader (maintained for compatibility)
 - **js/tech-content-loader.js** - Original Tech style loader (maintained for compatibility)
 - **js/retro-content-loader.js** - Original Retro style loader (maintained for compatibility)
@@ -225,7 +225,7 @@ export default {
   // The four-dimension combination - this IS your style!
   dimensions: [Dark, Casual, Loose, Flat],
   
-  url: 'pages/design-your-style.html',
+  url: 'pages/your-style.html',
   buttonText: 'Experience Your Style →',
   
   // Optional: Custom color overrides

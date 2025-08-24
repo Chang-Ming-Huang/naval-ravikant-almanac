@@ -11,10 +11,10 @@ book/
 ├── data/
 │   └── content.json          # 統一的內容資料檔案
 ├── js/
-│   ├── content-loader.js     # Zen 風格內容載入器
+│   ├── zen-content-loader.js # Zen 風格內容載入器
 │   └── luxury-content-loader.js # Luxury 風格內容載入器
-├── design-1-zen-tailwind.html    # Zen 風格頁面（使用 JSON）
-├── design-2-luxury-tailwind.html # Luxury 風格頁面（使用 JSON）
+├── zen.html                     # Zen 風格頁面（使用 JSON）
+├── luxury.html                  # Luxury 風格頁面（使用 JSON）
 ├── design-1-zen.html            # 原始 Zen 風格（未使用 JSON）
 ├── design-2-luxury.html         # 原始 Luxury 風格（未使用 JSON）
 └── test-pages.html              # 測試頁面

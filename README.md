@@ -92,10 +92,10 @@ npx http-server . -p 3000 -c-1
 
 訪問 `http://localhost:3000` 查看主頁面，然後點擊風格卡片：
 
-- **🧘 Zen 風格**: `pages/design-1-zen-tailwind.html`
-- **💎 Luxury 風格**: `pages/design-2-luxury-tailwind.html`
-- **🤖 Tech 風格**: `pages/design-3-tech-tailwind.html`
-- **🌈 Retro 風格**: `pages/design-4-retro-tailwind.html`
+- **🧘 Zen 風格**: `pages/zen.html`
+- **💎 Luxury 風格**: `pages/luxury.html`
+- **🤖 Tech 風格**: `pages/tech.html`
+- **🌈 Retro 風格**: `pages/retro.html`
 
 ## 📁 維度驅動架構結構
 
@@ -129,10 +129,10 @@ multi-style-json-website/
 │   └── 📄 legacy files...             # 🔄 舊版載入器 (向後相容)
 │
 ├── 📂 pages/                           # 🎨 風格頁面
-│   ├── design-1-zen-tailwind.html     # Zen 極簡風格
-│   ├── design-2-luxury-tailwind.html  # Luxury 奢華風格
-│   ├── design-3-tech-tailwind.html    # Tech 科技風格
-│   └── design-4-retro-tailwind.html   # Retro 復古風格
+│   ├── zen.html                       # Zen 極簡風格
+│   ├── luxury.html                    # Luxury 奢華風格
+│   ├── tech.html                      # Tech 科技風格
+│   └── retro.html                     # Retro 復古風格
 │
 ├── 📂 docs/                            # 📚 技術文檔  
 │   ├── JSON_SYSTEM.md                  # 系統架構說明
@@ -168,7 +168,7 @@ export default {
   // 四個維度的組合定義風格特性
   dimensions: [Dark, Casual, Loose, Flat],
   
-  url: 'pages/design-your-style.html',
+  url: 'pages/your-style.html',
   buttonText: '體驗你的風格 →',
   
   // 可選：客製化顏色覆蓋

@@ -19,7 +19,7 @@ export default {
   dimensions: [Light, Casual, Loose, Dimensional],
   
   // 頁面 URL  
-  url: 'pages/design-4-retro-tailwind.html',
+  url: 'pages/retro.html',
   buttonText: '體驗 Retro 風格 →',
   
   // 特殊的顏色配置 (覆蓋維度預設值)
