@@ -9,7 +9,7 @@
   "navigation": {
     "logo": "納瓦爾寶典",
     "menuItems": [
-      { "id": "hero", "label": "首頁", "href": "#hero" },
+      { "id": "hero", "label": "首頁", "href": "../index.html" },
       { "id": "wealth", "label": "致富", "href": "#wealth" },
       { "id": "happiness", "label": "快樂", "href": "#happiness" },
       { "id": "thinking", "label": "思考", "href": "#thinking" },

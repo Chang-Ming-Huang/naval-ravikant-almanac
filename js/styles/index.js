@@ -7,6 +7,8 @@ import zenStyle from './zen.js';
 import luxuryStyle from './luxury.js';
 import techStyle from './tech.js';
 import retroStyle from './retro.js';
+import academicStyle from './academic.js';
+import corporateStyle from './corporate.js';
 
 /**
  * 初始化並註冊所有風格
@@ -21,7 +23,9 @@ export async function initializeStyles() {
       zenStyle,
       luxuryStyle, 
       techStyle,
-      retroStyle
+      retroStyle,
+      academicStyle,
+      corporateStyle
     ];
     
     styleRegistry.registerMultiple(styles);

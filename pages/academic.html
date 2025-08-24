@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學者暗黑風格 - Scholar Dark Style | Multi-Style Website</title>
+    
+    <!-- Tailwind CSS CDN with Scholar Dark Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'scholar-dark': '#1a1a1a',
+                        'scholar-card': '#2d2d2d', 
+                        'scholar-text': '#e8e6e3',
+                        'scholar-amber': '#d97706'
+                    },
+                    fontFamily: {
+                        'scholar': ['Times New Roman', '思源宋體', 'serif']
+                    },
+                    boxShadow: {
+                        'candlelight': '0 20px 40px rgba(217, 119, 6, 0.15), 0 8px 16px rgba(0, 0, 0, 0.3)',
+                        'scholar': '0 10px 25px rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <meta name="description" content="學者暗黑風格展示頁面 - 深夜學者研究室的溫暖護眼閱讀體驗">
+    <meta name="keywords" content="學者風格, 暗黑主題, 護眼設計, 深夜閱讀">
+    
+    <style>
+        /* Scholar Dark Custom CSS */
+        :root {
+            --scholar-dark: #1a1a1a;
+            --scholar-amber: #d97706;
+            --scholar-text: #e8e6e3;
+        }
+        
+        body {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(217, 119, 6, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 50%),
+                #1a1a1a;
+            color: var(--scholar-text);
+        }
+        
+        /* Scholar card effects */
+        .scholar-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #1f2937;
+        }
+        
+        .scholar-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.15), 0 8px 16px rgba(0, 0, 0, 0.3);
+            background: #374151;
+        }
+        
+        /* Navigation candlelight effect */
+        nav {
+            background: rgba(45, 45, 45, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Scholar reading typography */
+        .scholar-reading {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Candlelight animation */
+        @keyframes candleFlicker {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .candle-flicker {
+            animation: candleFlicker 3s ease-in-out infinite;
+        }
+        
+        /* Scholar scroll effects */
+        .scholar-fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        
+        .scholar-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+
+<body class="bg-scholar-dark text-scholar-text font-scholar">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 shadow-scholar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="nav-logo flex-shrink-0">
+                    <h2 class="font-serif text-2xl font-medium text-amber-300 tracking-tight">Scholar Dark</h2>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <ul class="flex space-x-6">
+                            <li><a href="../index.html" class="nav-link relative py-3 px-6 text-amber-200 font-medium hover:text-amber-100 transition-all duration-300 rounded-lg hover:bg-gray-800/50">首頁</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Mobile Navigation Button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-amber-200 hover:text-amber-100 hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500">
+                        <span class="sr-only">開啟選單</span>
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800/95 backdrop-blur-sm border-t border-gray-700">
+                <ul>
+                    <li><a href="../index.html" class="block py-3 px-4 text-amber-200 font-medium hover:text-amber-100 hover:bg-gray-800/50 transition-colors rounded-md">首頁</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-24 pb-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="font-serif text-5xl md:text-6xl font-light text-amber-200 mb-8 leading-tight tracking-wide scholar-reading">深夜學者標題</h1>
+            <h2 class="text-2xl md:text-3xl text-amber-300/80 font-light mb-10 leading-relaxed scholar-reading">學者副標題</h2>
+            <p class="text-lg text-gray-300 leading-relaxed mb-16 max-w-4xl mx-auto font-light scholar-reading">學者描述內容</p>
+            
+            <!-- Hero Buttons -->
+            <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#content" class="inline-flex items-center justify-center px-10 py-4 bg-amber-600 text-gray-900 font-medium rounded-lg hover:bg-amber-500 transition-all duration-300 shadow-lg hover:shadow-xl candle-flicker">開始夜讀</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="py-16">
+        <!-- Loading State -->
+        <div id="loading-state" class="max-w-6xl mx-auto px-4 text-center py-16">
+            <div class="w-16 h-16 border-4 border-amber-600/20 border-t-amber-600 rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-amber-300 font-medium">正在點燃燭火，載入學者內容...</p>
+        </div>
+
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 scholar-fade-in">
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-amber-200 mb-6 tracking-wide scholar-reading">財富部分</h2>
+                    <p class="text-xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed scholar-reading">財富部分副標題</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Happiness Section -->
+        <section id="happiness" class="py-20 px-4 bg-gray-900/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 scholar-fade-in">
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-amber-200 mb-6 tracking-wide scholar-reading">快樂部分</h2>
+                    <p class="text-xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed scholar-reading">快樂部分副標題</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Thinking Section -->
+        <section id="thinking" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 scholar-fade-in">
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-amber-200 mb-6 tracking-wide scholar-reading">思考部分</h2>
+                    <p class="text-xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed scholar-reading">思考部分副標題</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="py-20 px-4 bg-gray-900/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 scholar-fade-in">
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-amber-200 mb-6 tracking-wide scholar-reading">哲學部分</h2>
+                    <p class="text-xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed scholar-reading">哲學部分副標題</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- QA Section -->
+        <section id="qa" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 scholar-fade-in">
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-amber-200 mb-6 tracking-wide scholar-reading">問答部分</h2>
+                    <p class="text-xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed scholar-reading">問答部分副標題</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 border-t border-gray-700 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 font-light">© 2024 Scholar Dark Style Demo</p>
+        </div>
+    </footer>
+
+    <!-- Scholar Dark Content Loader -->
+    <script type="module">
+        import ScholarDarkContentLoader from '../js/loaders/academic.js';
+        
+        // Initialize scholar dark style
+        const loader = new ScholarDarkContentLoader();
+        
+        // Start loading process
+        loader.init().then(() => {
+            // Hide loading state
+            document.getElementById('loading-state').style.display = 'none';
+            console.log('🌙 Scholar Dark style page initialized successfully');
+        }).catch(error => {
+            console.error('❌ Failed to initialize scholar dark style:', error);
+            // Show error message
+            document.getElementById('loading-state').innerHTML = `
+                <div class="text-center py-16">
+                    <div class="text-4xl mb-4">❌</div>
+                    <h3 class="text-xl font-bold text-red-400 mb-2">載入失敗</h3>
+                    <p class="text-gray-400 mb-4">無法載入學者內容，請重新整理頁面</p>
+                    <button onclick="location.reload()" class="bg-amber-600 text-gray-900 px-6 py-3 rounded-lg hover:bg-amber-500 transition-colors font-medium">
+                        重新載入
+                    </button>
+                </div>
+            `;
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Scholar fade-in effects on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.scholar-fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+    </script>
+</body>
+</html>

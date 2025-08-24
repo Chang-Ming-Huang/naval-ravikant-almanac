@@ -279,20 +279,96 @@
             const container = document.getElementById('styles-container');
             if (!container) return;
             
-            container.innerHTML = styles.map(style => `
-                <div class="card-hover ${style.cardStyle?.background || 'bg-white'} rounded-2xl p-8 shadow-lg transition-all duration-300 ${style.cardStyle?.border || ''}">
+            container.innerHTML = styles.map(style => {
+                // 為每個風格設定專屬樣式
+                const styleConfig = getStyleConfig(style.id);
+                
+                return `
+                <div class="card-hover ${styleConfig.cardBg} rounded-2xl p-8 shadow-lg transition-all duration-300 ${styleConfig.border} ${styleConfig.hover}">
                     <div class="text-center">
-                        <div class="w-20 h-20 ${style.cardStyle?.iconBg || 'bg-blue-500'} rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div class="w-20 h-20 ${styleConfig.iconBg} rounded-full mx-auto mb-6 flex items-center justify-center">
                             <span class="text-3xl">${style.icon}</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-4">${style.name}</h3>
-                        <p class="mb-8 text-lg">${style.description}</p>
-                        <a href="${style.url}" class="inline-block px-8 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 ${style.buttonStyle?.primary || 'bg-blue-500 text-white hover:bg-blue-600'}">
+                        <h3 class="text-3xl font-bold mb-4 ${styleConfig.titleColor}">${style.name}</h3>
+                        <p class="mb-8 text-lg ${styleConfig.textColor}">${style.description}</p>
+                        <a href="${style.url}" class="inline-block px-8 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 ${styleConfig.buttonStyle}">
                             ${style.buttonText}
                         </a>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
+        }
+        
+        // 為每個風格設定專屬樣式配置
+        function getStyleConfig(styleId) {
+            const configs = {
+                'zen': {
+                    cardBg: 'bg-amber-50',
+                    border: 'border border-amber-200',
+                    hover: 'hover:shadow-xl hover:bg-amber-100',
+                    iconBg: 'bg-amber-200',
+                    titleColor: 'text-amber-900',
+                    textColor: 'text-amber-800', 
+                    buttonStyle: 'bg-amber-600 text-white hover:bg-amber-700'
+                },
+                'luxury': {
+                    cardBg: 'bg-gray-900',
+                    border: 'border border-yellow-400',
+                    hover: 'hover:shadow-2xl hover:shadow-yellow-400/20',
+                    iconBg: 'bg-yellow-400',
+                    titleColor: 'text-yellow-300',
+                    textColor: 'text-gray-200',
+                    buttonStyle: 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700'
+                },
+                'tech': {
+                    cardBg: 'bg-slate-900',
+                    border: 'border border-green-400',
+                    hover: 'hover:shadow-xl hover:shadow-green-400/20 hover:border-green-300',
+                    iconBg: 'bg-green-400',
+                    titleColor: 'text-green-300',
+                    textColor: 'text-gray-200',
+                    buttonStyle: 'bg-green-500 text-black hover:bg-green-400'
+                },
+                'retro': {
+                    cardBg: 'bg-gradient-to-br from-purple-100 to-pink-100',
+                    border: 'border border-purple-300',
+                    hover: 'hover:shadow-xl hover:from-purple-200 hover:to-pink-200',
+                    iconBg: 'bg-gradient-to-r from-purple-400 to-pink-400',
+                    titleColor: 'text-purple-800',
+                    textColor: 'text-purple-700',
+                    buttonStyle: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600'
+                },
+                'academic': { // Scholar Dark
+                    cardBg: 'bg-gray-800',
+                    border: 'border border-amber-600',
+                    hover: 'hover:shadow-xl hover:shadow-amber-600/20 hover:bg-gray-750',
+                    iconBg: 'bg-amber-600',
+                    titleColor: 'text-amber-200',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-amber-600 text-gray-900 hover:bg-amber-500'
+                },
+                'corporate': { // Fashion
+                    cardBg: 'bg-gradient-to-br from-pink-50 to-rose-50',
+                    border: 'border border-pink-200',
+                    hover: 'hover:shadow-xl hover:shadow-pink-200/50 hover:from-pink-100 hover:to-rose-100',
+                    iconBg: 'bg-gradient-to-r from-pink-400 to-rose-400',
+                    titleColor: 'text-pink-800',
+                    textColor: 'text-pink-700',
+                    buttonStyle: 'bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600'
+                }
+            };
+            
+            // 預設樣式
+            return configs[styleId] || {
+                cardBg: 'bg-white',
+                border: 'border border-gray-200',
+                hover: 'hover:shadow-xl',
+                iconBg: 'bg-blue-500',
+                titleColor: 'text-gray-800',
+                textColor: 'text-gray-600',
+                buttonStyle: 'bg-blue-500 text-white hover:bg-blue-600'
+            };
         }
         
         // 渲染風格流程
@@ -319,10 +395,12 @@
         // 獲取風格流程顏色
         function getStyleFlowColor(styleId) {
             const colorMap = {
-                'zen': 'text-yellow-600',
-                'luxury': 'text-yellow-700', 
-                'tech': 'text-green-600',
-                'retro': 'text-orange-600'
+                'zen': 'text-amber-600',
+                'luxury': 'text-yellow-600', 
+                'tech': 'text-green-500',
+                'retro': 'text-purple-600',
+                'academic': 'text-amber-400',
+                'corporate': 'text-pink-600'
             };
             return colorMap[styleId] || 'text-gray-600';
         }
