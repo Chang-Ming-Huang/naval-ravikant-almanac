@@ -105,7 +105,7 @@ class RetroContentLoader {
                 const isPrimary = button.type === 'primary';
                 const classes = isPrimary 
                     ? "retro-btn-primary inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-retro-pink to-retro-purple text-white font-bold text-lg rounded-full shadow-lg hover:shadow-retro-glow hover:-translate-y-1 transition-all transform"
-                    : "retro-btn-secondary inline-flex items-center justify-center px-8 py-4 bg-transparent text-retro-cyan font-bold text-lg border-3 border-retro-cyan rounded-full hover:bg-retro-cyan hover:text-retro-dark hover:-translate-y-1 transition-all transform";
+                    : "retro-btn-secondary inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-retro-cyan to-retro-blue text-white font-bold text-lg border-3 border-retro-cyan rounded-full hover:from-retro-blue hover:to-retro-cyan hover:-translate-y-1 transition-all transform";
                 
                 return `<a href="${button.href}" class="${classes}">${button.text}</a>`;
             }).join('');
@@ -147,17 +147,17 @@ class RetroContentLoader {
                 ? 'md:col-span-2 lg:col-span-1' 
                 : '';
 
-            // 復古風格的漸層背景變化
+            // 復古風格的漸層背景變化 - 使用深色背景提高對比度
             const gradients = [
-                'from-retro-orange via-retro-yellow to-retro-cyan',
-                'from-retro-cyan via-retro-blue to-retro-green',
-                'from-retro-yellow via-retro-orange to-retro-pink',
-                'from-retro-green via-retro-cyan to-retro-blue'
+                'from-gray-900 via-orange-900 to-gray-900',
+                'from-gray-900 via-cyan-900 to-gray-900',
+                'from-gray-900 via-pink-900 to-gray-900',
+                'from-gray-900 via-green-900 to-gray-900'
             ];
             const gradientClass = gradients[index % gradients.length];
 
             return `
-                <div class="retro-card group relative bg-gradient-to-br ${gradientClass} p-8 rounded-3xl shadow-2xl hover:shadow-retro-glow hover:-translate-y-4 transition-all duration-500 cursor-pointer border-4 border-white/20 hover:border-white/40 ${colSpanClass}">
+                <div class="retro-card group relative bg-gradient-to-br ${gradientClass} p-8 rounded-3xl shadow-2xl hover:shadow-retro-glow hover:-translate-y-4 transition-all duration-500 cursor-pointer border-4 border-orange-400/30 hover:border-orange-400/60 ${colSpanClass}">
                     <!-- Retro grid overlay -->
                     <div class="absolute inset-0 bg-retro-grid opacity-20 rounded-3xl"></div>
                     
@@ -167,22 +167,24 @@ class RetroContentLoader {
                     <div class="relative z-10">
                         <!-- Retro header -->
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="retro-icon-bg w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <div class="retro-icon-bg w-16 h-16 bg-orange-400/20 rounded-2xl flex items-center justify-center border border-orange-400/40">
                                 <span class="text-4xl filter drop-shadow-lg">${card.icon}</span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-2xl text-white drop-shadow-lg mb-1">${card.title}</h3>
-                                <div class="w-12 h-1 bg-white/60 rounded-full"></div>
+                                <h3 class="font-bold text-2xl text-orange-100 drop-shadow-lg mb-1">${card.title}</h3>
+                                <div class="w-12 h-1 bg-orange-400/80 rounded-full"></div>
                             </div>
                         </div>
                         
                         <!-- Retro description -->
-                        <p class="text-white/90 text-lg leading-relaxed font-medium drop-shadow-sm">${card.description}</p>
+                        <p class="text-gray-100 text-lg leading-relaxed font-medium drop-shadow-sm">${card.description}</p>
                         
-                        <!-- Retro accent elements -->
-                        <div class="absolute top-4 right-4 w-8 h-8 border-2 border-white/30 rounded-full opacity-60"></div>
-                        <div class="absolute top-6 right-6 w-4 h-4 bg-white/20 rounded-full"></div>
-                        <div class="absolute bottom-4 left-4 w-16 h-1 bg-white/40 rounded-full group-hover:w-24 transition-all duration-500"></div>
+                    </div>
+                    
+                    <!-- Retro accent elements - moved outside content div for proper positioning -->
+                    <div class="absolute top-4 right-4 w-8 h-8 border-2 border-orange-400/40 rounded-full opacity-60"></div>
+                    <div class="absolute top-6 right-6 w-4 h-4 bg-orange-400/30 rounded-full"></div>
+                    <div class="absolute bottom-4 left-4 w-16 h-1 bg-orange-400/60 rounded-full group-hover:w-24 transition-all duration-500"></div>
                     </div>
                 </div>
             `;

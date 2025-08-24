@@ -60,7 +60,7 @@ export default {
     gridPattern: 'linear-gradient(rgba(255,102,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,102,0,0.1) 1px, transparent 1px)',
     gridSize: '20px 20px',
     // 霓虹描邊效果
-    neonOutline: 'text-shadow: 0 0 8px rgba(255, 102, 0, 0.8)',
+    neonOutline: '',
     // VHS 故障效果
     vhsColors: ['#ff6b35', '#00d4ff', '#ff0080']
   },

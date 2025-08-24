@@ -54,7 +54,9 @@ class TechContentLoader {
         
         const logos = document.querySelectorAll('.nav-logo h2');
         logos.forEach(logo => {
-            logo.textContent = navigation.logo;
+            // 保持英文 NAVAL.SYS，不覆蓋為中文
+            logo.textContent = 'NAVAL.SYS';
+            logo.setAttribute('data-text', 'NAVAL.SYS');
         });
 
         const desktopMenu = document.querySelector('nav ul:not(.mobile-menu ul)');
