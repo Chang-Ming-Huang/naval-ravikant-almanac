@@ -9,6 +9,10 @@ import techStyle from './tech.js';
 import retroStyle from './retro.js';
 import academicStyle from './academic.js';
 import corporateStyle from './corporate.js';
+import undergroundStyle from './underground.js';
+import playfulStyle from './playful.js';
+import modernStyle from './modern.js';
+import editorialStyle from './editorial.js';
 
 /**
  * 初始化並註冊所有風格
@@ -25,7 +29,11 @@ export async function initializeStyles() {
       techStyle,
       retroStyle,
       academicStyle,
-      corporateStyle
+      corporateStyle,
+      undergroundStyle,
+      playfulStyle,
+      modernStyle,
+      editorialStyle
     ];
     
     styleRegistry.registerMultiple(styles);
