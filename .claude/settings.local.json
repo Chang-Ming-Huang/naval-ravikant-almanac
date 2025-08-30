@@ -26,7 +26,8 @@
       "Bash(npx http-server:*)",
       "Bash(git rm:*)",
       "Bash(git mv:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(node:*)"
     ],
     "defaultMode": "acceptEdits"
   }
