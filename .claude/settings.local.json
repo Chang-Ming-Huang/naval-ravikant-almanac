@@ -27,7 +27,10 @@
       "Bash(git rm:*)",
       "Bash(git mv:*)",
       "WebSearch",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "WebFetch(domain:codepen.io)",
+      "Bash(npx playwright:*)",
+      "Read(/home/jmhuang/.config/**)"
     ],
     "defaultMode": "acceptEdits"
   }

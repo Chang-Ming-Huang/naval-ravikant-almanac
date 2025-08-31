@@ -1,11 +1,12 @@
-# 🎨 多風格 JSON 網站系統
+# 🎨 多風格 JSON 網站系統 + AI 創意實驗室
 
-一個革命性的網站開發系統：使用**維度驅動架構**和單一 JSON 資料檔案，創造無限多種視覺風格。
+一個革命性的雙重網站開發系統：**維度驅動架構**和**AI創意實驗室**，創造無限多種專業級視覺風格。
 
-![](https://img.shields.io/badge/風格-10%2F16-blue) ![](https://img.shields.io/badge/完成率-62.5%25-brightgreen) ![](https://img.shields.io/badge/架構-維度驅動-green) ![](https://img.shields.io/badge/原則-OCP-orange) ![](https://img.shields.io/badge/設計品質-Awwwards級-gold)
+![](https://img.shields.io/badge/維度系統-10%2F16-blue) ![](https://img.shields.io/badge/創意實驗室-20%20頁面-brightgreen) ![](https://img.shields.io/badge/架構-雙系統-green) ![](https://img.shields.io/badge/原則-OCP-orange) ![](https://img.shields.io/badge/設計品質-獲獎級-gold)
 
 ## ✨ 核心創新
 
+### 🏗️ **維度驅動系統** 
 **四維設計系統** - 透過組合產生 2⁴ = **16 種獨特風格**：
 
 | 維度 | 選項 | 管理範圍 |
@@ -17,9 +18,16 @@
 
 **內容與設計完全分離** - 單一 `data/content.json` 驅動所有風格
 
+### 🎨 **AI 創意實驗室**
+**完全獨立的HTML藝術作品** - 20個專業級風格頁面：
+- 🏗️ **建築設計系列**: Bauhaus Geometry, Concrete Brutalism, Glass Architecture  
+- 💼 **商業質感系列**: Corporate Elite, Fintech Modern, Luxury Service
+- 🎭 **實驗創意系列**: 14個各類風格，每個都達獲獎水準
+- 🧠 **智能偏好學習**: 用戶刪除風格會自動學習偏好避免重複
+
 ## 🎨 風格展示
 
-### 已實現風格 (10/16)
+### 維度驅動系統 (10/16)
 
 | 風格 | 維度組合 | 視覺特色 |
 |------|---------|---------|
@@ -34,8 +42,23 @@
 | 🌞 **Playful** | [明亮, 輕鬆, 寬鬆, 平面] | 溫暖親和、家庭友善、專業質感 |
 | 🏴 **Underground** | [深色, 輕鬆, 寬鬆, 平面] | 地下美學、極簡暗黑、工業質感 |
 
-### 待開發風格 (6/16)
-每個新風格只需**一個配置檔案**，零修改現有程式碼 ✨
+### AI 創意實驗室 (20個完整頁面)
+
+**建築設計系列 🏗️**
+- **Bauhaus Geometry**: 包豪斯功能主義的數位重現
+- **Concrete Brutalism**: 混凝土野獸派的原始力量
+- **Glass Architecture**: 透明與光線的現代建築詩篇
+
+**商業質感系列 💼**
+- **Corporate Elite**: 企業精英的頂級專業質感
+- **Fintech Modern**: 金融科技的數據驅動美學  
+- **Luxury Service**: 精品酒店的奢華服務體驗
+
+**完整創意作品集 🎭**
+- 14個其他風格涵蓋各種設計理念，每個都是獨立的專業級藝術作品
+
+### 待開發維度風格 (6/16)
+每個新維度風格只需**一個配置檔案**，零修改現有程式碼 ✨
 
 ## 🚀 快速開始
 
@@ -49,20 +72,28 @@ npm run dev
 # 訪問 http://localhost:3000
 ```
 
-### 瀏覽不同風格
+### 瀏覽不同系統
+
+**維度驅動系統 🏗️**
 - **🏠 主頁面**: `index.html` - 動態風格展示
 - **🧘 Zen**: `pages/zen.html` - 極簡主義體驗
 - **💎 Luxury**: `pages/luxury.html` - 奢華深色主題
 - **🤖 Tech**: `pages/tech.html` - 科技未來風格  
 - **🌈 Retro**: `pages/retro.html` - 復古合成波美學
-- **🌙 Scholar Dark**: `pages/academic.html` - 深夜學者風格
-- **💄 Fashion**: `pages/corporate.html` - 時尚精品體驗
-- **✨ Modern**: `pages/modern.html` - 現代科技美學
-- **📰 Editorial**: `pages/editorial.html` - 編輯藝術風格
-- **🌞 Playful**: `pages/playful.html` - 溫暖親和設計
-- **🏴 Underground**: `pages/underground.html` - 地下美學風格
+- **其他維度風格**: 更多專業組合風格
 
-## 🔧 新增風格
+**AI 創意實驗室 🎨**
+- **🎭 創意主頁**: `prototypes/index.html` - 20個獨立風格展示
+- **🏛️ 包豪斯**: `prototypes/bauhaus_geometry.html` - 功能主義建築
+- **🏗️ 野獸派**: `prototypes/concrete_brutalism.html` - 混凝土力量
+- **🏢 玻璃建築**: `prototypes/glass_architecture.html` - 光線透明美學  
+- **👔 企業精英**: `prototypes/corporate_elite.html` - 商務專業質感
+- **💹 金融科技**: `prototypes/fintech_modern.html` - 數據驅動設計
+- **👑 奢華服務**: `prototypes/luxury_service.html` - 精品酒店體驗
+
+## 🔧 開發指南
+
+### 維度驅動系統 - 新增風格
 
 ```javascript
 // js/styles/your-style.js
@@ -81,23 +112,50 @@ export default {
 - ✅ 註冊到風格系統
 - ✅ 在主頁面顯示風格卡片
 
+### AI 創意實驗室 - 創意自由
+
+完全獨立的HTML藝術作品，無框架限制：
+- 🎨 自定義CSS創造獨特視覺語言
+- 🎯 專業級設計標準 (Awwwards水準)
+- 🧠 智能偏好學習避免重複錯誤
+- 📋 自動整合至主展示系統
+
 ## 🛠️ 技術特色
 
-- **🏗️ 維度驅動設計**: 系統性組合而非手工製作
+**雙系統架構 🏗️**
+- **維度驅動設計**: 系統性組合而非手工製作
+- **AI創意實驗室**: 完全獨立的HTML藝術作品系統
+- **智能偏好學習**: 用戶行為驅動的設計優化
+
+**開發體驗 ⚡**
 - **🔀 OCP 合規**: 新增功能不修改現有程式碼
-- **📱 響應式設計**: Mobile-first + Tailwind CSS
+- **📱 響應式設計**: Mobile-first + 現代CSS技術
 - **⚡ 零衝突**: 每個維度管理正交的 CSS 屬性組
 - **🎯 GitHub Pages 就緒**: 相對路徑，無需特殊配置
 
+**設計品質 🎨**
+- **獲獎級設計**: 每個風格達到 Awwwards 參賽水準
+- **專業色彩系統**: 限制3-4種精心調配顏色
+- **高對比度**: 確保4.5:1+完美可讀性
+- **專業動畫**: cubic-bezier緩動函數
+
 ## 🎯 使用場景
 
+**商業應用 💼**
 - **多品牌網站** - 同一內容，不同品牌視覺
 - **季節主題** - 節慶風格快速切換  
 - **A/B 測試** - 不同設計風格效果測試
 - **個性化界面** - 用戶自選喜好風格
 
+**設計展示 🎨**
+- **作品集網站** - 20個獨立設計作品展示
+- **設計系統演示** - 完整的專業設計方法論
+- **創意實驗** - 無框架限制的純藝術表達
+- **設計教學** - 從普通到專業級的設計對比
+
 ---
 
-**💡 這不只是多主題網站，而是一個可複製的設計系統架構**
+**💡 這不只是多主題網站，而是一個完整的設計創新實驗室**
 
-📚 詳細開發指南請參考 [CLAUDE.md](CLAUDE.md)
+📚 詳細開發指南請參考 [CLAUDE.md](CLAUDE.md)  
+🎨 AI創意指導請參考 [prototypes/AI_CREATIVE_MANIFESTO.md](prototypes/AI_CREATIVE_MANIFESTO.md)

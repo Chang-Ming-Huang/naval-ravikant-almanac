@@ -1,0 +1,35 @@
+{
+  "name": "codepen-analyzer",
+  "version": "1.0.0",
+  "description": "專業級 CodePen 分析工具 - 使用 Playwright 提取代碼並進行智能設計分析",
+  "main": "analyze-codepen.js",
+  "scripts": {
+    "analyze": "node analyze-codepen.js",
+    "test": "node test-codepen.js",
+    "install-playwright": "npx playwright install chromium"
+  },
+  "keywords": [
+    "codepen",
+    "analyzer", 
+    "web-design",
+    "css-analysis",
+    "javascript-analysis",
+    "playwright",
+    "automation"
+  ],
+  "author": "Multi-Style JSON Website Project",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.55.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourproject/multi-style-json-website"
+  },
+  "bin": {
+    "analyze-codepen": "./analyze-codepen.js"
+  }
+}

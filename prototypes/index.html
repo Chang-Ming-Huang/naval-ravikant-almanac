@@ -248,6 +248,28 @@
             </div>
         </header>
 
+        <!-- 獨立風格作品集 -->
+        <section class="section-container">
+            <div class="style-gallery">
+                <h2 class="section-title" style="margin-bottom: 2rem; color: var(--text-primary);">🎭 獨立風格作品集</h2>
+                <div class="style-grid" id="styleGallery">
+                    <!-- 動態載入風格卡片 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 返回首頁區塊 -->
+        <section class="section-container">
+            <div class="text-center">
+                <a href="../index.html" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105">
+                    🏠 返回首頁風格展示
+                </a>
+                <p class="text-gray-500 mt-4 text-sm">
+                    回到主頁面探索更多標準化風格系統
+                </p>
+            </div>
+        </section>
+
         <!-- AI 創意配置器 -->
         <section class="section-container">
             <h2 class="section-title">🚀 AI 創意配置器</h2>
@@ -311,16 +333,6 @@
                     </button>
                 </div>
             </form>
-            </div>
-        </section>
-
-        <!-- 風格作品集 -->
-        <section class="section-container">
-            <div class="style-gallery">
-                <h2 class="section-title" style="margin-bottom: 2rem; color: var(--text-primary);">🎭 獨立風格作品集</h2>
-                <div class="style-grid" id="styleGallery">
-                    <!-- 動態載入風格卡片 -->
-                </div>
             </div>
         </section>
     </div>
@@ -828,7 +840,16 @@
                     'quantum-glitch': { colors: ['neon'], complexity: 'high', concept: 'glitch' },
                     'luxury-minimal': { colors: ['gold', 'black'], complexity: 'low', concept: 'luxury' },
                     'editorial-elegance': { colors: ['cream', 'burgundy'], complexity: 'low', concept: 'elegant' },
-                    'modern-sophistication': { colors: ['blue', 'glass'], complexity: 'medium', concept: 'modern' }
+                    'modern-sophistication': { colors: ['blue', 'glass'], complexity: 'medium', concept: 'modern' },
+                    'ethereal-minimalism': { colors: ['sage', 'white'], complexity: 'low', concept: 'minimal' },
+                    'organic-warmth': { colors: ['terracotta', 'sage'], complexity: 'low', concept: 'organic' },
+                    'industrial-elegance': { colors: ['steel', 'copper'], complexity: 'low', concept: 'industrial' },
+                    'bauhaus-geometry': { colors: ['white', 'red', 'black'], complexity: 'low', concept: 'architectural' },
+                    'concrete-brutalism': { colors: ['gray', 'orange'], complexity: 'low', concept: 'brutalist' },
+                    'glass-architecture': { colors: ['blue', 'silver'], complexity: 'low', concept: 'architectural' },
+                    'corporate-elite': { colors: ['navy', 'gold'], complexity: 'low', concept: 'business' },
+                    'fintech-modern': { colors: ['dark', 'green', 'cyan'], complexity: 'low', concept: 'fintech' },
+                    'luxury-service': { colors: ['brown', 'gold', 'cream'], complexity: 'low', concept: 'luxury' }
                 };
                 
                 return featureMap[styleId] || { colors: [], complexity: 'unknown', concept: 'unknown' };
@@ -1092,7 +1113,61 @@
                         approach: 'quantum-emotion', 
                         description: '量子情感體驗',
                         file: 'quantum_emotion.html'
-                    }
+                    },
+                    { 
+                        name: 'Ethereal Minimalism', 
+                        approach: 'ethereal-minimalism', 
+                        description: '空靈極簡 - 純淨意識的數位表達',
+                        file: 'ethereal_minimalism.html'
+                    },
+                    { 
+                        name: 'Organic Warmth', 
+                        approach: 'organic-warmth', 
+                        description: '有機溫暖 - 數位空間中的自然溫度',
+                        file: 'organic_warmth.html'
+                    },
+                    { 
+                        name: 'Industrial Elegance', 
+                        approach: 'industrial-elegance', 
+                        description: '工業雅致 - 精密工藝與數位優雅的結合',
+                        file: 'industrial_elegance.html'
+                    },
+                    { 
+                        name: 'Bauhaus Geometry', 
+                        approach: 'bauhaus-geometry', 
+                        description: '包豪斯幾何 - 功能主義建築的數位重現',
+                        file: 'bauhaus_geometry.html'
+                    },
+                    { 
+                        name: 'Concrete Brutalism', 
+                        approach: 'concrete-brutalism', 
+                        description: '混凝土野獸派 - 原始力量的建築美學',
+                        file: 'concrete_brutalism.html'
+                    },
+                    { 
+                        name: 'Glass Architecture', 
+                        approach: 'glass-architecture', 
+                        description: '玻璃建築 - 透明與光線的現代詩篇',
+                        file: 'glass_architecture.html'
+                    },
+                    { 
+                        name: 'Corporate Elite', 
+                        approach: 'corporate-elite', 
+                        description: '企業精英 - 頂級商務的專業質感',
+                        file: 'corporate_elite.html'
+                    },
+                    { 
+                        name: 'Fintech Modern', 
+                        approach: 'fintech-modern', 
+                        description: '金融科技 - 數據驅動的現代美學',
+                        file: 'fintech_modern.html'
+                    },
+                    { 
+                        name: 'Luxury Service', 
+                        approach: 'luxury-service', 
+                        description: '奢華服務 - 精品酒店的極致體驗',
+                        file: 'luxury_service.html'
+                    },
                 ];
 
                 // 過濾已刪除的風格
