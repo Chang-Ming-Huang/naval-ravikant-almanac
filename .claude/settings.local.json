@@ -30,7 +30,8 @@
       "Bash(node:*)",
       "WebFetch(domain:codepen.io)",
       "Bash(npx playwright:*)",
-      "Read(/home/jmhuang/.config/**)"
+      "Read(/home/jmhuang/.config/**)",
+      "Bash(git restore:*)"
     ],
     "defaultMode": "acceptEdits"
   }
