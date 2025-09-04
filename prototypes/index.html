@@ -894,6 +894,10 @@
             analyzeStyleFeatures(styleId) {
                 // 分析風格特徵（基於 styleId 推測特徵）
                 const featureMap = {
+                    // 🔥 最新極端實驗風格特徵分析 (BOUNDARY-BREAKING)
+                    'anti-design-rebellion': { colors: ['red', 'yellow', 'green', 'purple'], complexity: 'extreme', concept: 'anti-design' },
+                    'consciousness-virus': { colors: ['cyan', 'purple', 'red', 'green'], complexity: 'high', concept: 'consciousness' },
+                    'digital-apocalypse': { colors: ['black', 'red', 'grey'], complexity: 'extreme', concept: 'apocalyptic' },
                     // 最新前沿風格特徵分析
                     'brutalist-typography-manifesto': { colors: ['black', 'white', 'red'], complexity: 'low', concept: 'brutalist' },
                     'glassmorphic-neural-interface': { colors: ['cyan', 'green', 'glass'], complexity: 'low', concept: 'futuristic' },
@@ -1125,7 +1129,50 @@
             loadStyleGallery(sortMode = 'date') {
                 const gallery = document.getElementById('styleGallery');
                 const demoStyles = [
-                    // 🚀 最新創建的切邊前沿風格 - 2025-09-04
+                    // ⭐ 最新創建的商業級專業風格 - 2025-09-04 (COMMERCIAL EXCELLENCE EDITION)
+                    { 
+                        name: 'Premium Tech Minimalism', 
+                        approach: 'premium-tech-minimalism', 
+                        description: '💎 極致科技極簡 - Apple/Tesla啟發的奢華科技美學，商業級專業設計',
+                        file: 'premium_tech_minimalism.html',
+                        createdDate: '2025-09-04'
+                    },
+                    { 
+                        name: 'Creative Agency Powerhouse', 
+                        approach: 'creative-agency-powerhouse', 
+                        description: '🎯 創意代理強勢 - 頂級設計工作室的幾何美學與商業影響力展現',
+                        file: 'creative_agency_powerhouse.html',
+                        createdDate: '2025-09-04'
+                    },
+                    { 
+                        name: 'Modern Financial Excellence', 
+                        approach: 'modern-financial-excellence', 
+                        description: '🔥 現代金融卓越 - 大膽日落橙配色，創新金融科技的活力美學',
+                        file: 'modern_financial_excellence.html',
+                        createdDate: '2025-09-04'
+                    },
+                    // 🔥 最新創建的極端實驗風格 - 2025-09-04 (BOUNDARY-BREAKING EDITION)
+                    { 
+                        name: 'ANTI-DESIGN REBELLION', 
+                        approach: 'anti-design-rebellion', 
+                        description: '🚨 反設計叛亂 - 故意打破所有設計規則，創造藝術衝擊的數位暴動宣言',
+                        file: 'anti_design_rebellion.html',
+                        createdDate: '2025-09-04'
+                    },
+                    { 
+                        name: 'CONSCIOUSNESS VIRUS', 
+                        approach: 'consciousness-virus', 
+                        description: '🧠 意識病毒 - 駭客級別的感知改造介面，重新定義數位體驗的神經邊界',
+                        file: 'consciousness_virus.html',
+                        createdDate: '2025-09-04'
+                    },
+                    { 
+                        name: 'DIGITAL APOCALYPSE', 
+                        approach: 'digital-apocalypse', 
+                        description: '💀 數位末日 - 反烏托邦美學的極致表達，現實崩解的視覺末世體驗',
+                        file: 'digital_apocalypse.html',
+                        createdDate: '2025-09-04'
+                    },
                     { 
                         name: 'Brutalist Typography Manifesto', 
                         approach: 'brutalist-typography-manifesto', 
