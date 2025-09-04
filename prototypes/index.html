@@ -34,7 +34,7 @@
         }
         
         .hero-section {
-            padding: 120px 0 80px 0;
+            padding: 80px 0 50px 0;
             text-align: center;
             border-bottom: 1px solid var(--border-light);
         }
@@ -216,10 +216,59 @@
             background: #b91c1c;
         }
         
+        /* 排序按鈕樣式 */
+        .sort-btn {
+            background: var(--primary-white);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .sort-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .sort-btn.active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: var(--primary-white);
+        }
+        
+        /* NEW 標籤樣式 */
+        .new-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #ff6b35, #f7941e);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+            animation: newBadgePulse 2s ease-in-out infinite;
+            z-index: 10;
+        }
+        
+        @keyframes newBadgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
         /* 響應式設計 */
         @media (max-width: 768px) {
             .hero-section {
-                padding: 80px 0 60px 0;
+                padding: 60px 0 40px 0;
             }
             
             .creative-form {
@@ -242,18 +291,29 @@
         <header class="hero-section">
             <h1 class="hero-title">🎨 AI 創意自由實驗室</h1>
             <p class="hero-subtitle">無框架限制 · 純粹創意表達 · 獨立 HTML 藝術作品</p>
-            <div class="hero-description">
-                <p>根據 <strong>AI_CREATIVE_MANIFESTO.md</strong> 的指導，這裡是完全自由的創意空間</p>
-                <p>每個風格都是獨立的 HTML 檔案，沒有任何框架限制</p>
-            </div>
         </header>
 
         <!-- 獨立風格作品集 -->
         <section class="section-container">
             <div class="style-gallery">
-                <h2 class="section-title" style="margin-bottom: 2rem; color: var(--text-primary);">🎭 獨立風格作品集</h2>
+                <!-- 排序控制 -->
+                <div class="sort-controls" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem;">
+                    <button id="sortByDate" class="sort-btn active" onclick="window.creativeGenerator.setSortMode('date')">
+                        📅 按時間排序
+                    </button>
+                    <button id="sortByName" class="sort-btn" onclick="window.creativeGenerator.setSortMode('name')">
+                        📝 按字母排序
+                    </button>
+                </div>
+                
                 <div class="style-grid" id="styleGallery">
                     <!-- 動態載入風格卡片 -->
+                </div>
+                
+                <!-- 創意空間說明 -->
+                <div class="hero-description" style="margin-top: 4rem;">
+                    <p>根據 <strong>AI_CREATIVE_MANIFESTO.md</strong> 的指導，這裡是完全自由的創意空間</p>
+                    <p>每個風格都是獨立的 HTML 檔案，沒有任何框架限制</p>
                 </div>
             </div>
         </section>
@@ -834,6 +894,11 @@
             analyzeStyleFeatures(styleId) {
                 // 分析風格特徵（基於 styleId 推測特徵）
                 const featureMap = {
+                    // 最新前沿風格特徵分析
+                    'brutalist-typography-manifesto': { colors: ['black', 'white', 'red'], complexity: 'low', concept: 'brutalist' },
+                    'glassmorphic-neural-interface': { colors: ['cyan', 'green', 'glass'], complexity: 'low', concept: 'futuristic' },
+                    'organic-maximalism-laboratory': { colors: ['terracotta', 'forest', 'gold'], complexity: 'medium', concept: 'organic' },
+                    // 現有風格特徵
                     'neuromorphic-reality': { colors: ['cyber'], complexity: 'high', concept: 'experimental' },
                     'holographic-memory': { colors: ['holographic'], complexity: 'high', concept: 'futuristic' },
                     'cybernetic-poetry': { colors: ['purple', 'cyan'], complexity: 'medium', concept: 'poetic' },
@@ -859,7 +924,9 @@
                     'artisan-craft': { colors: ['cream', 'terracotta', 'charcoal'], complexity: 'low', concept: 'craft' },
                     'museum-gallery': { colors: ['ivory', 'charcoal', 'gold'], complexity: 'low', concept: 'cultural' },
                     'publishing-house': { colors: ['cream', 'charcoal', 'burgundy'], complexity: 'low', concept: 'editorial' },
-                    'concert-hall': { colors: ['black', 'gold', 'ivory'], complexity: 'low', concept: 'musical' }
+                    'concert-hall': { colors: ['black', 'gold', 'ivory'], complexity: 'low', concept: 'musical' },
+                    'tidal-rhythm': { colors: ['navy', 'coral', 'seafoam'], complexity: 'low', concept: 'oceanic' },
+                    'amber-preservation': { colors: ['amber', 'resin', 'gold'], complexity: 'low', concept: 'preservation' }
                 };
                 
                 return featureMap[styleId] || { colors: [], complexity: 'unknown', concept: 'unknown' };
@@ -1055,197 +1122,309 @@
                 }, 3000);
             }
 
-            loadStyleGallery() {
+            loadStyleGallery(sortMode = 'date') {
                 const gallery = document.getElementById('styleGallery');
                 const demoStyles = [
+                    // 🚀 最新創建的切邊前沿風格 - 2025-09-04
                     { 
-                        name: 'Neuromorphic Reality', 
-                        approach: 'neuromorphic-reality', 
-                        description: '神經形態現實 - 意識電子流動的具現化',
-                        file: 'neuromorphic_reality.html'
+                        name: 'Brutalist Typography Manifesto', 
+                        approach: 'brutalist-typography-manifesto', 
+                        description: '🔥 粗獷字體宣言 - 反設計運動與極端對比的字體革命',
+                        file: 'brutalist_typography_manifesto.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Holographic Memory', 
-                        approach: 'holographic-memory', 
-                        description: '全息記憶 - 時空數位化重現的詩意',
-                        file: 'holographic_memory.html'
+                        name: 'Glassmorphic Neural Interface', 
+                        approach: 'glassmorphic-neural-interface', 
+                        description: '🔮 玻璃神經介面 - 透明層次與未來科技的完美融合',
+                        file: 'glassmorphic_neural_interface.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Cybernetic Poetry', 
-                        approach: 'cybernetic-poetry', 
-                        description: '賽博詩學 - 數位荒原中的詩意探尋',
-                        file: 'cybernetic_poetry.html'
+                        name: 'Organic Maximalism Laboratory', 
+                        approach: 'organic-maximalism-laboratory', 
+                        description: '🌿 有機極大主義 - 豐富層次與自然美學的和諧統一',
+                        file: 'organic_maximalism_laboratory.html',
+                        createdDate: '2025-09-04'
+                    },
+                    // 今天稍早創建的風格 - 2025-09-04
+                    { 
+                        name: 'Brutalist Disruption', 
+                        approach: 'brutalist-disruption', 
+                        description: '💥 破壞式極簡主義 - 反設計美學與工業噪音的粗暴表達',
+                        file: 'brutalist_disruption.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Quantum Glitch', 
-                        approach: 'quantum-glitch', 
-                        description: '量子故障 - 現實錯誤中的美學革命',
-                        file: 'quantum_glitch.html'
+                        name: 'Volcanic Minimalism', 
+                        approach: 'volcanic-minimalism', 
+                        description: '🌋 火山極簡主義 - 融合原始力量與極簡美學',
+                        file: 'volcanic_minimalism.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Luxury Minimal', 
-                        approach: 'luxury-minimal', 
-                        description: '奢華極簡 - 在極簡中發現奢華質感',
-                        file: 'luxury_minimal.html'
+                        name: 'Biomimetic Interface', 
+                        approach: 'biomimetic-interface', 
+                        description: '🧬 生物擬態介面 - 模仿生物細胞結構的有機設計',
+                        file: 'biomimetic_interface.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Editorial Elegance', 
-                        approach: 'editorial-elegance', 
-                        description: '編輯優雅 - 雜誌級的印刷美學',
-                        file: 'editorial_elegance.html'
+                        name: 'Crystalline Memory', 
+                        approach: 'crystalline-memory', 
+                        description: '💎 晶體記憶 - 將思想凝結成永恆晶體的幾何美學',
+                        file: 'crystalline_memory.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Modern Sophistication', 
-                        approach: 'modern-sophistication', 
-                        description: '現代精緻 - 未來主義的玻璃美學',
-                        file: 'modern_sophistication.html'
+                        name: 'Tidal Rhythm', 
+                        approach: 'tidal-rhythm', 
+                        description: '🌊 潮汐韻律 - 海洋潮汐的永恆節拍與深海秘境',
+                        file: 'tidal_rhythm.html',
+                        createdDate: '2025-09-04'
                     },
                     { 
-                        name: 'Consciousness Bending', 
-                        approach: 'consciousness-bending', 
-                        description: '意識扭曲的數位冥想',
-                        file: 'consciousness_bending.html'
+                        name: 'Amber Preservation', 
+                        approach: 'amber-preservation', 
+                        description: '🥃 琥珀保存 - 時間凝固的樹脂世界與永恆記憶',
+                        file: 'amber_preservation.html',
+                        createdDate: '2025-09-04'
                     },
+                    // 最近創建的專業風格
                     { 
-                        name: 'Liquid Geometry', 
-                        approach: 'liquid-geometry', 
-                        description: '液態幾何美學',
-                        file: 'liquid_geometry.html'
-                    },
-                    { 
-                        name: 'Digital Mysticism', 
-                        approach: 'digital-mysticism', 
-                        description: '數位神秘主義美學',
-                        file: 'digital_mysticism.html'
-                    },
-                    { 
-                        name: 'Quantum Emotion', 
-                        approach: 'quantum-emotion', 
-                        description: '量子情感體驗',
-                        file: 'quantum_emotion.html'
-                    },
-                    { 
-                        name: 'Ethereal Minimalism', 
-                        approach: 'ethereal-minimalism', 
-                        description: '空靈極簡 - 純淨意識的數位表達',
-                        file: 'ethereal_minimalism.html'
-                    },
-                    { 
-                        name: 'Organic Warmth', 
-                        approach: 'organic-warmth', 
-                        description: '有機溫暖 - 數位空間中的自然溫度',
-                        file: 'organic_warmth.html'
-                    },
-                    { 
-                        name: 'Industrial Elegance', 
-                        approach: 'industrial-elegance', 
-                        description: '工業雅致 - 精密工藝與數位優雅的結合',
-                        file: 'industrial_elegance.html'
-                    },
-                    { 
-                        name: 'Bauhaus Geometry', 
-                        approach: 'bauhaus-geometry', 
-                        description: '包豪斯幾何 - 功能主義建築的數位重現',
-                        file: 'bauhaus_geometry.html'
-                    },
-                    { 
-                        name: 'Concrete Brutalism', 
-                        approach: 'concrete-brutalism', 
-                        description: '混凝土野獸派 - 原始力量的建築美學',
-                        file: 'concrete_brutalism.html'
-                    },
-                    { 
-                        name: 'Glass Architecture', 
-                        approach: 'glass-architecture', 
-                        description: '玻璃建築 - 透明與光線的現代詩篇',
-                        file: 'glass_architecture.html'
-                    },
-                    { 
-                        name: 'Corporate Elite', 
-                        approach: 'corporate-elite', 
-                        description: '企業精英 - 頂級商務的專業質感',
-                        file: 'corporate_elite.html'
-                    },
-                    { 
-                        name: 'Fintech Modern', 
-                        approach: 'fintech-modern', 
-                        description: '金融科技 - 數據驅動的現代美學',
-                        file: 'fintech_modern.html'
-                    },
-                    { 
-                        name: 'Luxury Service', 
-                        approach: 'luxury-service', 
-                        description: '奢華服務 - 精品酒店的極致體驗',
-                        file: 'luxury_service.html'
-                    },
-                    { 
-                        name: 'Nordic Zen', 
-                        approach: 'nordic-zen', 
-                        description: '北歐禪意 - 斯堪的納維亞極簡主義與東方禪學融合',
-                        file: 'nordic_zen.html'
-                    },
-                    { 
-                        name: 'Desert Modernism', 
-                        approach: 'desert-modernism', 
-                        description: '沙漠現代主義 - 中世紀現代建築與沙漠景觀的完美結合',
-                        file: 'desert_modernism.html'
-                    },
-                    { 
-                        name: 'Tokyo Neon', 
-                        approach: 'tokyo-neon', 
-                        description: '東京霓虹 - 賽博朋克與日式美學的數位融合',
-                        file: 'tokyo_neon.html'
-                    },
-                    { 
-                        name: 'Swiss Precision', 
-                        approach: 'swiss-precision', 
-                        description: '瑞士精密 - 瑞士國際主義風格的數位演繹',
-                        file: 'swiss_precision.html'
-                    },
-                    { 
-                        name: 'Luxury Hospitality', 
-                        approach: 'luxury-hospitality', 
-                        description: '奢華酒店 - 五星級服務的數位化體驗',
-                        file: 'luxury_hospitality.html'
-                    },
-                    { 
-                        name: 'Medical Professional', 
-                        approach: 'medical-professional', 
-                        description: '醫療專業 - 醫療級專業界面與健康護理美學',
-                        file: 'medical_professional.html'
-                    },
-                    { 
-                        name: 'Artisan Craft', 
-                        approach: 'artisan-craft', 
-                        description: '手工藝人 - 傳統工藝與現代設計的溫暖融合',
-                        file: 'artisan_craft.html'
-                    },
-                    { 
-                        name: 'Museum Gallery', 
-                        approach: 'museum-gallery', 
-                        description: '博物館展覽廳 - 典雅藝術空間與文化展示美學',
-                        file: 'museum_gallery.html'
+                        name: 'Concert Hall', 
+                        approach: 'concert-hall', 
+                        description: '音樂廳演出空間 - 古典音樂與現代演出的藝術殿堂',
+                        file: 'concert_hall.html',
+                        createdDate: '2025-09-01'
                     },
                     { 
                         name: 'Publishing House', 
                         approach: 'publishing-house', 
                         description: '出版社編輯部 - 文學編輯與印刷美學的專業結合',
-                        file: 'publishing_house.html'
+                        file: 'publishing_house.html',
+                        createdDate: '2025-09-01'
                     },
                     { 
-                        name: 'Concert Hall', 
-                        approach: 'concert-hall', 
-                        description: '音樂廳演出空間 - 古典音樂與現代演出的藝術殿堂',
-                        file: 'concert_hall.html'
+                        name: 'Museum Gallery', 
+                        approach: 'museum-gallery', 
+                        description: '博物館展覽廳 - 典雅藝術空間與文化展示美學',
+                        file: 'museum_gallery.html',
+                        createdDate: '2025-08-31'
+                    },
+                    { 
+                        name: 'Artisan Craft', 
+                        approach: 'artisan-craft', 
+                        description: '手工藝人 - 傳統工藝與現代設計的溫暖融合',
+                        file: 'artisan_craft.html',
+                        createdDate: '2025-08-30'
+                    },
+                    { 
+                        name: 'Medical Professional', 
+                        approach: 'medical-professional', 
+                        description: '醫療專業 - 醫療級專業界面與健康護理美學',
+                        file: 'medical_professional.html',
+                        createdDate: '2025-08-29'
+                    },
+                    { 
+                        name: 'Luxury Hospitality', 
+                        approach: 'luxury-hospitality', 
+                        description: '奢華酒店 - 五星級服務的數位化體驗',
+                        file: 'luxury_hospitality.html',
+                        createdDate: '2025-08-28'
+                    },
+                    { 
+                        name: 'Swiss Precision', 
+                        approach: 'swiss-precision', 
+                        description: '瑞士精密 - 瑞士國際主義風格的數位演繹',
+                        file: 'swiss_precision.html',
+                        createdDate: '2025-08-27'
+                    },
+                    { 
+                        name: 'Tokyo Neon', 
+                        approach: 'tokyo-neon', 
+                        description: '東京霓虹 - 賽博朋克與日式美學的數位融合',
+                        file: 'tokyo_neon.html',
+                        createdDate: '2025-08-26'
+                    },
+                    { 
+                        name: 'Desert Modernism', 
+                        approach: 'desert-modernism', 
+                        description: '沙漠現代主義 - 中世紀現代建築與沙漠景觀的完美結合',
+                        file: 'desert_modernism.html',
+                        createdDate: '2025-08-25'
+                    },
+                    { 
+                        name: 'Nordic Zen', 
+                        approach: 'nordic-zen', 
+                        description: '北歐禪意 - 斯堪的納維亞極簡主義與東方禪學融合',
+                        file: 'nordic_zen.html',
+                        createdDate: '2025-08-24'
+                    },
+                    { 
+                        name: 'Luxury Service', 
+                        approach: 'luxury-service', 
+                        description: '奢華服務 - 精品酒店的極致體驗',
+                        file: 'luxury_service.html',
+                        createdDate: '2025-08-23'
+                    },
+                    { 
+                        name: 'Fintech Modern', 
+                        approach: 'fintech-modern', 
+                        description: '金融科技 - 數據驅動的現代美學',
+                        file: 'fintech_modern.html',
+                        createdDate: '2025-08-22'
+                    },
+                    { 
+                        name: 'Corporate Elite', 
+                        approach: 'corporate-elite', 
+                        description: '企業精英 - 頂級商務的專業質感',
+                        file: 'corporate_elite.html',
+                        createdDate: '2025-08-21'
+                    },
+                    { 
+                        name: 'Glass Architecture', 
+                        approach: 'glass-architecture', 
+                        description: '玻璃建築 - 透明與光線的現代詩篇',
+                        file: 'glass_architecture.html',
+                        createdDate: '2025-08-20'
+                    },
+                    { 
+                        name: 'Concrete Brutalism', 
+                        approach: 'concrete-brutalism', 
+                        description: '混凝土野獸派 - 原始力量的建築美學',
+                        file: 'concrete_brutalism.html',
+                        createdDate: '2025-08-19'
+                    },
+                    { 
+                        name: 'Bauhaus Geometry', 
+                        approach: 'bauhaus-geometry', 
+                        description: '包豪斯幾何 - 功能主義建築的數位重現',
+                        file: 'bauhaus_geometry.html',
+                        createdDate: '2025-08-18'
+                    },
+                    { 
+                        name: 'Industrial Elegance', 
+                        approach: 'industrial-elegance', 
+                        description: '工業雅致 - 精密工藝與數位優雅的結合',
+                        file: 'industrial_elegance.html',
+                        createdDate: '2025-08-17'
+                    },
+                    { 
+                        name: 'Organic Warmth', 
+                        approach: 'organic-warmth', 
+                        description: '有機溫暖 - 數位空間中的自然溫度',
+                        file: 'organic_warmth.html',
+                        createdDate: '2025-08-16'
+                    },
+                    { 
+                        name: 'Ethereal Minimalism', 
+                        approach: 'ethereal-minimalism', 
+                        description: '空靈極簡 - 純淨意識的數位表達',
+                        file: 'ethereal_minimalism.html',
+                        createdDate: '2025-08-15'
+                    },
+                    { 
+                        name: 'Modern Sophistication', 
+                        approach: 'modern-sophistication', 
+                        description: '現代精緻 - 未來主義的玻璃美學',
+                        file: 'modern_sophistication.html',
+                        createdDate: '2025-08-14'
+                    },
+                    { 
+                        name: 'Editorial Elegance', 
+                        approach: 'editorial-elegance', 
+                        description: '編輯優雅 - 雜誌級的印刷美學',
+                        file: 'editorial_elegance.html',
+                        createdDate: '2025-08-13'
+                    },
+                    { 
+                        name: 'Luxury Minimal', 
+                        approach: 'luxury-minimal', 
+                        description: '奢華極簡 - 在極簡中發現奢華質感',
+                        file: 'luxury_minimal.html',
+                        createdDate: '2025-08-12'
+                    },
+                    { 
+                        name: 'Consciousness Bending', 
+                        approach: 'consciousness-bending', 
+                        description: '意識扭曲的數位冥想',
+                        file: 'consciousness_bending.html',
+                        createdDate: '2025-08-11'
+                    },
+                    { 
+                        name: 'Liquid Geometry', 
+                        approach: 'liquid-geometry', 
+                        description: '液態幾何美學',
+                        file: 'liquid_geometry.html',
+                        createdDate: '2025-08-10'
+                    },
+                    { 
+                        name: 'Digital Mysticism', 
+                        approach: 'digital-mysticism', 
+                        description: '數位神秘主義美學',
+                        file: 'digital_mysticism.html',
+                        createdDate: '2025-08-09'
+                    },
+                    { 
+                        name: 'Quantum Emotion', 
+                        approach: 'quantum-emotion', 
+                        description: '量子情感體驗',
+                        file: 'quantum_emotion.html',
+                        createdDate: '2025-08-08'
+                    },
+                    { 
+                        name: 'Quantum Glitch', 
+                        approach: 'quantum-glitch', 
+                        description: '量子故障 - 現實錯誤中的美學革命',
+                        file: 'quantum_glitch.html',
+                        createdDate: '2025-08-07'
+                    },
+                    { 
+                        name: 'Cybernetic Poetry', 
+                        approach: 'cybernetic-poetry', 
+                        description: '賽博詩學 - 數位荒原中的詩意探尋',
+                        file: 'cybernetic_poetry.html',
+                        createdDate: '2025-08-06'
+                    },
+                    { 
+                        name: 'Holographic Memory', 
+                        approach: 'holographic-memory', 
+                        description: '全息記憶 - 時空數位化重現的詩意',
+                        file: 'holographic_memory.html',
+                        createdDate: '2025-08-05'
+                    },
+                    { 
+                        name: 'Neuromorphic Reality', 
+                        approach: 'neuromorphic-reality', 
+                        description: '神經形態現實 - 意識電子流動的具現化',
+                        file: 'neuromorphic_reality.html',
+                        createdDate: '2025-08-04'
                     },
                 ];
 
                 // 過濾已刪除的風格
-                const filteredStyles = demoStyles.filter(style => !this.deletedStyles.includes(style.approach));
+                let filteredStyles = demoStyles.filter(style => !this.deletedStyles.includes(style.approach));
+                
+                // 排序邏輯
+                if (sortMode === 'date') {
+                    // 按日期排序 (最新在前)
+                    filteredStyles.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+                } else if (sortMode === 'name') {
+                    // 按字母排序
+                    filteredStyles.sort((a, b) => a.name.localeCompare(b.name));
+                }
+                
+                // 計算是否為新風格 (只標註今天產生的)
+                const today = '2025-09-04';
+                const isNewStyle = (createdDate) => {
+                    return createdDate === today;
+                };
 
                 gallery.innerHTML = filteredStyles.map(style => `
-                    <div class="style-card"
+                    <div class="style-card" style="position: relative;"
                          onclick="this.preview('${style.approach}', '${style.name}', '${style.description}')">
+                        ${isNewStyle(style.createdDate) ? '<div class="new-badge">🆕 NEW</div>' : ''}
                         <h3>${style.name}</h3>
                         <p>${style.description}</p>
                         <div class="card-buttons">
@@ -1267,6 +1446,20 @@
                         this.previewStyle(style);
                     };
                 });
+            }
+            
+            // 設置排序模式
+            setSortMode(mode) {
+                // 更新按鈕狀態
+                document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+                if (mode === 'date') {
+                    document.getElementById('sortByDate').classList.add('active');
+                } else if (mode === 'name') {
+                    document.getElementById('sortByName').classList.add('active');
+                }
+                
+                // 重新載入畫廊
+                this.loadStyleGallery(mode);
             }
 
             previewStyle(style) {
