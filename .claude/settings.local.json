@@ -31,7 +31,9 @@
       "WebFetch(domain:codepen.io)",
       "Bash(npx playwright:*)",
       "Read(/home/jmhuang/.config/**)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "WebFetch(domain:colorlib.com)",
+      "WebFetch(domain:studio-mcgee.com)"
     ],
     "defaultMode": "acceptEdits"
   }

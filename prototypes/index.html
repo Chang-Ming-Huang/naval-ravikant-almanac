@@ -894,6 +894,12 @@
             analyzeStyleFeatures(styleId) {
                 // 分析風格特徵（基於 styleId 推測特徵）
                 const featureMap = {
+                    // 🚀 2025前沿設計系列特徵分析 (CUTTING-EDGE INNOVATION)
+                    'brutalist-manifesto-2025': { colors: ['black', 'white', 'red'], complexity: 'low', concept: 'brutalist' },
+                    'adaptive-intelligence': { colors: ['blue', 'purple', 'green'], complexity: 'high', concept: 'AI-driven' },
+                    // 🏡 專業室內設計系列特徵分析 (PROFESSIONAL INTERIOR DESIGN)
+                    'bold-contemporary-firm': { colors: ['emerald', 'orange', 'brass'], complexity: 'medium', concept: 'contemporary' },
+                    'modern-furniture-showroom': { colors: ['white', 'gray', 'oak'], complexity: 'low', concept: 'scandinavian' },
                     // 🔥 最新極端實驗風格特徵分析 (BOUNDARY-BREAKING)
                     'anti-design-rebellion': { colors: ['red', 'yellow', 'green', 'purple'], complexity: 'extreme', concept: 'anti-design' },
                     'consciousness-virus': { colors: ['cyan', 'purple', 'red', 'green'], complexity: 'high', concept: 'consciousness' },
@@ -1129,6 +1135,36 @@
             loadStyleGallery(sortMode = 'date') {
                 const gallery = document.getElementById('styleGallery');
                 const demoStyles = [
+                    // 🚀 最新創建的2025前沿設計系列 - 2025-09-05 (CUTTING-EDGE INNOVATION SERIES)
+                    { 
+                        name: 'Brutalist Manifesto 2025', 
+                        approach: 'brutalist-manifesto-2025', 
+                        description: '🏗️ 殘酷主義宣言 - 純粹功能性設計，拒絕裝飾，黑白紅三色極限美學',
+                        file: 'brutalist_manifesto_2025.html',
+                        createdDate: '2025-09-05'
+                    },
+                    { 
+                        name: 'Adaptive Intelligence Interface', 
+                        approach: 'adaptive-intelligence', 
+                        description: '🧠 智能適應介面 - AI驅動個人化體驗，實時學習用戶行為模式',
+                        file: 'adaptive_intelligence_interface.html',
+                        createdDate: '2025-09-05'
+                    },
+                    // 🏡 最新創建的專業室內設計系列 - 2025-09-05 (PROFESSIONAL INTERIOR DESIGN SERIES)
+                    { 
+                        name: 'Bold Contemporary Firm', 
+                        approach: 'bold-contemporary-firm', 
+                        description: '🔥 大膽現代設計事務所 - Kelly Wearstler風格的幾何美學與戲劇性色彩對比',
+                        file: 'bold_contemporary_firm.html',
+                        createdDate: '2025-09-05'
+                    },
+                    { 
+                        name: 'Modern Furniture Showroom', 
+                        approach: 'modern-furniture-showroom', 
+                        description: '🪑 現代家具陳列室 - 斯堪的納維亞畫廊風格的清潔線條與自然材質展示',
+                        file: 'modern_furniture_showroom.html',
+                        createdDate: '2025-09-05'
+                    },
                     // ⭐ 最新創建的商業級專業風格 - 2025-09-04 (COMMERCIAL EXCELLENCE EDITION)
                     { 
                         name: 'Premium Tech Minimalism', 
@@ -1463,7 +1499,7 @@
                 }
                 
                 // 計算是否為新風格 (只標註今天產生的)
-                const today = '2025-09-04';
+                const today = new Date().toISOString().split('T')[0];
                 const isNewStyle = (createdDate) => {
                     return createdDate === today;
                 };
@@ -1471,7 +1507,7 @@
                 gallery.innerHTML = filteredStyles.map(style => `
                     <div class="style-card" style="position: relative;"
                          onclick="this.preview('${style.approach}', '${style.name}', '${style.description}')">
-                        ${isNewStyle(style.createdDate) ? '<div class="new-badge">🆕 NEW</div>' : ''}
+                        ${isNewStyle(style.createdDate) ? '<div class="new-badge">✨</div>' : ''}
                         <h3>${style.name}</h3>
                         <p>${style.description}</p>
                         <div class="card-buttons">
