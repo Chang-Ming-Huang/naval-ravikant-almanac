@@ -94,6 +94,10 @@
         .spatial-layer.layer-2 { transform: translateZ(-300px); }
         .spatial-layer.layer-3 { transform: translateZ(-600px); }
         .spatial-layer.layer-4 { transform: translateZ(-900px); }
+        .spatial-layer.layer-5 { transform: translateZ(-1200px); }
+        .spatial-layer.layer-6 { transform: translateZ(-1500px); }
+        .spatial-layer.layer-7 { transform: translateZ(-1800px); }
+        .spatial-layer.layer-8 { transform: translateZ(-2100px); }
 
         /* 主要內容區域 */
         .spatial-content {
@@ -103,34 +107,41 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
+            width: 90%;
+            max-width: 1200px;
+            padding: 0 20px;
         }
 
         .spatial-title {
-            font-size: clamp(4rem, 12vw, 12rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 100;
             letter-spacing: -0.03em;
-            line-height: 0.85;
-            margin-bottom: 60px;
+            line-height: 0.9;
+            margin-bottom: 40px;
             background: linear-gradient(135deg, var(--space-accent), var(--space-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
             animation: spatial-breathe 4s ease-in-out infinite;
+            text-align: center;
+            width: 100%;
         }
 
         @keyframes spatial-breathe {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.02); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
         .spatial-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
             font-weight: 300;
             color: var(--space-muted);
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             opacity: 0.8;
             letter-spacing: 0.1em;
+            text-align: center;
+            width: 100%;
         }
 
         /* 浮動幾何元素 */
@@ -447,11 +458,68 @@
         <div class="spatial-layer layer-4">
             <div class="spatial-content">
                 <div class="spatial-card">
-                    <h3 class="card-title">深度核心</h3>
+                    <h3 class="card-title">量子界面</h3>
                     <p class="card-description">
-                        這是空間導航的最深層級 - 數位空間的核心。
-                        在這裡，傳統的界面概念完全消失，剩下的只有純粹的空間體驗。
-                        這代表了網頁設計向空間化發展的終極可能。
+                        進入量子級別的數位空間，這裡的邏輯遵循量子力學原理。
+                        界面元素處於疊加態，只有當觀察者與其互動時才會坍縮成確定狀態。
+                        體驗超越經典物理學的交互設計。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第五層 -->
+        <div class="spatial-layer layer-5">
+            <div class="spatial-content">
+                <div class="spatial-card">
+                    <h3 class="card-title">神經網路層</h3>
+                    <p class="card-description">
+                        模擬大腦神經元連接的視覺空間。每個節點代表一個思維片段，
+                        連線代表概念之間的關聯。在這個層級，界面變成了思考本身的可視化，
+                        展現人機交互的認知科學基礎。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第六層 -->
+        <div class="spatial-layer layer-6">
+            <div class="spatial-content">
+                <div class="spatial-card">
+                    <h3 class="card-title">數據矩陣</h3>
+                    <p class="card-description">
+                        純粹的信息空間，數據以幾何形式存在。這裡沒有物理約束，
+                        只有邏輯結構和數學美學。每個形狀都代表不同類型的信息，
+                        它們在虛擬空間中自由流動，形成動態的數據景觀。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第七層 -->
+        <div class="spatial-layer layer-7">
+            <div class="spatial-content">
+                <div class="spatial-card">
+                    <h3 class="card-title">意識流動</h3>
+                    <p class="card-description">
+                        抽象思維的數位化表現。這裡不再有具體的形式，
+                        只有純粹的概念流動。顏色、形狀、運動都成為思想的載體，
+                        創造出一個真正超越物質世界的意識空間。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第八層 -->
+        <div class="spatial-layer layer-8">
+            <div class="spatial-content">
+                <div class="spatial-card">
+                    <h3 class="card-title">奇點核心</h3>
+                    <p class="card-description">
+                        最終的抽象層級 - 所有信息的奇點。
+                        在這裡，時間、空間、數據、意識融合為一。這是數位宇宙的中心，
+                        一個超越所有傳統界面概念的純粹體驗領域。
+                        歡迎來到空間導航的終極深度。
                     </p>
                 </div>
             </div>
@@ -464,6 +532,10 @@
         <div class="depth-dot" data-layer="2"></div>
         <div class="depth-dot" data-layer="3"></div>
         <div class="depth-dot" data-layer="4"></div>
+        <div class="depth-dot" data-layer="5"></div>
+        <div class="depth-dot" data-layer="6"></div>
+        <div class="depth-dot" data-layer="7"></div>
+        <div class="depth-dot" data-layer="8"></div>
     </div>
 
     <!-- 導航提示 -->
@@ -475,7 +547,7 @@
         class SpatialNavigationLab {
             constructor() {
                 this.currentLayer = 1;
-                this.maxLayers = 4;
+                this.maxLayers = 8;
                 this.mouseX = 0;
                 this.mouseY = 0;
                 this.targetRotationY = 0;
