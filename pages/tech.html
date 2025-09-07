@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="tech-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - Tech Style</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-dark': '#0a0a0a',
+                        'tech-black': '#000000',
+                        'tech-green': '#00ff41',
+                        'tech-cyan': '#00ffff', 
+                        'tech-light': '#808080',
+                        'tech-grid': 'rgba(0, 255, 65, 0.1)'
+                    },
+                    fontFamily: {
+                        'mono': ['Courier New', 'monospace'],
+                        'tech': ['Orbitron', 'monospace']
+                    },
+                    animation: {
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'scan': 'scan 3s linear infinite'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { textShadow: '0 0 5px #00ff41' },
+                            '100%': { textShadow: '0 0 20px #00ff41, 0 0 30px #00ff41' }
+                        },
+                        scan: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100vw)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="Naval Ravikant, tech style, cyberpunk design">
+
+    <style>
+        body {
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+        }
+
+        /* Tech Grid Background */
+        .tech-bg {
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(0, 255, 65, 0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        /* Scanning Line Effect */
+        .scan-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+            animation: scan 4s linear infinite;
+        }
+
+        /* Terminal-style text cursor */
+        .terminal-cursor::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Tech card hover effects */
+        .tech-card {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            transition: left 0.5s;
+        }
+
+        .tech-card:hover::before {
+            left: 100%;
+        }
+
+        /* Glitch text effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch:hover::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff0000;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 0.5s infinite linear alternate-reverse;
+        }
+
+        .glitch:hover::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 0.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 31px, 0); }
+            5% { clip: rect(70px, 9999px, 71px, 0); }
+            10% { clip: rect(30px, 9999px, 71px, 0); }
+            15% { clip: rect(10px, 9999px, 40px, 0); }
+            20% { clip: rect(85px, 9999px, 90px, 0); }
+            25% { clip: rect(40px, 9999px, 43px, 0); }
+            30% { clip: rect(65px, 9999px, 69px, 0); }
+            35% { clip: rect(10px, 9999px, 13px, 0); }
+            40% { clip: rect(20px, 9999px, 40px, 0); }
+            45% { clip: rect(68px, 9999px, 71px, 0); }
+            50% { clip: rect(15px, 9999px, 20px, 0); }
+            55% { clip: rect(80px, 9999px, 84px, 0); }
+            60% { clip: rect(40px, 9999px, 43px, 0); }
+            65% { clip: rect(15px, 9999px, 16px, 0); }
+            70% { clip: rect(60px, 9999px, 62px, 0); }
+            75% { clip: rect(26px, 9999px, 28px, 0); }
+            80% { clip: rect(47px, 9999px, 51px, 0); }
+            85% { clip: rect(11px, 9999px, 18px, 0); }
+            90% { clip: rect(84px, 9999px, 89px, 0); }
+            95% { clip: rect(45px, 9999px, 50px, 0); }
+            100% { clip: rect(68px, 9999px, 70px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(25px, 9999px, 30px, 0); }
+            10% { clip: rect(85px, 9999px, 90px, 0); }
+            15% { clip: rect(40px, 9999px, 45px, 0); }
+            20% { clip: rect(10px, 9999px, 15px, 0); }
+            25% { clip: rect(70px, 9999px, 75px, 0); }
+            30% { clip: rect(20px, 9999px, 25px, 0); }
+            35% { clip: rect(90px, 9999px, 95px, 0); }
+            40% { clip: rect(50px, 9999px, 55px, 0); }
+            45% { clip: rect(30px, 9999px, 35px, 0); }
+            50% { clip: rect(80px, 9999px, 85px, 0); }
+            55% { clip: rect(60px, 9999px, 65px, 0); }
+            60% { clip: rect(15px, 9999px, 20px, 0); }
+            65% { clip: rect(95px, 9999px, 100px, 0); }
+            70% { clip: rect(35px, 9999px, 40px, 0); }
+            75% { clip: rect(75px, 9999px, 80px, 0); }
+            80% { clip: rect(5px, 9999px, 10px, 0); }
+            85% { clip: rect(55px, 9999px, 60px, 0); }
+            90% { clip: rect(45px, 9999px, 50px, 0); }
+            95% { clip: rect(25px, 9999px, 30px, 0); }
+            100% { clip: rect(85px, 9999px, 90px, 0); }
+        }
+
+        /* Matrix rain effect */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+
+<body class="bg-tech-dark text-tech-green font-mono tech-bg relative overflow-x-hidden">
+    <!-- Matrix Background -->
+    <div class="matrix-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="relative z-10 border-b border-tech-green/30 bg-tech-dark/90 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <h2 class="font-tech text-xl font-bold text-tech-green uppercase tracking-wider glitch" data-text="NAVAL.SYS">NAVAL.SYS</h2>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <ul class="flex space-x-1">
+                        <!-- Menu items will be populated by content loader -->
+                    </ul>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-tech-green hover:text-tech-cyan p-2 border border-tech-green/30 hover:border-tech-cyan">
+                        <span class="block w-6 h-0.5 bg-current mb-1"></span>
+                        <span class="block w-6 h-0.5 bg-current mb-1"></span>
+                        <span class="block w-6 h-0.5 bg-current"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden border-t border-tech-green/30 bg-tech-dark mobile-menu">
+                <ul class="px-4 py-4 space-y-2">
+                    <!-- Mobile menu items will be populated by content loader -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative py-20 px-4 text-center scan-line">
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="mb-4">
+                <span class="text-tech-cyan text-sm font-mono uppercase tracking-wider">[SYSTEM LOADING...]</span>
+            </div>
+            
+            <h1 class="font-tech text-4xl md:text-6xl lg:text-7xl font-black text-tech-green mb-6 glitch terminal-cursor" data-text="NAVAL.ALGORITHM">
+                NAVAL.ALGORITHM
+            </h1>
+            
+            <h2 class="text-xl md:text-2xl text-tech-cyan font-mono uppercase tracking-wider mb-8 opacity-90">
+                WISDOM.PROTOCOL.v2024
+            </h2>
+            
+            <p class="text-tech-light text-lg md:text-xl max-w-4xl mx-auto mb-12 font-mono leading-relaxed">
+                > INITIALIZING NEURAL NETWORK...<br>
+                > LOADING INVESTMENT.ALGORITHMS...<br>
+                > HAPPINESS.SUBROUTINES ACTIVATED...
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <!-- Buttons will be populated by content loader -->
+            </div>
+        </div>
+        
+        <!-- Tech decoration -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tech-green to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tech-cyan to-transparent"></div>
+    </section>
+
+    <!-- Wealth Section -->
+    <section id="wealth" class="py-20 px-4 bg-tech-black/50 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-tech-green text-tech-dark px-4 py-2 text-sm font-mono uppercase tracking-wider mb-4">
+                    MODULE 01
+                </div>
+                <h2 class="font-tech text-3xl md:text-4xl font-bold text-tech-green mb-4 glitch" data-text="">WEALTH.EXE</h2>
+                <p class="text-tech-light text-lg font-mono max-w-3xl mx-auto"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be populated by content loader -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Happiness Section -->
+    <section id="happiness" class="py-20 px-4 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-tech-cyan text-tech-dark px-4 py-2 text-sm font-mono uppercase tracking-wider mb-4">
+                    MODULE 02
+                </div>
+                <h2 class="font-tech text-3xl md:text-4xl font-bold text-tech-cyan mb-4 glitch" data-text="">HAPPINESS.SYS</h2>
+                <p class="text-tech-light text-lg font-mono max-w-3xl mx-auto"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be populated by content loader -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Thinking Section -->
+    <section id="thinking" class="py-20 px-4 bg-tech-black/50 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-tech-green text-tech-dark px-4 py-2 text-sm font-mono uppercase tracking-wider mb-4">
+                    MODULE 03
+                </div>
+                <h2 class="font-tech text-3xl md:text-4xl font-bold text-tech-green mb-4 glitch" data-text="">THINKING.AI</h2>
+                <p class="text-tech-light text-lg font-mono max-w-3xl mx-auto"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be populated by content loader -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-20 px-4 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-tech-cyan text-tech-dark px-4 py-2 text-sm font-mono uppercase tracking-wider mb-4">
+                    MODULE 04
+                </div>
+                <h2 class="font-tech text-3xl md:text-4xl font-bold text-tech-cyan mb-4 glitch" data-text="">PHILOSOPHY.NET</h2>
+                <p class="text-tech-light text-lg font-mono max-w-3xl mx-auto"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be populated by content loader -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Q&A Section -->
+    <section id="qa" class="py-20 px-4 bg-tech-black/50 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-tech-green text-tech-dark px-4 py-2 text-sm font-mono uppercase tracking-wider mb-4">
+                    MODULE 05
+                </div>
+                <h2 class="font-tech text-3xl md:text-4xl font-bold text-tech-green mb-4 glitch" data-text="">Q&A.DATABASE</h2>
+                <p class="text-tech-light text-lg font-mono max-w-3xl mx-auto"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be populated by content loader -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-tech-dark border-t border-tech-green/30 py-12 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-6">
+                <div class="inline-block font-tech text-lg font-bold text-tech-green uppercase tracking-wider glitch" data-text="NAVAL.SYS">
+                    NAVAL.SYS
+                </div>
+            </div>
+            
+            <p class="text-tech-light text-sm font-mono mb-6">
+                [TRANSMISSION_COMPLETE]
+            </p>
+            
+            <div class="flex justify-center space-x-8 mb-8">
+                <div class="w-2 h-2 bg-tech-green rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-tech-cyan rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                <div class="w-2 h-2 bg-tech-green rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+            </div>
+            
+            <p class="text-tech-light text-xs font-mono opacity-60"></p>
+        </div>
+    </footer>
+
+    <!-- Content Loader -->
+    <script src="../js/loaders/tech.js"></script>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initialize content loader
+        document.addEventListener('DOMContentLoaded', async () => {
+            await window.techContentLoader.init();
+        });
+
+        // Tech typing effect
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Matrix rain effect (simple version)
+        function createMatrixRain() {
+            const matrix = document.querySelector('.matrix-bg');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');
+                span.style.position = 'absolute';
+                span.style.left = Math.random() * 100 + '%';
+                span.style.animationDelay = Math.random() * 3 + 's';
+                span.style.fontSize = '14px';
+                span.style.color = '#00ff41';
+                span.textContent = chars[Math.floor(Math.random() * chars.length)];
+                span.style.animation = 'fall 3s linear infinite';
+                matrix.appendChild(span);
+            }
+        }
+
+        // Add CSS for falling characters
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(-100vh); opacity: 1; }
+                100% { transform: translateY(100vh); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize matrix effect
+        createMatrixRain();
+    </script>
+</body>
+</html>

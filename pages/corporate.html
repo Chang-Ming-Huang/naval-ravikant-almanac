@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時尚品牌風格 - Fashion Brand Style | Multi-Style Website</title>
+    
+    <!-- Tailwind CSS CDN with Fashion Brand Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fashion-pink': '#ec4899',
+                        'fashion-gray': '#374151', 
+                        'fashion-text': '#111827',
+                        'fashion-light': '#fef7ff',
+                        'fashion-gold': '#d4af37'
+                    },
+                    fontFamily: {
+                        'fashion': ['Didot', '思源黑體', 'serif']
+                    },
+                    boxShadow: {
+                        'fashion': '0 10px 25px -3px rgba(236, 72, 153, 0.1), 0 4px 6px -2px rgba(236, 72, 153, 0.05)',
+                        'fashion-lg': '0 20px 25px -5px rgba(236, 72, 153, 0.15), 0 10px 10px -5px rgba(236, 72, 153, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <meta name="description" content="時尚品牌風格展示頁面 - 高級時尚品牌的精品奢華視覺體驗">
+    <meta name="keywords" content="時尚風格, 精品品牌, 奢華設計, 時裝展示">
+    
+    <style>
+        /* Fashion Brand Custom CSS */
+        :root {
+            --fashion-pink: #ec4899;
+            --fashion-gray: #374151;
+            --fashion-text: #111827;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fef7ff 0%, #ffffff 50%, #fdf2f8 100%);
+            color: var(--fashion-text);
+        }
+        
+        /* Fashion card effects */
+        .fashion-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fashion-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(236, 72, 153, 0.25);
+        }
+        
+        /* Navigation luxury effect */
+        nav {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(236, 72, 153, 0.1);
+        }
+        
+        /* Fashion typography */
+        .fashion-title {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Luxury sparkle animation */
+        @keyframes sparkle {
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0) rotate(0deg); 
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: scale(1) rotate(180deg); 
+            }
+        }
+        
+        .luxury-sparkle {
+            animation: sparkle 3s ease-in-out infinite;
+        }
+        
+        /* Fashion scroll effects */
+        .fashion-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fashion-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Premium gradient borders */
+        .gradient-border {
+            background: linear-gradient(white, white) padding-box, 
+                        linear-gradient(45deg, #ec4899, #be185d, #ec4899) border-box;
+            border: 2px solid transparent;
+        }
+        
+        /* Fashion magazine layout */
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Luxury button animations */
+        .luxury-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .luxury-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .luxury-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Custom scrollbar for fashion theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #fdf2f8;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #ec4899;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be185d;
+        }
+    </style>
+</head>
+
+<body class="bg-fashion-light text-fashion-text font-fashion">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 shadow-fashion">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="nav-logo flex-shrink-0">
+                    <h2 class="font-serif text-2xl font-bold text-gray-800 tracking-tight">Fashion Brand</h2>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <ul class="flex space-x-6">
+                            <li><a href="../index.html" class="nav-link relative py-3 px-8 text-gray-700 font-medium hover:text-pink-600 transition-all duration-300 rounded-lg hover:bg-pink-50 hover:shadow-sm uppercase tracking-wide text-sm">首頁</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Mobile Navigation Button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-pink-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-500">
+                        <span class="sr-only">開啟選單</span>
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm border-t border-pink-100">
+                <ul>
+                    <li><a href="../index.html" class="block py-3 px-4 text-gray-700 font-medium hover:text-pink-600 hover:bg-pink-50 transition-colors rounded-md uppercase tracking-wide">首頁</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-24 pb-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="font-serif text-6xl md:text-7xl font-bold text-gray-800 mb-8 leading-tight tracking-tight fashion-title">時尚精品標題</h1>
+            <h2 class="text-2xl md:text-3xl text-gray-600 font-light mb-10 leading-relaxed tracking-wide uppercase">時尚副標題</h2>
+            <p class="text-lg text-gray-600 leading-relaxed mb-16 max-w-3xl mx-auto font-light">時尚品牌描述內容</p>
+            
+            <!-- Hero Buttons -->
+            <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#content" class="luxury-button inline-flex items-center justify-center px-12 py-4 bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transform uppercase tracking-wider text-sm">探索精品</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="py-16">
+        <!-- Loading State -->
+        <div id="loading-state" class="max-w-6xl mx-auto px-4 text-center py-16">
+            <div class="w-16 h-16 border-4 border-pink-200 border-t-pink-600 rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-pink-600 font-medium uppercase tracking-wider">正在載入時尚內容...</p>
+        </div>
+
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 fashion-fade-in">
+                    <h2 class="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-6 tracking-tight">財富部分</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">財富部分副標題</p>
+                </div>
+                
+                <div class="magazine-grid">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Happiness Section -->
+        <section id="happiness" class="py-20 px-4 bg-gradient-to-br from-pink-50/50 to-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 fashion-fade-in">
+                    <h2 class="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-6 tracking-tight">快樂部分</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">快樂部分副標題</p>
+                </div>
+                
+                <div class="magazine-grid">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Thinking Section -->
+        <section id="thinking" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 fashion-fade-in">
+                    <h2 class="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-6 tracking-tight">思考部分</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">思考部分副標題</p>
+                </div>
+                
+                <div class="magazine-grid">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="py-20 px-4 bg-gradient-to-br from-pink-50/50 to-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 fashion-fade-in">
+                    <h2 class="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-6 tracking-tight">哲學部分</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">哲學部分副標題</p>
+                </div>
+                
+                <div class="magazine-grid">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- QA Section -->
+        <section id="qa" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 fashion-fade-in">
+                    <h2 class="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-6 tracking-tight">問答部分</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">問答部分副標題</p>
+                </div>
+                
+                <div class="magazine-grid">
+                    <!-- Cards will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-pink-50 to-white border-t border-pink-100 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-500 font-light uppercase tracking-wider text-sm">© 2024 Fashion Brand Style Demo</p>
+        </div>
+    </footer>
+
+    <!-- Fashion Brand Content Loader -->
+    <script type="module">
+        import FashionBrandContentLoader from '../js/loaders/corporate.js';
+        
+        // Initialize fashion brand style
+        const loader = new FashionBrandContentLoader();
+        
+        // Start loading process
+        loader.init().then(() => {
+            // Hide loading state
+            document.getElementById('loading-state').style.display = 'none';
+            console.log('💄 Fashion Brand style page initialized successfully');
+        }).catch(error => {
+            console.error('❌ Failed to initialize fashion brand style:', error);
+            // Show error message
+            document.getElementById('loading-state').innerHTML = `
+                <div class="text-center py-16">
+                    <div class="text-4xl mb-4">❌</div>
+                    <h3 class="text-xl font-bold text-red-500 mb-2">載入失敗</h3>
+                    <p class="text-gray-600 mb-4">無法載入時尚內容，請重新整理頁面</p>
+                    <button onclick="location.reload()" class="bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition-colors font-medium uppercase tracking-wider text-sm">
+                        重新載入
+                    </button>
+                </div>
+            `;
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Fashion fade-in effects on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fashion-fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Add luxury sparkle effects
+        function createSparkles() {
+            const sparkleContainer = document.createElement('div');
+            sparkleContainer.className = 'fixed inset-0 pointer-events-none z-5';
+            document.body.appendChild(sparkleContainer);
+
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'absolute w-1 h-1 bg-pink-400 rounded-full opacity-30 luxury-sparkle';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.animationDelay = Math.random() * 3 + 's';
+                    sparkleContainer.appendChild(sparkle);
+                }, i * 150);
+            }
+        }
+
+        // Create sparkles after page load
+        setTimeout(createSparkles, 1000);
+    </script>
+</body>
+</html>

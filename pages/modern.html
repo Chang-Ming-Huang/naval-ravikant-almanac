@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Style - 現代科技美學</title>
+    <meta name="description" content="探索現代科技美學的網頁設計，體驗未來感的視覺語言">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@100;300;400;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --modern-primary: #ffffff;
+            --modern-secondary: #e6e6e6;
+            --modern-accent: #999999;
+            --modern-bg: #0a0a0a;
+            --modern-surface: #1a1a1a;
+            --modern-subtle: #333333;
+            --modern-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --modern-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --modern-blur: blur(10px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: radial-gradient(circle at 20% 30%, var(--modern-bg) 0%, #000000 100%);
+            color: var(--modern-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 幾何形狀背景系統 */
+        .geometric-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 15%;
+            transform: rotate(45deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            left: 10%;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 2px;
+            top: 50%;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: slide 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(45deg); }
+            50% { transform: translateY(-20px) rotate(45deg); }
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-100px); }
+        }
+
+        /* 自定義游標 */
+        .interactive-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        /* 現代卡片設計 */
+        .modern-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: var(--modern-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: clamp(40px, 5vw, 60px);
+            position: relative;
+            transition: var(--modern-transition);
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            clip-path: inherit;
+        }
+
+        .modern-card:hover::before {
+            opacity: 1;
+        }
+
+        .modern-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: var(--modern-shadow);
+        }
+
+        /* 標題樣式 */
+        .main-heading {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 100;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: -0.02em;
+        }
+
+        .title-accent {
+            font-weight: 600;
+            background: linear-gradient(45deg, #ffffff, #999999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        /* 導航樣式 */
+        .nav-link {
+            position: relative;
+            transition: var(--modern-transition);
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--modern-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 按鈕樣式 */
+        .modern-btn {
+            background: transparent;
+            border: 2px solid var(--modern-primary);
+            color: var(--modern-primary);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--modern-transition);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .modern-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--modern-primary);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .modern-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .modern-btn:hover {
+            color: var(--modern-bg);
+        }
+
+        .modern-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 側邊導航點 */
+        .side-nav {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #ffffff;
+            transform: scale(1.5);
+        }
+
+        /* 漸現動畫 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .side-nav { display: none; }
+            .shape { display: none; }
+            .modern-card { padding: 30px 20px; }
+            .geometric-shapes { display: none; }
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .hamburger span {
+            background: var(--modern-primary);
+            height: 2px;
+            width: 25px;
+            display: block;
+            margin: 5px 0;
+            transition: var(--modern-transition);
+        }
+    </style>
+</head>
+<body>
+    <!-- 幾何形狀背景 -->
+    <div class="geometric-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- 自定義游標 -->
+    <div class="interactive-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-20 backdrop-blur-lg border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="nav-logo">
+                    <h2 class="text-2xl font-bold font-mono tracking-wide">MODERN</h2>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-12">
+                    <li><a href="../index.html" class="nav-link">首頁</a></li>
+                    <li><a href="#wealth" class="nav-link">財富</a></li>
+                    <li><a href="#happiness" class="nav-link">快樂</a></li>
+                    <li><a href="#thinking" class="nav-link">思考</a></li>
+                    <li><a href="#philosophy" class="nav-link">哲學</a></li>
+                    <li><a href="#qa" class="nav-link">問答</a></li>
+                </ul>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden absolute top-full left-0 right-0 opacity-0 invisible scale-95 transition-all duration-300">
+            <ul class="px-4 py-6 space-y-4">
+                <li><a href="../index.html" class="block py-3 text-white hover:text-gray-300 transition-colors font-mono">首頁</a></li>
+                <li><a href="#wealth" class="block py-3 text-white hover:text-gray-300 transition-colors font-mono">財富</a></li>
+                <li><a href="#happiness" class="block py-3 text-white hover:text-gray-300 transition-colors font-mono">快樂</a></li>
+                <li><a href="#thinking" class="block py-3 text-white hover:text-gray-300 transition-colors font-mono">思考</a></li>
+                <li><a href="#philosophy" class="block py-3 text-white hover:text-gray-300 transition-colors font-mono">哲學</a></li>
+                <li><a href="#qa" class="block py-3 text-white hover:text-gray-300 transition-colors font-mono">問答</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 側邊導航 -->
+    <nav class="side-nav">
+        <div class="nav-dot active"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-24">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto text-center fade-in">
+                <h1 class="main-heading">
+                    現代科技<br>
+                    <span class="title-accent">美學體驗</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-light opacity-90">
+                    探索未來感的視覺語言，體驗幾何美學與現代科技的完美融合
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button class="modern-btn">
+                        <span>開始探索</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-light mb-6 font-mono">財富智慧</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        重新定義財富的本質與意義
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Happiness Section -->
+        <section id="happiness" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-light mb-6 font-mono">快樂人生</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        探索真正快樂的源泉與路徑
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Thinking Section -->
+        <section id="thinking" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-light mb-6 font-mono">理性思考</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        培養清晰思維與決策能力
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-light mb-6 font-mono">人生哲學</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        深度思考存在的意義與價值
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+                
+                <!-- Quote Section -->
+                <div class="text-center my-24 p-16 modern-card max-w-4xl mx-auto">
+                    <blockquote class="text-3xl md:text-4xl font-light text-white relative">
+                        我們是我們重複行為的產物。因此，卓越不是一種行為，而是一種習慣
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section -->
+        <section id="qa" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-light mb-6 font-mono">常見問答</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        深入探討人生中的重要問題
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4 border-t border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-white font-mono text-lg opacity-70">
+                © 2024 納瓦爾寶典 - 現代科技美學體驗
+            </p>
+        </div>
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script type="module" src="../js/loaders/modern.js"></script>
+    
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.interactive-cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            const spans = hamburger.querySelectorAll('span');
+            
+            spans[0].classList.toggle('rotate-45');
+            spans[0].classList.toggle('translate-y-2');
+            spans[1].classList.toggle('opacity-0');
+            spans[2].classList.toggle('-rotate-45');
+            spans[2].classList.toggle('-translate-y-2');
+            
+            mobileMenu.classList.toggle('opacity-0');
+            mobileMenu.classList.toggle('invisible');
+            mobileMenu.classList.toggle('scale-95');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    mobileMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+                    hamburger.querySelectorAll('span').forEach(span => {
+                        span.className = 'block h-0.5 w-6 transition-all duration-300 bg-white';
+                    });
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax Effect for Geometric Elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                shape.style.transform += ` translateY(${scrolled * speed * 0.1}px)`;
+            });
+        });
+
+        // Mouse parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = mouseX * speed * 10;
+                const y = mouseY * speed * 10;
+                shape.style.transform = `translate(${x}px, ${y}px) rotate(45deg)`;
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize content loader when DOM is ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (window.modernContentLoader) {
+                    await window.modernContentLoader.init();
+                }
+            } catch (error) {
+                console.error('Failed to initialize modern content:', error);
+            }
+        });
+    </script>
+</body>
+</html>
