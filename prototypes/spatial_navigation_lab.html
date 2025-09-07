@@ -548,6 +548,9 @@
             constructor() {
                 this.currentLayer = 1;
                 this.maxLayers = 8;
+                this.currentFlyPosition = 0;    // 當前飛行位置（0-2100px）
+                this.flyStepSize = 150;         // 每次飛行150px
+                this.maxFlyPosition = 2100;     // 最大飛行距離
                 this.mouseX = 0;
                 this.mouseY = 0;
                 this.targetRotationY = 0;
@@ -633,30 +636,39 @@
 
             handleDepthNavigation(e) {
                 const direction = e.deltaY > 0 ? 1 : -1;
-                const newLayer = Math.max(1, Math.min(this.maxLayers, this.currentLayer + direction));
-                this.navigateToLayer(newLayer);
+                const newFlyPosition = Math.max(0, Math.min(this.maxFlyPosition, 
+                    this.currentFlyPosition + (direction * this.flyStepSize)));
+                this.flyToPosition(newFlyPosition);
+            }
+
+            flyToPosition(newFlyPosition) {
+                this.currentFlyPosition = newFlyPosition;
+                
+                // 根據飛行位置計算當前層級（每300px一層）
+                const newLayer = Math.min(this.maxLayers, Math.floor(newFlyPosition / 300) + 1);
+                
+                // 更新容器的3D變換
+                const container = document.getElementById('spatialContainer');
+                container.style.transform = `
+                    translateZ(${newFlyPosition}px) 
+                    rotateY(${this.currentRotationY}deg) 
+                    rotateX(${this.currentRotationX}deg)
+                `;
+                
+                // 如果層級改變，更新相關指示器
+                if (newLayer !== this.currentLayer) {
+                    this.currentLayer = newLayer;
+                    this.updateDepthIndicator();
+                    this.triggerSpatialEffect();
+                }
             }
 
             navigateToLayer(targetLayer) {
                 if (targetLayer === this.currentLayer) return;
-
-                this.currentLayer = targetLayer;
                 
-                // 更新容器的3D變換
-                const container = document.getElementById('spatialContainer');
-                const translateZ = (targetLayer - 1) * 300;
-                
-                container.style.transform = `
-                    translateZ(${translateZ}px) 
-                    rotateY(${this.currentRotationY}deg) 
-                    rotateX(${this.currentRotationX}deg)
-                `;
-
-                // 更新深度指示器
-                this.updateDepthIndicator();
-
-                // 觸發空間變化效果
-                this.triggerSpatialEffect();
+                // 直接跳轉到指定層級的飛行位置
+                const targetFlyPosition = (targetLayer - 1) * 300;
+                this.flyToPosition(targetFlyPosition);
             }
 
             updateDepthIndicator() {
@@ -727,10 +739,9 @@
                     this.currentRotationX += (this.targetRotationX - this.currentRotationX) * 0.05;
 
                     const container = document.getElementById('spatialContainer');
-                    const translateZ = (this.currentLayer - 1) * 300;
                     
                     container.style.transform = `
-                        translateZ(${translateZ}px) 
+                        translateZ(${this.currentFlyPosition}px) 
                         rotateY(${this.currentRotationY}deg) 
                         rotateX(${this.currentRotationX}deg)
                     `;
