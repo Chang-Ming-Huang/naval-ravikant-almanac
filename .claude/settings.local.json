@@ -33,7 +33,14 @@
       "Read(/home/jmhuang/.config/**)",
       "Bash(git restore:*)",
       "WebFetch(domain:colorlib.com)",
-      "WebFetch(domain:studio-mcgee.com)"
+      "WebFetch(domain:studio-mcgee.com)",
+      "WebFetch(domain:stripe.com)",
+      "WebFetch(domain:linear.app)",
+      "WebFetch(domain:figma.com)",
+      "Bash(npm uninstall:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(pkill:*)",
+      "Bash(npx @playwright/mcp:*)"
     ],
     "defaultMode": "acceptEdits"
   }

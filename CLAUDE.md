@@ -870,6 +870,50 @@ font-family: 'Roboto', sans-serif;         /* 正文 */
 - `styleRegistry.getStats()` 查看已註冊風格統計
 - `window.styleRegistry` 和 `window.unifiedContentLoader` 可在 console 中直接存取
 
+## 🎭 Playwright MCP 整合 - 智慧設計研究系統
+
+### 系統概述
+專案已整合 **Microsoft 官方 Playwright MCP**，為 prototype-style-creator 代理程式提供即時網頁設計研究能力。這套系統能夠自動瀏覽世界頂級設計網站，分析最新趨勢，並將洞察直接應用於原型創作。
+
+### 核心功能
+- ✅ **即時設計研究**: 自動瀏覽 Awwwards、CSS Design Awards、Dribbble 等頂級設計網站
+- ✅ **智慧分析**: 提取色彩配置、字體選擇、版面設計和互動效果
+- ✅ **趨勢識別**: 識別新興設計趨勢並整合至原型創作流程
+- ✅ **響應式測試**: 分析不同裝置尺寸下的設計表現
+- ✅ **截圖記錄**: 自動擷取設計參考圖像
+
+### 技術架構
+```
+Playwright MCP Server (v0.0.39)
+    ↓
+prototype-style-creator Agent
+    ↓
+Live Web Research → Design Analysis → Prototype Creation
+```
+
+### 配置狀態
+- ✅ **Microsoft Playwright MCP** v0.0.39 已安裝
+- ✅ **Chromium 瀏覽器** 140.0.7339.186 已配置
+- ✅ **代理程式整合** 完成更新
+- ✅ **本地測試環境** 就緒
+
+### 使用方式
+prototype-style-creator 代理程式現在會自動：
+1. 進行即時網頁設計研究
+2. 分析獲獎網站的設計特色
+3. 提取具體的設計元素和技術
+4. 創造基於實際趨勢的創新原型
+
+### 研究網站清單
+- **Awwwards.com** - 每日最佳網站和創新設計
+- **CSS Design Awards** - CSS 實作技術和視覺創新
+- **Dribbble.com** - UI/UX 設計趨勢和視覺元素
+- **Behance.net** - 品牌設計和創意方向
+- **Site Inspire** - 分類別的設計優秀案例
+
+### 配置檔案
+詳細配置說明請參考：`.claude/playwright_mcp_setup.md`
+
 ## 專案狀態與設計革新
 
 **目前版本**: v7.2.0 - 雙版本空間導航體驗

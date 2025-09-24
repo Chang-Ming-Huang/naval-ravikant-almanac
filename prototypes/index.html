@@ -352,11 +352,9 @@
                                 <option value="">選擇靈感方向（或完全自創）...</option>
                                 <option value="neuromorphic-reality">神經形態現實</option>
                                 <option value="holographic-memory">全息記憶</option>
-                                <option value="cybernetic-poetry">賽博詩學</option>
                                 <option value="quantum-glitch">量子故障</option>
                                 <option value="luxury-minimal">奢華極簡</option>
                                 <option value="editorial-elegance">編輯優雅</option>
-                                <option value="modern-sophistication">現代精緻</option>
                                 <option value="consciousness-bending">意識扭曲</option>
                                 <option value="temporal-distortion">時空扭曲</option>
                                 <option value="synesthetic-reality">共感現實</option>
@@ -894,6 +892,14 @@
             analyzeStyleFeatures(styleId) {
                 // 分析風格特徵（基於 styleId 推測特徵）
                 const featureMap = {
+                    // 🚀 最新創建的2025創新設計趨勢原型特徵分析 - 2025-09-25 (EXPERIMENTAL TRENDS)
+                    'experimental-typography-lab': { colors: ['black', 'cyan', 'electric'], complexity: 'medium', concept: 'experimental-typography' },
+                    'immersive-3d-experience': { colors: ['void', 'cyan', 'magenta'], complexity: 'high', concept: '3d-interactive' },
+                    // 💼 最新創建的2025商業設計風格特徵分析 - 2025-09-24 (COMMERCIAL DESIGN)
+                    'fintech-modern': { colors: ['navy', 'white', 'green'], complexity: 'medium', concept: 'fintech-professional' },
+                    'software-premium': { colors: ['black', 'blue', 'green'], complexity: 'medium', concept: 'software-technical' },
+                    'creative-studio': { colors: ['black', 'white', 'orange'], complexity: 'low', concept: 'creative-professional' },
+                    'anti-design-chaos-theory': { colors: ['black', 'electric-green', 'tension-red'], complexity: 'low', concept: 'anti-design' },
                     // 🎨 最新創造的革命性實驗風格特徵分析 - 2025-09-06 (REVOLUTIONARY INNOVATION)
                     'spatial-navigation-lab': { colors: ['void', 'cyan', 'blue'], complexity: 'high', concept: '3d-spatial' },
                     'gradient-navigation-lab': { colors: ['rainbow', 'gradient', 'multicolor'], complexity: 'high', concept: '3d-spatial-gradient' },
@@ -911,9 +917,6 @@
                     'bold-contemporary-firm': { colors: ['emerald', 'orange', 'brass'], complexity: 'medium', concept: 'contemporary' },
                     'modern-furniture-showroom': { colors: ['white', 'gray', 'oak'], complexity: 'low', concept: 'scandinavian' },
                     // 🔥 最新極端實驗風格特徵分析 (BOUNDARY-BREAKING)
-                    'anti-design-rebellion': { colors: ['red', 'yellow', 'green', 'purple'], complexity: 'extreme', concept: 'anti-design' },
-                    'consciousness-virus': { colors: ['cyan', 'purple', 'red', 'green'], complexity: 'high', concept: 'consciousness' },
-                    'digital-apocalypse': { colors: ['black', 'red', 'grey'], complexity: 'extreme', concept: 'apocalyptic' },
                     // 最新前沿風格特徵分析
                     'brutalist-typography-manifesto': { colors: ['black', 'white', 'red'], complexity: 'low', concept: 'brutalist' },
                     'glassmorphic-neural-interface': { colors: ['cyan', 'green', 'glass'], complexity: 'low', concept: 'futuristic' },
@@ -921,11 +924,9 @@
                     // 現有風格特徵
                     'neuromorphic-reality': { colors: ['cyber'], complexity: 'high', concept: 'experimental' },
                     'holographic-memory': { colors: ['holographic'], complexity: 'high', concept: 'futuristic' },
-                    'cybernetic-poetry': { colors: ['purple', 'cyan'], complexity: 'medium', concept: 'poetic' },
                     'quantum-glitch': { colors: ['neon'], complexity: 'high', concept: 'glitch' },
                     'luxury-minimal': { colors: ['gold', 'black'], complexity: 'low', concept: 'luxury' },
                     'editorial-elegance': { colors: ['cream', 'burgundy'], complexity: 'low', concept: 'elegant' },
-                    'modern-sophistication': { colors: ['blue', 'glass'], complexity: 'medium', concept: 'modern' },
                     'ethereal-minimalism': { colors: ['sage', 'white'], complexity: 'low', concept: 'minimal' },
                     'organic-warmth': { colors: ['terracotta', 'sage'], complexity: 'low', concept: 'organic' },
                     'industrial-elegance': { colors: ['steel', 'copper'], complexity: 'low', concept: 'industrial' },
@@ -1145,10 +1146,54 @@
             loadStyleGallery(sortMode = 'date') {
                 const gallery = document.getElementById('styleGallery');
                 const demoStyles = [
+                    // 🚀 最新創建的2025創新設計趨勢原型 - 2025-09-25 (EXPERIMENTAL TRENDS SERIES)
+                    {
+                        name: 'Experimental Typography Lab',
+                        approach: 'experimental-typography-lab',
+                        description: '🔤 實驗性字體實驗室 - 2025巨字體革命，戲劇性排版與互動字體設計的前衛探索',
+                        file: 'experimental_typography_lab.html',
+                        createdDate: '2025-09-25'
+                    },
+                    {
+                        name: 'Immersive 3D Experience',
+                        approach: 'immersive-3d-experience',
+                        description: '🌌 沉浸式3D交互體驗 - 未來介面實驗，3D立方體控制與視差粒子系統的空間探索',
+                        file: 'immersive_3d_experience.html',
+                        createdDate: '2025-09-25'
+                    },
+                    // 💼 最新創建的2025商業設計風格 - 2025-09-24 (COMMERCIAL DESIGN SERIES)
+                    {
+                        name: 'FinTech Modern',
+                        approach: 'fintech-modern',
+                        description: '💳 現代金融科技 - 靈感來自 Stripe，深藍色系專業金融品牌，企業級信賴感',
+                        file: 'fintech_modern.html',
+                        createdDate: '2025-09-24'
+                    },
+                    {
+                        name: 'Software Premium',
+                        approach: 'software-premium',
+                        description: '⚡ 高級軟體品牌 - 參考 Linear 設計語言，深色主題高對比度，技術專業感',
+                        file: 'software_premium.html',
+                        createdDate: '2025-09-24'
+                    },
+                    {
+                        name: 'Creative Studio',
+                        approach: 'creative-studio',
+                        description: '🎨 創意工作室 - 借鑒 Figma 美學，黑白經典配色，創意與專業的完美平衡',
+                        file: 'creative_studio.html',
+                        createdDate: '2025-09-24'
+                    },
+                    {
+                        name: 'Anti-Design Chaos Theory',
+                        approach: 'anti-design-chaos-theory',
+                        description: '💥 反設計混沌理論 - 故意打破所有設計規則，擁抱混沌中的真實表達與破壞美學',
+                        file: 'anti_design_chaos_theory.html',
+                        createdDate: '2025-09-24'
+                    },
                     // 🎨 最新創造的革命性實驗風格 - 2025-09-06 (REVOLUTIONARY INNOVATION SERIES)
-                    { 
-                        name: 'Spatial Navigation Lab - Classic', 
-                        approach: 'spatial-navigation-lab', 
+                    {
+                        name: 'Spatial Navigation Lab - Classic',
+                        approach: 'spatial-navigation-lab',
                         description: '🌌 3D空間導航實驗室(經典版) - 簡潔電光青主題，突破性的立體網頁導航體驗',
                         file: 'spatial_navigation_lab.html',
                         createdDate: '2025-09-06'
@@ -1221,27 +1266,6 @@
                     },
                     // 🔥 最新創建的極端實驗風格 - 2025-09-04 (BOUNDARY-BREAKING EDITION)
                     { 
-                        name: 'ANTI-DESIGN REBELLION', 
-                        approach: 'anti-design-rebellion', 
-                        description: '🚨 反設計叛亂 - 故意打破所有設計規則，創造藝術衝擊的數位暴動宣言',
-                        file: 'anti_design_rebellion.html',
-                        createdDate: '2025-09-04'
-                    },
-                    { 
-                        name: 'CONSCIOUSNESS VIRUS', 
-                        approach: 'consciousness-virus', 
-                        description: '🧠 意識病毒 - 駭客級別的感知改造介面，重新定義數位體驗的神經邊界',
-                        file: 'consciousness_virus.html',
-                        createdDate: '2025-09-04'
-                    },
-                    { 
-                        name: 'DIGITAL APOCALYPSE', 
-                        approach: 'digital-apocalypse', 
-                        description: '💀 數位末日 - 反烏托邦美學的極致表達，現實崩解的視覺末世體驗',
-                        file: 'digital_apocalypse.html',
-                        createdDate: '2025-09-04'
-                    },
-                    { 
                         name: 'Brutalist Typography Manifesto', 
                         approach: 'brutalist-typography-manifesto', 
                         description: '🔥 粗獷字體宣言 - 反設計運動與極端對比的字體革命',
@@ -1282,13 +1306,6 @@
                         approach: 'biomimetic-interface', 
                         description: '🧬 生物擬態介面 - 模仿生物細胞結構的有機設計',
                         file: 'biomimetic_interface.html',
-                        createdDate: '2025-09-04'
-                    },
-                    { 
-                        name: 'Crystalline Memory', 
-                        approach: 'crystalline-memory', 
-                        description: '💎 晶體記憶 - 將思想凝結成永恆晶體的幾何美學',
-                        file: 'crystalline_memory.html',
                         createdDate: '2025-09-04'
                     },
                     { 
@@ -1440,13 +1457,6 @@
                         createdDate: '2025-08-15'
                     },
                     { 
-                        name: 'Modern Sophistication', 
-                        approach: 'modern-sophistication', 
-                        description: '現代精緻 - 未來主義的玻璃美學',
-                        file: 'modern_sophistication.html',
-                        createdDate: '2025-08-14'
-                    },
-                    { 
                         name: 'Editorial Elegance', 
                         approach: 'editorial-elegance', 
                         description: '編輯優雅 - 雜誌級的印刷美學',
@@ -1494,13 +1504,6 @@
                         description: '量子故障 - 現實錯誤中的美學革命',
                         file: 'quantum_glitch.html',
                         createdDate: '2025-08-07'
-                    },
-                    { 
-                        name: 'Cybernetic Poetry', 
-                        approach: 'cybernetic-poetry', 
-                        description: '賽博詩學 - 數位荒原中的詩意探尋',
-                        file: 'cybernetic_poetry.html',
-                        createdDate: '2025-08-06'
                     },
                     { 
                         name: 'Holographic Memory', 

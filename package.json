@@ -9,7 +9,9 @@
     "dev": "npx http-server . -p 3000 -c-1",
     "build": "mkdir -p build && cp -r data/ js/ docs/ design-*.html test-pages.html package.json LICENSE README.md build/",
     "clean": "rm -rf build/",
-    "preview": "npx http-server build/ -p 3000 -c-1"
+    "preview": "npx http-server build/ -p 3000 -c-1",
+    "mcp": "npx @playwright/mcp",
+    "playwright": "npx playwright test"
   },
   "keywords": [
     "json-driven",
@@ -28,7 +30,10 @@
   "author": "Claude Code",
   "license": "MIT",
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "@playwright/mcp": "^0.0.39",
+    "@playwright/test": "^1.55.1",
+    "http-server": "^14.1.1",
+    "playwright": "^1.55.1"
   },
   "repository": {
     "type": "git",
