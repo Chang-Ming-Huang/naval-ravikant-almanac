@@ -43,7 +43,8 @@
       "Bash(npx @playwright/mcp:*)",
       "WebFetch(domain:www.awwwards.com)",
       "Bash(tree:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Read(//home/jmhuang/.claude/**)"
     ],
     "defaultMode": "acceptEdits"
   }
