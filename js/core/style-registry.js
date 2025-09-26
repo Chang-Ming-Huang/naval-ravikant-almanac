@@ -27,7 +27,7 @@ class StyleRegistry {
     }
 
     this.styles.set(styleConfig.id, styleConfig);
-    console.log(`✓ Style registered: ${styleConfig.id} - ${styleConfig.name}`);
+    // console.log(`✓ Style registered: ${styleConfig.id} - ${styleConfig.name}`);
   }
 
   /**
@@ -192,7 +192,7 @@ class StyleRegistry {
    */
   async init() {
     if (this.initialized) {
-      console.log('Style registry already initialized');
+      // console.log('Style registry already initialized');
       return;
     }
 
@@ -200,7 +200,7 @@ class StyleRegistry {
       // 這裡會載入所有風格配置
       // 現階段先標記為已初始化，具體風格會在其他地方註冊
       this.initialized = true;
-      console.log('✓ Style registry initialized');
+      // console.log('✓ Style registry initialized');
     } catch (error) {
       console.error('Failed to initialize style registry:', error);
       throw error;

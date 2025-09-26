@@ -176,15 +176,18 @@
                 right: 2px;
             }
 
-            /* Hide Y-axis labels on mobile */
-            .mr-4.flex.flex-col.justify-center {
-                display: none;
+            /* Mobile grid adjustments */
+            .grid.grid-cols-5.grid-rows-5 {
+                grid-template-columns: 80px 1fr 1fr;
+                grid-template-rows: auto repeat(4, 1fr);
+                gap: 4px;
             }
 
-            /* Adjust X-axis labels for mobile */
-            .grid.grid-cols-4.gap-2 {
-                grid-template-columns: 1fr 1fr;
-                gap: 4px;
+            /* Hide some labels on very small screens */
+            .grid.grid-cols-5.grid-rows-5 .bg-blue-50,
+            .grid.grid-cols-5.grid-rows-5 .bg-green-50,
+            .grid.grid-cols-5.grid-rows-5 .bg-indigo-50 {
+                display: none;
             }
 
             /* Mobile coordinate explanation */
@@ -238,10 +241,9 @@
             <div class="mb-12">
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
                     🗺️ 維度風格座標系統
-                    <span class="text-lg font-normal text-gray-600">(16/16 完整)</span>
                 </h2>
                 <p class="text-center text-gray-600 mb-8 max-w-4xl mx-auto">
-                    透過 4 個設計維度的系統性組合，形成 2⁴ = 16 種獨特風格的二維座標空間。
+                    透過 4 個設計維度的系統性組合，形成 2⁴ = 16 種獨特風格的二維座標空間。<br>
                     相似的風格會排列在相近的位置，展現維度驅動設計的數學美感。
                 </p>
 
@@ -260,55 +262,9 @@
 
                 <!-- Coordinate Grid Container -->
                 <div id="coordinate-grid" class="hidden">
-                    <!-- Axis Labels -->
-                    <div class="mb-6">
-                        <!-- X-axis label -->
-                        <div class="text-center mb-4">
-                            <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 px-4 py-2 rounded-lg shadow-sm">
-                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21l10-10L7 1"></path>
-                                </svg>
-                                <span class="text-sm font-semibold text-blue-700">X軸: Colors + Typography</span>
-                            </div>
-                        </div>
-                        <!-- X-axis scale -->
-                        <div class="grid grid-cols-4 gap-2 max-w-4xl mx-auto text-xs text-gray-500 text-center mb-4">
-                            <div class="font-medium">Dark + Formal</div>
-                            <div class="font-medium">Dark + Casual</div>
-                            <div class="font-medium">Light + Formal</div>
-                            <div class="font-medium">Light + Casual</div>
-                        </div>
-                    </div>
-
-                    <!-- Main Grid with Y-axis labels -->
-                    <div class="flex items-start max-w-5xl mx-auto">
-                        <!-- Y-axis labels -->
-                        <div class="mr-4 flex flex-col justify-center h-full">
-                            <div class="text-center mb-4 -rotate-90 origin-center w-4 absolute -top-4 left-1/2 transform -translate-x-1/2">
-                                <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">
-                                    Y軸: Spacing + Effects
-                                </span>
-                            </div>
-                            <div class="space-y-3 text-xs text-gray-500 text-right w-20 mt-8" style="height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
-                                <div class="flex items-center justify-end h-full">
-                                    <span class="whitespace-nowrap font-medium">Compact + Flat</span>
-                                </div>
-                                <div class="flex items-center justify-end h-full">
-                                    <span class="whitespace-nowrap font-medium">Compact + 3D</span>
-                                </div>
-                                <div class="flex items-center justify-end h-full">
-                                    <span class="whitespace-nowrap font-medium">Loose + Flat</span>
-                                </div>
-                                <div class="flex items-center justify-end h-full">
-                                    <span class="whitespace-nowrap font-medium">Loose + 3D</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 4x4 Grid -->
-                        <div id="styles-coordinate-grid" class="grid grid-cols-4 gap-3 flex-1 max-w-4xl">
-                            <!-- 16 style cards will be dynamically placed here -->
-                        </div>
+                    <!-- 5x5 Unified Coordinate Grid - 由 JavaScript 動態生成 -->
+                    <div id="styles-coordinate-grid" class="grid grid-cols-5 grid-rows-5 gap-3 max-w-5xl mx-auto">
+                        <!-- 所有 25 個位置將由 JavaScript 根據 coordinate-config.json 動態填入 -->
                     </div>
                 </div>
             </div>
@@ -364,78 +320,133 @@
                 <p class="text-xl text-gray-600">深入了解 JSON 驅動多風格系統的技術實現</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- JSON Data Structure -->
-                <div class="bg-white rounded-xl p-8 shadow-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                        <span class="text-2xl mr-3">📊</span>
-                        JSON 資料結構
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Core Architecture -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">🧠</span>
+                        核心系統
                     </h3>
-                    <ul class="space-y-3 text-gray-600">
+                    <ul class="space-y-2 text-gray-600 text-sm">
                         <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
+                            <span class="text-blue-500 mr-2">•</span>
                             <div>
-                                <code class="bg-gray-100 px-2 py-1 rounded text-sm">data/content.json</code>
-                                <p class="text-sm text-gray-500">統一的內容資料來源</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">js/core/style-registry.js</code>
+                                <p class="text-xs text-gray-500">風格註冊與管理系統</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
+                            <span class="text-blue-500 mr-2">•</span>
                             <div>
-                                包含網站元資訊、導航、各區塊內容
-                                <p class="text-sm text-gray-500">meta, navigation, hero, sections</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">js/core/unified-content-loader.js</code>
+                                <p class="text-xs text-gray-500">統一內容載入器</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
+                            <span class="text-blue-500 mr-2">•</span>
                             <div>
-                                支持多語言擴展與國際化
-                                <p class="text-sm text-gray-500">易於新增其他語言版本</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
-                            <div>
-                                結構化、易於維護和更新
-                                <p class="text-sm text-gray-500">一次修改，全站同步</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">js/styles/index.js</code>
+                                <p class="text-xs text-gray-500">風格系統入口</p>
                             </div>
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Content Loaders -->
-                <div class="bg-white rounded-xl p-8 shadow-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                        <span class="text-2xl mr-3">🔧</span>
-                        內容載入器
+
+                <!-- Dimension System -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">📐</span>
+                        維度系統
                     </h3>
-                    <ul class="space-y-3 text-gray-600">
+                    <ul class="space-y-2 text-gray-600 text-sm">
                         <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
+                            <span class="text-green-500 mr-2">•</span>
                             <div>
-                                <code class="bg-gray-100 px-2 py-1 rounded text-sm">js/content-loader.js</code>
-                                <p class="text-sm text-gray-500">Zen 風格專用載入器</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/colors.js</code>
+                                <p class="text-xs text-gray-500">Light/Dark 色彩維度</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
+                            <span class="text-green-500 mr-2">•</span>
                             <div>
-                                <code class="bg-gray-100 px-2 py-1 rounded text-sm">js/luxury-content-loader.js</code>
-                                <p class="text-sm text-gray-500">Luxury 風格專用載入器</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/typography.js</code>
+                                <p class="text-xs text-gray-500">Formal/Casual 字體維度</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
+                            <span class="text-green-500 mr-2">•</span>
                             <div>
-                                自動渲染內容到頁面元素
-                                <p class="text-sm text-gray-500">動態生成 DOM 內容</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/spacing.js</code>
+                                <p class="text-xs text-gray-500">Compact/Loose 間距維度</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
+                            <span class="text-green-500 mr-2">•</span>
                             <div>
-                                支持載入失敗回退機制
-                                <p class="text-sm text-gray-500">確保系統穩定性</p>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/effects.js</code>
+                                <p class="text-xs text-gray-500">Flat/3D 效果維度</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Style Configurations -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">🎨</span>
+                        風格配置
+                    </h3>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">styles/*.js</code>
+                                <p class="text-xs text-gray-500">16 種風格維度組合</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">coordinate-config.json</code>
+                                <p class="text-xs text-gray-500">座標系統配置</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <div>
+                                維度數學組合 2⁴ = 16
+                                <p class="text-xs text-gray-500">精確的風格定位系統</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Content & Loaders -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">📊</span>
+                        內容系統
+                    </h3>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">data/content.json</code>
+                                <p class="text-xs text-gray-500">統一內容資料源</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">loaders/*.js</code>
+                                <p class="text-xs text-gray-500">專用風格載入器</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">pages/*.html</code>
+                                <p class="text-xs text-gray-500">風格體驗頁面</p>
                             </div>
                         </li>
                     </ul>
@@ -495,11 +506,14 @@
                 // 等待風格系統載入完成
                 await waitForStyleSystem();
 
+                // 載入座標配置
+                const coordinateConfig = await loadCoordinateConfig();
+
                 // 獲取所有風格
                 const styles = window.styleSystem.getAllStyles();
 
                 // 渲染座標表格
-                renderCoordinateGrid(styles);
+                renderCoordinateGrid(styles, coordinateConfig);
 
                 // 渲染風格流程
                 renderStyleFlow(styles);
@@ -511,104 +525,173 @@
                 // 重新綁定卡片的交互效果
                 bindCoordinateInteractions();
 
-                console.log('✅ Style coordinate system initialized:', styles.length, 'styles');
+                // console.log('✅ Style coordinate system initialized:', styles.length, 'styles');
             } catch (error) {
-                console.error('❌ Failed to initialize style system:', error);
+                // console.error('❌ Failed to initialize style system:', error);
                 showErrorMessage();
+            }
+        }
+
+        // 載入座標配置檔案
+        async function loadCoordinateConfig() {
+            try {
+                const response = await fetch('./data/coordinate-config.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                // console.error('❌ Failed to load coordinate config:', error);
+                // 返回預設配置
+                return {
+                    "grid": { "rows": 5, "cols": 5 },
+                    "positions": {}
+                };
             }
         }
         
         // 等待風格系統載入完成
-        function waitForStyleSystem(maxAttempts = 50) {
+        function waitForStyleSystem(maxAttempts = 100) {
             return new Promise((resolve, reject) => {
                 let attempts = 0;
                 const checkInterval = setInterval(() => {
-                    if (window.styleSystem && window.styleSystem.getAllStyles().length > 0) {
+                    // console.log(`⏳ Checking style system... attempt ${attempts + 1}`);
+
+                    if (window.styleSystem) {
+                        // console.log('✓ Style system found');
+                        try {
+                            const styles = window.styleSystem.getAllStyles();
+                            // console.log(`✓ Found ${styles.length} styles`);
+
+                            if (styles.length > 0) {
+                                clearInterval(checkInterval);
+                                resolve();
+                                return;
+                            }
+                        } catch (error) {
+                            // console.log('⚠️ Error getting styles:', error);
+                        }
+                    }
+
+                    if (attempts >= maxAttempts) {
                         clearInterval(checkInterval);
-                        resolve();
-                    } else if (attempts >= maxAttempts) {
-                        clearInterval(checkInterval);
+                        // console.error('❌ Style system failed to load after', maxAttempts, 'attempts');
                         reject(new Error('Style system failed to load'));
                     }
                     attempts++;
-                }, 100);
+                }, 200);
             });
         }
         
-        // 座標排列算法
-        function calculateCoordinate(style) {
-            const characteristics = style.characteristics || {};
-
-            // X軸: Colors + Typography 組合 (0-3)
-            let x = 0;
-            if (characteristics.brightness === 'dark' && characteristics.typography === 'formal') x = 0;
-            else if (characteristics.brightness === 'dark' && characteristics.typography === 'casual') x = 1;
-            else if (characteristics.brightness === 'light' && characteristics.typography === 'formal') x = 2;
-            else if (characteristics.brightness === 'light' && characteristics.typography === 'casual') x = 3;
-
-            // Y軸: Spacing + Effects 組合 (0-3)
-            let y = 0;
-            if (characteristics.spacing === 'compact' && characteristics.effects === 'flat') y = 0;
-            else if (characteristics.spacing === 'compact' && characteristics.effects === 'dimensional') y = 1;
-            else if (characteristics.spacing === 'loose' && characteristics.effects === 'flat') y = 2;
-            else if (characteristics.spacing === 'loose' && characteristics.effects === 'dimensional') y = 3;
-
-            return { x, y, position: y * 4 + x };
-        }
-
-        // 渲染座標表格
-        function renderCoordinateGrid(styles) {
+        // 渲染座標表格 - 統一卡片系統
+        function renderCoordinateGrid(styles, coordinateConfig) {
             const container = document.getElementById('styles-coordinate-grid');
             if (!container) return;
 
-            // 創建 4x4 空陣列
-            const grid = Array(16).fill(null);
+            // console.log('📋 Rendering unified coordinate grid');
+            // console.log('📋 Available styles:', styles.map(s => s.id));
 
-            // 根據座標排列風格
-            styles.forEach(style => {
-                const coord = calculateCoordinate(style);
-                grid[coord.position] = style;
+            // 清空容器
+            container.innerHTML = '';
+
+            // 創建 25 個位置的網格映射 (5x5)
+            const gridMap = Array(25).fill(null);
+
+            // 放置標籤卡片
+            Object.entries(coordinateConfig.cards.labels).forEach(([labelId, labelConfig]) => {
+                const gridIndex = (labelConfig.row - 1) * 5 + (labelConfig.col - 1);
+                gridMap[gridIndex] = { type: 'label', config: labelConfig };
             });
 
-            // 渲染表格
-            container.innerHTML = grid.map((style, index) => {
+            // 創建風格映射
+            const styleMap = {};
+            styles.forEach(style => {
+                styleMap[style.id] = style;
+            });
+
+            // 放置風格卡片
+            Object.entries(coordinateConfig.cards.styles).forEach(([styleId, styleConfig]) => {
+                const gridIndex = (styleConfig.row - 1) * 5 + (styleConfig.col - 1);
+                const style = styleMap[styleId];
+
                 if (!style) {
-                    // 空白位置
-                    return `
-                        <div class="aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
-                            <span class="text-gray-400 text-xs">空位</span>
-                        </div>
-                    `;
+                    // console.warn(`❌ Style not found: ${styleId}`);
+                    return;
                 }
 
-                const styleConfig = getStyleConfig(style.id);
-                const coord = calculateCoordinate(style);
+                gridMap[gridIndex] = { type: 'style', config: styleConfig, style: style };
+            });
 
-                return `
-                    <div class="coordinate-card ${styleConfig.cardBg} rounded-lg p-4 shadow-md ${styleConfig.border} coordinate-enter"
-                         style="animation-delay: ${index * 0.1}s"
-                         data-style-id="${style.id}"
-                         data-coordinate="(${coord.x},${coord.y})">
+            // 渲染所有 25 個位置
+            gridMap.forEach((item, index) => {
+                if (!item) {
+                    // 空位置
+                    const emptyCard = document.createElement('div');
+                    emptyCard.className = 'aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center';
+                    emptyCard.innerHTML = '<span class="text-gray-400 text-xs">空位</span>';
+                    container.appendChild(emptyCard);
+                    return;
+                }
 
-                        <!-- 座標位置指示器 -->
-                        <div class="coordinate-position">(${coord.x},${coord.y})</div>
+                if (item.type === 'label') {
+                    // 標籤卡片
+                    renderLabelCard(item.config, container);
+                } else if (item.type === 'style') {
+                    // 風格卡片
+                    renderStyleCard(item.style, item.config, container, index);
+                }
+            });
+        }
 
-                        <!-- 風格內容 -->
-                        <div class="text-center h-full flex flex-col justify-between p-2">
-                            <div class="flex-1 flex flex-col justify-center">
-                                <div class="w-10 h-10 ${styleConfig.iconBg} rounded-full mx-auto mb-3 flex items-center justify-center shadow-sm">
-                                    <span class="text-xl">${style.icon}</span>
-                                </div>
-                                <h3 class="text-sm font-bold mb-2 ${styleConfig.titleColor} leading-tight">${style.name}</h3>
-                                <p class="text-xs ${styleConfig.textColor} mb-3 leading-relaxed px-1" title="${style.description}">${style.description.slice(0, 30)}${style.description.length > 30 ? '...' : ''}</p>
-                            </div>
-                            <a href="${style.url}" class="inline-block px-3 py-2 rounded text-xs font-medium transition-all duration-300 ${styleConfig.buttonStyle}">
-                                體驗
-                            </a>
+        // 渲染標籤卡片 - 統一淺背景樣式
+        function renderLabelCard(labelConfig, container) {
+            const labelElement = document.createElement('div');
+
+            // 統一所有標籤卡片的樣式為淺背景
+            if (labelConfig.type === 'corner') {
+                labelElement.className = 'flex items-center justify-center bg-gray-50 rounded-lg p-2';
+                labelElement.innerHTML = `<span class="text-xs text-gray-400 font-mono">${labelConfig.content}</span>`;
+            } else if (labelConfig.type === 'x_label') {
+                labelElement.className = 'flex items-center justify-center bg-gray-50 rounded-lg p-2 border border-gray-200';
+                labelElement.innerHTML = `<span class="text-xs font-medium text-gray-600 text-center leading-tight">${labelConfig.content}</span>`;
+            } else if (labelConfig.type === 'y_label') {
+                labelElement.className = 'flex items-center justify-center bg-gray-50 rounded-lg p-2 border border-gray-200';
+                labelElement.innerHTML = `<span class="text-xs font-medium text-gray-600 text-center leading-tight">${labelConfig.content}</span>`;
+            }
+
+            container.appendChild(labelElement);
+        }
+
+        // 渲染風格卡片
+        function renderStyleCard(style, styleConfig, container, index) {
+            const styleCSS = getStyleConfig(style.id);
+
+            const cardElement = document.createElement('div');
+            cardElement.className = `coordinate-card ${styleCSS.cardBg} rounded-lg p-3 shadow-md ${styleCSS.border} coordinate-enter aspect-square ${styleCSS.hover}`;
+            cardElement.style.animationDelay = `${index * 0.05}s`;
+            cardElement.dataset.styleId = style.id;
+            cardElement.dataset.coordinate = styleConfig.coordinates;
+
+            cardElement.innerHTML = `
+                <!-- 座標位置指示器 -->
+                <div class="coordinate-position">${styleConfig.coordinates}</div>
+
+                <!-- 風格內容 -->
+                <div class="text-center h-full flex flex-col justify-between p-1">
+                    <div class="flex-1 flex flex-col justify-center">
+                        <div class="w-8 h-8 ${styleCSS.iconBg} rounded-full mx-auto mb-2 flex items-center justify-center shadow-sm">
+                            <span class="text-lg">${style.icon}</span>
                         </div>
+                        <h3 class="text-xs font-bold mb-1 ${styleCSS.titleColor} leading-tight">${style.name}</h3>
+                        <p class="text-xs ${styleCSS.textColor} mb-2 leading-relaxed px-1" title="${style.description}">${style.description.slice(0, 20)}${style.description.length > 20 ? '...' : ''}</p>
                     </div>
-                `;
-            }).join('');
+                    <a href="${style.url}" class="inline-block px-2 py-1 rounded text-xs font-medium transition-all duration-300 ${styleCSS.buttonStyle}">
+                        體驗
+                    </a>
+                </div>
+            `;
+
+            container.appendChild(cardElement);
         }
         
         // 為每個風格設定專屬樣式配置

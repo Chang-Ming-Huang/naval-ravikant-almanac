@@ -12,7 +12,7 @@ import { Dimensional } from '../dimensions/effects.js';
 export default {
   id: 'underground',
   name: 'Underground 地下美學',
-  description: '極簡暗黑設計、工業質感、前衛視覺語言，精緻的反叛美學',
+  description: '極簡暗黑設計、工業質感、前衛視覺語言、反叛美學',
   icon: '🏴',
   category: 'culture',
   

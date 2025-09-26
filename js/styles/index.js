@@ -15,10 +15,10 @@ import modernStyle from './modern.js';
 import editorialStyle from './editorial.js';
 import businessStyle from './business.js';
 import creativeStyle from './creative.js';
-import gamingStyle from './gaming.js';
-import professionalStyle from './professional.js';
 import executiveStyle from './executive.js';
 import galleryStyle from './gallery.js';
+import gamingStyle from './gaming.js';
+import professionalStyle from './professional.js';
 
 /**
  * 初始化並註冊所有風格
@@ -42,10 +42,10 @@ export async function initializeStyles() {
       editorialStyle,
       businessStyle,
       creativeStyle,
-      gamingStyle,
-      professionalStyle,
       executiveStyle,
-      galleryStyle
+      galleryStyle,
+      gamingStyle,
+      professionalStyle
     ];
     
     styleRegistry.registerMultiple(styles);
@@ -102,21 +102,26 @@ export default styleRegistry;
 
 // 自動初始化 (如果在瀏覽器環境中)
 if (typeof window !== 'undefined') {
+  // 立即將函數掛載到 window 對象上
+  window.styleSystem = {
+    getAllStyles: () => styleRegistry.getAllStyles(),
+    getStyle: (id) => styleRegistry.getStyle(id),
+    getStylesByCategory: (cat) => styleRegistry.getStylesByCategory(cat),
+    applyStyleVars: (id) => styleRegistry.applyCSSVars(id),
+    generateStyleClasses: (id) => styleRegistry.generateCSSClasses(id),
+    registry: styleRegistry,
+    init: initializeStyles
+  };
+
   // 當 DOM 載入完成時自動初始化
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeStyles);
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeStyles().catch(console.error);
+    });
   } else {
-    // 如果 DOM 已經載入完成，立即初始化
-    initializeStyles().catch(console.error);
+    // 如果 DOM 已經載入完成，延遲初始化讓其他腳本有時間載入
+    setTimeout(() => {
+      initializeStyles().catch(console.error);
+    }, 100);
   }
-  
-  // 將主要函數掛載到 window 對象上，方便其他腳本使用
-  window.styleSystem = {
-    getAllStyles,
-    getStyle,
-    getStylesByCategory,
-    applyStyleVars,
-    generateStyleClasses,
-    registry: styleRegistry
-  };
 }
