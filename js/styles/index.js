@@ -13,6 +13,12 @@ import undergroundStyle from './underground.js';
 import playfulStyle from './playful.js';
 import modernStyle from './modern.js';
 import editorialStyle from './editorial.js';
+import businessStyle from './business.js';
+import creativeStyle from './creative.js';
+import gamingStyle from './gaming.js';
+import professionalStyle from './professional.js';
+import executiveStyle from './executive.js';
+import galleryStyle from './gallery.js';
 
 /**
  * 初始化並註冊所有風格
@@ -25,7 +31,7 @@ export async function initializeStyles() {
     // 註冊所有現有的風格
     const styles = [
       zenStyle,
-      luxuryStyle, 
+      luxuryStyle,
       techStyle,
       retroStyle,
       academicStyle,
@@ -33,7 +39,13 @@ export async function initializeStyles() {
       undergroundStyle,
       playfulStyle,
       modernStyle,
-      editorialStyle
+      editorialStyle,
+      businessStyle,
+      creativeStyle,
+      gamingStyle,
+      professionalStyle,
+      executiveStyle,
+      galleryStyle
     ];
     
     styleRegistry.registerMultiple(styles);
