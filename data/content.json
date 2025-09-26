@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "title": "納瓦爾寶典",
+    "subtitle": "人生智慧大全",
+    "description": "矽谷傳奇投資人納瓦爾·拉維肯特的畢生智慧精華",
+    "tagline": "引領當代人走向富足快樂的人生",
+    "copyright": "© 2024 納瓦爾寶典 - 智慧傳承，改變人生"
+  },
+  "navigation": {
+    "logo": "納瓦爾寶典",
+    "menuItems": [
+      { "id": "hero", "label": "首頁", "href": "../index.html" },
+      { "id": "wealth", "label": "致富", "href": "#wealth" },
+      { "id": "happiness", "label": "快樂", "href": "#happiness" },
+      { "id": "thinking", "label": "思考", "href": "#thinking" },
+      { "id": "philosophy", "label": "哲學", "href": "#philosophy" },
+      { "id": "qa", "label": "Q&A", "href": "#qa" }
+    ]
+  },
+  "hero": {
+    "title": "納瓦爾寶典",
+    "subtitle": "人生智慧大全",
+    "description": "矽谷傳奇投資人納瓦爾·拉維肯特的畢生智慧精華<br>引領當代人走向富足快樂的人生",
+    "buttons": [
+      { "text": "開始探索", "href": "#wealth", "type": "primary" },
+      { "text": "人生哲學", "href": "#philosophy", "type": "secondary" }
+    ]
+  },
+  "sections": {
+    "wealth": {
+      "title": "關於致富",
+      "subtitle": "財富不是靠運氣，而是透過正確的選擇和系統性的設計",
+      "quote": "致富不是靠運氣，財富是可以通過學習獲得的技能",
+      "cards": [
+        {
+          "id": "wealth-vs-money",
+          "icon": "💰",
+          "title": "財富 vs 金錢",
+          "description": "財富是在你睡覺時仍能為你賺錢的資產，而金錢只是一種社會信用。追求財富而非金錢，因為財富帶來真正的自由。"
+        },
+        {
+          "id": "productize-yourself", 
+          "icon": "🎯",
+          "title": "把自己產品化",
+          "description": "結合獨特知識、槓桿效應和責任感，創造一個持續運轉的系統，讓機會主動找上你。"
+        },
+        {
+          "id": "leverage",
+          "icon": "🚀", 
+          "title": "槓桿效應",
+          "description": "透過資本、人力、軟體和媒體四種槓桿，放大個人努力的影響力。零邊際成本產品是新時代的機會。"
+        }
+      ]
+    },
+    "happiness": {
+      "title": "追求快樂",
+      "subtitle": "快樂是可以選擇的技能，不是追求的結果",
+      "quote": "快樂就是不想在其他任何地方，不想成為其他任何人",
+      "cards": [
+        {
+          "id": "happiness-is-skill",
+          "icon": "😊",
+          "title": "快樂是技能", 
+          "description": "快樂不是你找到的，而是你選擇的。通過冥想、感恩和正確的心態，我們可以培養內在的平靜與滿足。"
+        },
+        {
+          "id": "present-moment",
+          "icon": "🧘",
+          "title": "活在當下",
+          "description": "過去已經結束，未來尚未到來。真正的生活只發生在此時此刻。學會專注於當下，是快樂的關鍵。"
+        },
+        {
+          "id": "inner-peace",
+          "icon": "☮️",
+          "title": "內在平靜",
+          "description": "真正的財富是內心的平靜。當你不再需要外在的認可或物質來定義自己時，你就找到了真正的自由。"
+        }
+      ]
+    },
+    "thinking": {
+      "title": "清晰思考",
+      "subtitle": "培養獨立思考的能力，擺脫社會制約",
+      "cards": [
+        {
+          "id": "first-principles",
+          "icon": "🔬",
+          "title": "第一性原理",
+          "description": "回到事物的根本，從基礎原理重新思考問題。不被表面現象迷惑，深入本質找到真相。"
+        },
+        {
+          "id": "reading-wisdom",
+          "icon": "📚", 
+          "title": "閱讀的智慧",
+          "description": "不要只讀新書，多讀經典。真正的智慧來自於反覆閱讀那些經過時間考驗的偉大作品。"
+        },
+        {
+          "id": "decision-making",
+          "icon": "🎭",
+          "title": "決策藝術",
+          "description": "好的決策來自清晰的思維。學會區分什麼是重要的，什麼是緊急的，專注於長期價值。"
+        }
+      ]
+    },
+    "philosophy": {
+      "title": "人生哲學",
+      "subtitle": "構建自己的人生原則和價值觀",
+      "quote": "我們是我們重複行為的產物。因此，卓越不是一種行為，而是一種習慣",
+      "cards": [
+        {
+          "id": "take-responsibility",
+          "icon": "⚖️",
+          "title": "承擔責任",
+          "description": "成功的關鍵是承擔責任。當你願意為結果負責時，別人就會給你更大的權力和資源。"
+        },
+        {
+          "id": "be-authentic",
+          "icon": "🎪",
+          "title": "做真實的自己",
+          "description": "不要試圖取悦所有人。找到你的真實自我，勇敢地表達你的想法，吸引真正志同道合的人。"
+        },
+        {
+          "id": "long-term-thinking",
+          "icon": "🌱",
+          "title": "長期主義",
+          "description": "短期的痛苦往往帶來長期的收益。學會延遲滿足，為未來的自己投資。"
+        }
+      ]
+    },
+    "qa": {
+      "title": "常見問答",
+      "subtitle": "深入探討人生中的重要問題",
+      "cards": [
+        {
+          "id": "career-choice",
+          "icon": "💼",
+          "title": "如何選擇職業？",
+          "description": "選擇你可以做一輩子的事情。找到你的天賦、熱情和市場需求的交集點，這就是你的使命。"
+        },
+        {
+          "id": "health-importance",
+          "icon": "🏃",
+          "title": "健康比什麼都重要？",
+          "description": "身體是你唯一真正擁有的東西。沒有健康，其他的成就都失去意義。投資健康就是投資未來。"
+        },
+        {
+          "id": "relationships",
+          "icon": "👥",
+          "title": "如何建立好的人際關係？",
+          "description": "真正的關係建立在互相尊重和真誠的基礎上。不要試圖改變他人，而要吸引志同道合的人。"
+        }
+      ]
+    }
+  }
+}

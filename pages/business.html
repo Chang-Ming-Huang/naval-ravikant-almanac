@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - 企業級專業版 | Business Style</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        business: {
+                            blue: '#1e40af',
+                            'blue-light': '#3b82f6',
+                            'blue-dark': '#1e3a8a',
+                            'gray-light': '#f8fafc',
+                            'gray-medium': '#64748b',
+                            'gray-dark': '#334155',
+                            'gray-charcoal': '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Roboto Slab', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease forwards',
+                        'fade-in-left': 'fadeInLeft 0.8s ease forwards',
+                        'fade-in-right': 'fadeInRight 0.8s ease forwards'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-600 { animation-delay: 0.6s; }
+        .animate-delay-800 { animation-delay: 0.8s; }
+
+        /* Enterprise grid pattern */
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(30, 64, 175, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 64, 175, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Professional card hover effect */
+        .business-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .business-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.1);
+        }
+
+        /* Loading state styles */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-business-gray-light text-business-gray-charcoal overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="navigation" class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-blue-100 py-4 z-50 transition-all duration-300">
+        <!-- Content will be loaded here -->
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-blue-50 to-slate-50 relative overflow-hidden pt-20 pb-16 px-4 grid-pattern">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-business-blue/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-business-blue-light/5 rounded-full blur-2xl"></div>
+        </div>
+
+        <!-- Content will be loaded here -->
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4 bg-white">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 px-4 bg-business-gray-charcoal text-white">
+        <!-- Content will be loaded here -->
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script type="module" src="../js/loaders/business.js"></script>
+
+    <script>
+        // Professional interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add professional page loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Professional scroll effects
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('#navigation');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollTop = window.pageYOffset;
+
+                if (currentScrollTop > 50) {
+                    navbar.classList.add('bg-white/98', 'backdrop-blur-lg', 'shadow-sm');
+                    navbar.classList.remove('bg-white/95');
+                } else {
+                    navbar.classList.add('bg-white/95');
+                    navbar.classList.remove('bg-white/98', 'backdrop-blur-lg', 'shadow-sm');
+                }
+
+                lastScrollTop = currentScrollTop;
+            });
+
+            // Professional intersection observer for cards
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe cards when they're added to DOM
+            const observeCards = () => {
+                document.querySelectorAll('.business-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    observer.observe(card);
+                });
+            };
+
+            // Initial observation and re-observe after content loads
+            setTimeout(observeCards, 1000);
+
+            // Professional smooth scrolling
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Professional page transition
+        window.addEventListener('beforeunload', () => {
+            document.body.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>

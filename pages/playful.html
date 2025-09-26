@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="納瓦爾寶典 - 矽谷傳奇投資人的智慧分享">
+    <title>納瓦爾寶典 - Playful 溫暖親和風格</title>
+    
+    <!-- Google Fonts - 專業字體系統 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="nav-logo">
+                <h2 class="text-2xl font-bold">Loading...</h2>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-8">
+                <!-- Dynamic menu items will be inserted here -->
+            </ul>
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-toggle" class="md:hidden">
+                <span class="block w-6 h-0.5 bg-current mb-1"></span>
+                <span class="block w-6 h-0.5 bg-current mb-1"></span>
+                <span class="block w-6 h-0.5 bg-current"></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden absolute top-full left-0 w-full">
+            <ul class="p-6 space-y-4">
+                <!-- Dynamic mobile menu items will be inserted here -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <h1 class="mb-6">載入中...</h1>
+            
+            <h2 class="mb-8">載入中...</h2>
+            
+            <p class="mb-12 max-w-2xl mx-auto">載入溫暖的設計體驗...</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <!-- Dynamic buttons will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Wealth Section -->
+    <section id="wealth" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <h2 class="mb-6">載入中...</h2>
+            <p class="mb-16 max-w-3xl mx-auto">載入中...</p>
+            
+            <div class="grid">
+                <!-- Dynamic cards will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Happiness Section -->
+    <section id="happiness" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <h2 class="mb-6">載入中...</h2>
+            <p class="mb-16 max-w-3xl mx-auto">載入中...</p>
+            
+            <div class="grid">
+                <!-- Dynamic cards will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Thinking Section -->
+    <section id="thinking" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <h2 class="mb-6">載入中...</h2>
+            <p class="mb-16 max-w-3xl mx-auto">載入中...</p>
+            
+            <div class="grid">
+                <!-- Dynamic cards will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <h2 class="mb-6">載入中...</h2>
+            <p class="mb-16 max-w-3xl mx-auto">載入中...</p>
+            
+            <div class="grid">
+                <!-- Dynamic cards will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Q&A Section -->
+    <section id="qa" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <h2 class="mb-6">載入中...</h2>
+            <p class="mb-16 max-w-3xl mx-auto">載入中...</p>
+            
+            <div class="grid">
+                <!-- Dynamic cards will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Back to Home -->
+    <section class="py-16 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <a href="../index.html" class="inline-block px-8 py-4 border-2 border-current rounded-lg hover:bg-current hover:text-white transition-all duration-300">
+                ← 返回風格展示頁面
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 text-center">
+        <div class="max-w-6xl mx-auto">
+            <p>載入中...</p>
+        </div>
+    </footer>
+
+    <!-- Modern ES6 Module Loading -->
+    <script type="module">
+        // 確保 DOM 載入完成
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                console.log('🌞 Starting Playful Premium Design...');
+                
+                // 動態載入載入器
+                const { default: PlayfulContentLoader } = await import('../js/loaders/playful.js').catch(() => {
+                    // 回退到全域載入器
+                    return { default: window.PlayfulContentLoader };
+                });
+
+                // 使用全域實例或創建新實例
+                const loader = window.playfulContentLoader || new PlayfulContentLoader();
+                
+                // 初始化系統
+                await loader.init();
+                
+                console.log('✨ Playful Premium Design fully loaded!');
+                
+            } catch (error) {
+                console.error('❌ Failed to load Playful design:', error);
+                document.body.innerHTML = '<div style="padding: 2rem; text-align: center;"><h1>載入失敗</h1><p>請重新整理頁面</p></div>';
+            }
+        });
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            
+            if (toggle && menu) {
+                toggle.addEventListener('click', function() {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - 智慧精華 | Modern Zen Design</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        zen: {
+                            white: '#fefefe',
+                            cream: '#faf9f7',
+                            'warm-gray': '#f5f4f2',
+                            'medium-gray': '#8b8680',
+                            'dark-gray': '#4a453e',
+                            charcoal: '#2d2925',
+                            gold: '#d4a574',
+                            'gold-light': '#e6c292'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Crimson Pro', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1.2s ease forwards',
+                        'fade-in-left': 'fadeInLeft 1.2s ease forwards',
+                        'fade-in-right': 'fadeInRight 1.2s ease forwards'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-600 { animation-delay: 0.6s; }
+        .animate-delay-800 { animation-delay: 0.8s; }
+        
+        /* Loading state styles */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .loading::after {
+            content: '載入中...';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(45, 41, 37, 0.8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-zen-cream text-zen-charcoal overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-zen-cream/95 backdrop-blur-lg border-b border-zen-charcoal/5 py-6 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <h2 class="font-serif text-2xl font-medium text-zen-charcoal tracking-tight">納瓦爾寶典</h2>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-12">
+                <li><a href="../index.html" class="nav-link relative py-2 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors duration-300">首頁</a></li>
+                <li><a href="#wealth" class="nav-link relative py-2 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors duration-300">致富</a></li>
+                <li><a href="#happiness" class="nav-link relative py-2 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors duration-300">快樂</a></li>
+                <li><a href="#thinking" class="nav-link relative py-2 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors duration-300">思考</a></li>
+                <li><a href="#philosophy" class="nav-link relative py-2 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors duration-300">哲學</a></li>
+                <li><a href="#qa" class="nav-link relative py-2 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors duration-300">Q&A</a></li>
+            </ul>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden flex flex-col space-y-1 p-2 hamburger" aria-label="Menu">
+                <span class="w-6 h-0.5 bg-zen-charcoal transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-zen-charcoal transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-zen-charcoal transition-all duration-300"></span>
+            </button>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu fixed inset-x-0 top-24 bg-zen-white shadow-2xl rounded-2xl mx-4 p-6 transform scale-95 opacity-0 invisible transition-all duration-300 md:hidden">
+                <ul class="space-y-4">
+                    <li><a href="../index.html" class="block py-3 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors">首頁</a></li>
+                    <li><a href="#wealth" class="block py-3 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors">致富</a></li>
+                    <li><a href="#happiness" class="block py-3 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors">快樂</a></li>
+                    <li><a href="#thinking" class="block py-3 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors">思考</a></li>
+                    <li><a href="#philosophy" class="block py-3 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors">哲學</a></li>
+                    <li><a href="#qa" class="block py-3 text-zen-medium-gray font-medium hover:text-zen-charcoal transition-colors">Q&A</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-zen-cream to-zen-white relative overflow-hidden pt-32 pb-16 px-4">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-zen-gold/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-zen-gold/5 rounded-full blur-2xl"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-zen-charcoal mb-6 opacity-0 animate-fade-in-up animate-delay-200">納瓦爾寶典</h1>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl text-zen-medium-gray font-light mb-8 opacity-0 animate-fade-in-up animate-delay-400">人生智慧大全</h2>
+            <p class="text-lg md:text-xl text-zen-medium-gray leading-relaxed mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in-up animate-delay-600">
+                矽谷傳奇投資人納瓦爾·拉維肯特的畢生智慧精華<br>
+                引領當代人走向富足快樂的人生
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-fade-in-up animate-delay-800">
+                <a href="#wealth" class="inline-flex items-center justify-center px-8 py-4 bg-zen-gold text-zen-white font-medium rounded-2xl shadow-lg hover:bg-zen-gold-light hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                    開始探索
+                </a>
+                <a href="#philosophy" class="inline-flex items-center justify-center px-8 py-4 bg-transparent text-zen-charcoal font-medium border-2 border-zen-medium-gray rounded-2xl hover:bg-zen-charcoal hover:text-zen-white hover:-translate-y-1 transition-all duration-300">
+                    人生哲學
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-zen-charcoal mb-4">關於致富</h2>
+                    <p class="text-xl text-zen-medium-gray max-w-3xl mx-auto">財富不是靠運氣，而是透過正確的選擇和系統性的設計</p>
+                </div>
+                
+                <!-- Cards Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Card 1 -->
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <!-- Top accent line -->
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">💰</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">財富 vs 金錢</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">財富是在你睡覺時仍能為你賺錢的資產，而金錢只是一種社會信用。追求財富而非金錢，因為財富帶來真正的自由。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🎯</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">把自己產品化</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">結合獨特知識、槓桿效應和責任感，創造一個持續運轉的系統，讓機會主動找上你。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20 md:col-span-2 lg:col-span-1">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🚀</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">槓桿效應</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">透過資本、人力、軟體和媒體四種槓桿，放大個人努力的影響力。零邊際成本產品是新時代的機會。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quote Section -->
+                <div class="text-center my-24 p-16 bg-zen-white rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 left-8 text-6xl text-zen-gold opacity-70 font-serif">"</div>
+                    <div class="absolute bottom-4 right-8 text-6xl text-zen-gold opacity-70 font-serif">"</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl italic text-zen-dark-gray leading-relaxed relative z-10">
+                        致富不是靠運氣，財富是可以通過學習獲得的技能
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Happiness Section -->
+        <section id="happiness" class="py-24 px-4 bg-zen-warm-gray">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-zen-charcoal mb-4">追求快樂</h2>
+                    <p class="text-xl text-zen-medium-gray max-w-3xl mx-auto">快樂是可以選擇的技能，不是追求的結果</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">😊</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">快樂是技能</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">快樂不是你找到的，而是你選擇的。通過冥想、感恩和正確的心態，我們可以培養內在的平靜與滿足。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🧘</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">活在當下</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">過去已經結束，未來尚未到來。真正的生活只發生在此時此刻。學會專注於當下，是快樂的關鍵。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20 md:col-span-2 lg:col-span-1">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">☮️</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">內在平靜</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">真正的財富是內心的平靜。當你不再需要外在的認可或物質來定義自己時，你就找到了真正的自由。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center my-24 p-16 bg-zen-white rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 left-8 text-6xl text-zen-gold opacity-70 font-serif">"</div>
+                    <div class="absolute bottom-4 right-8 text-6xl text-zen-gold opacity-70 font-serif">"</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl italic text-zen-dark-gray leading-relaxed relative z-10">
+                        快樂就是不想在其他任何地方，不想成為其他任何人
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thinking Section -->
+        <section id="thinking" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-zen-charcoal mb-4">清晰思考</h2>
+                    <p class="text-xl text-zen-medium-gray max-w-3xl mx-auto">培養獨立思考的能力，擺脫社會制約</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🔬</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">第一性原理</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">回到事物的根本，從基礎原理重新思考問題。不被表面現象迷惑，深入本質找到真相。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">📚</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">閱讀的智慧</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">不要只讀新書，多讀經典。真正的智慧來自於反覆閱讀那些經過時間考驗的偉大作品。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20 md:col-span-2 lg:col-span-1">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🎭</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">決策藝術</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">好的決策來自清晰的思維。學會區分什麼是重要的，什麼是緊急的，專注於長期價值。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="py-24 px-4 bg-zen-warm-gray">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-zen-charcoal mb-4">人生哲學</h2>
+                    <p class="text-xl text-zen-medium-gray max-w-3xl mx-auto">構建自己的人生原則和價值觀</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">⚖️</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">承擔責任</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">成功的關鍵是承擔責任。當你願意為結果負責時，別人就會給你更大的權力和資源。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🎪</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">做真實的自己</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">不要試圖取悦所有人。找到你的真實自我，勇敢地表達你的想法，吸引真正志同道合的人。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20 md:col-span-2 lg:col-span-1">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🌱</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">長期主義</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">短期的痛苦往往帶來長期的收益。學會延遲滿足，為未來的自己投資。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center my-24 p-16 bg-zen-white rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 left-8 text-6xl text-zen-gold opacity-70 font-serif">"</div>
+                    <div class="absolute bottom-4 right-8 text-6xl text-zen-gold opacity-70 font-serif">"</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl italic text-zen-dark-gray leading-relaxed relative z-10">
+                        我們是我們重複行為的產物。因此，卓越不是一種行為，而是一種習慣
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section -->
+        <section id="qa" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-zen-charcoal mb-4">常見問答</h2>
+                    <p class="text-xl text-zen-medium-gray max-w-3xl mx-auto">深入探討人生中的重要問題</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">💼</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">如何選擇職業？</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">選擇你可以做一輩子的事情。找到你的天賦、熱情和市場需求的交集點，這就是你的使命。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">🏃</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">健康比什麼都重要？</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">身體是你唯一真正擁有的東西。沒有健康，其他的成就都失去意義。投資健康就是投資未來。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="group bg-zen-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-zen-charcoal/5 hover:border-zen-gold/20 md:col-span-2 lg:col-span-1">
+                        <div class="relative">
+                            <div class="absolute -top-8 left-0 w-full h-1 bg-gradient-to-r from-zen-gold to-zen-gold-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-4xl opacity-80">👥</div>
+                                <h3 class="font-serif text-2xl text-zen-charcoal">如何建立好的人際關係？</h3>
+                            </div>
+                            <p class="text-zen-medium-gray leading-relaxed">真正的關係建立在互相尊重和真誠的基礎上。不要試圖改變他人，而要吸引志同道合的人。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-zen-medium-gray">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-zen-medium-gray">© 2024 納瓦爾寶典 - 智慧傳承，改變人生</p>
+        </div>
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script src="../js/loaders/zen.js"></script>
+    
+    <script>
+        // Modern Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            const spans = hamburger.querySelectorAll('span');
+            
+            // Toggle hamburger animation
+            spans[0].classList.toggle('rotate-45');
+            spans[0].classList.toggle('translate-y-2');
+            spans[1].classList.toggle('opacity-0');
+            spans[2].classList.toggle('-rotate-45');
+            spans[2].classList.toggle('-translate-y-2');
+            
+            // Toggle mobile menu
+            mobileMenu.classList.toggle('opacity-0');
+            mobileMenu.classList.toggle('invisible');
+            mobileMenu.classList.toggle('scale-95');
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+                    hamburger.querySelectorAll('span').forEach(span => {
+                        span.className = 'w-6 h-0.5 bg-zen-charcoal transition-all duration-300';
+                    });
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced Navbar Scroll Effect
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollTop = window.pageYOffset;
+            
+            if (currentScrollTop > 50) {
+                navbar.classList.add('bg-zen-cream/98', 'backdrop-blur-xl');
+                navbar.classList.remove('bg-zen-cream/95');
+            } else {
+                navbar.classList.add('bg-zen-cream/95');
+                navbar.classList.remove('bg-zen-cream/98', 'backdrop-blur-xl');
+            }
+            
+            // Auto-hide navbar on scroll down
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 200) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = currentScrollTop;
+        });
+
+        // Add hover effects to nav links
+        navLinks.forEach(link => {
+            const underline = document.createElement('div');
+            underline.className = 'absolute bottom-0 left-0 w-0 h-0.5 bg-zen-gold transition-all duration-300';
+            link.appendChild(underline);
+            
+            link.addEventListener('mouseenter', () => {
+                underline.style.width = '100%';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                underline.style.width = '0%';
+            });
+        });
+
+        // Intersection Observer for Animation Triggers
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.group').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Initialize Content Loader
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Add loading state
+            document.body.classList.add('loading');
+            
+            try {
+                // Initialize content loader
+                await window.contentLoader.init();
+                
+                // Re-run animations and interactions after content is loaded
+                setTimeout(() => {
+                    // Re-observe new cards for animation
+                    document.querySelectorAll('.group').forEach(card => {
+                        observer.observe(card);
+                    });
+                    
+                    // Re-setup navigation interactions
+                    const newNavLinks = document.querySelectorAll('.nav-link');
+                    newNavLinks.forEach(link => {
+                        const underline = document.createElement('div');
+                        underline.className = 'absolute bottom-0 left-0 w-0 h-0.5 bg-zen-gold transition-all duration-300';
+                        link.appendChild(underline);
+                        
+                        link.addEventListener('mouseenter', () => {
+                            underline.style.width = '100%';
+                        });
+                        
+                        link.addEventListener('mouseleave', () => {
+                            underline.style.width = '0%';
+                        });
+                    });
+                }, 100);
+                
+            } catch (error) {
+                console.error('Failed to initialize content:', error);
+            } finally {
+                // Remove loading state
+                document.body.classList.remove('loading');
+            }
+        });
+    </script>
+</body>
+</html>

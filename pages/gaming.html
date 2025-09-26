@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - 電競遊戲版 | Gaming Style</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gaming: {
+                            green: '#22c55e',
+                            'green-light': '#4ade80',
+                            'green-dark': '#16a34a',
+                            orange: '#f97316',
+                            red: '#ef4444',
+                            blue: '#06b6d4',
+                            yellow: '#eab308',
+                            'gray-dark': '#111827',
+                            'gray-darker': '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace'],
+                        'rajdhani': ['Rajdhani', 'sans-serif']
+                    },
+                    animation: {
+                        'matrix-rain': 'matrixRain 20s linear infinite',
+                        'scan-line': 'scanLine 2s linear infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'terminal-cursor': 'terminalCursor 1s infinite'
+                    },
+                    keyframes: {
+                        matrixRain: {
+                            '0%': { transform: 'translateY(-100vh)' },
+                            '100%': { transform: 'translateY(100vh)' }
+                        },
+                        scanLine: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100vh)' }
+                        },
+                        glowPulse: {
+                            '0%': { boxShadow: '0 0 5px #22c55e, 0 0 10px #22c55e, 0 0 15px #22c55e' },
+                            '100%': { boxShadow: '0 0 10px #22c55e, 0 0 20px #22c55e, 0 0 30px #22c55e' }
+                        },
+                        terminalCursor: {
+                            '0%, 50%': { opacity: '1' },
+                            '51%, 100%': { opacity: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Gaming Matrix Background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            width: 20px;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            color: #22c55e;
+            text-shadow: 0 0 5px #22c55e;
+            animation: matrixRain linear infinite;
+            opacity: 0.3;
+        }
+
+        /* Gaming Scan Line Effect */
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            animation: scanLine 3s linear infinite;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        /* Gaming HUD Elements */
+        .hud-element {
+            border: 1px solid #22c55e;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Gaming Terminal Effect */
+        .terminal-text {
+            font-family: 'Orbitron', monospace;
+            color: #22c55e;
+            text-shadow: 0 0 5px #22c55e;
+        }
+
+        /* Gaming Card Hover Effects */
+        .gaming-card-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gaming-card-hover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .gaming-card-hover:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
+            opacity: 1;
+        }
+
+        /* Gaming Screen Distortion */
+        .screen-distortion {
+            position: relative;
+        }
+
+        .screen-distortion::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(34, 197, 94, 0.03) 2px,
+                rgba(34, 197, 94, 0.03) 4px
+            );
+            pointer-events: none;
+        }
+
+        /* Loading state styles */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+            border: 1px solid #22c55e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #22c55e;
+            border-radius: 0;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4ade80;
+            box-shadow: 0 0 15px #4ade80;
+        }
+
+        /* Gaming Glow Effects */
+        .gaming-glow {
+            box-shadow: 0 0 10px #22c55e, inset 0 0 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .gaming-glow:hover {
+            box-shadow: 0 0 20px #22c55e, inset 0 0 20px rgba(34, 197, 94, 0.2);
+        }
+    </style>
+</head>
+
+<body class="font-rajdhani bg-black text-green-400 overflow-x-hidden screen-distortion">
+    <!-- Matrix Background -->
+    <div class="matrix-bg" id="matrixBg"></div>
+
+    <!-- Scan Line Effect -->
+    <div class="scan-line"></div>
+
+    <!-- Navigation -->
+    <nav id="navigation" class="fixed top-0 left-0 right-0 bg-black/90 backdrop-blur-md border-b border-green-500/50 py-4 z-50 transition-all duration-300">
+        <!-- Content will be loaded here -->
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center text-center relative overflow-hidden pt-20 pb-16 px-4">
+        <!-- Gaming Background Effects -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <!-- Grid Pattern -->
+            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+            <!-- Glowing Orbs -->
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-green-500/20 rounded-full blur-xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-orange-500/20 rounded-full blur-xl animate-pulse" style="animation-delay: 1s"></div>
+            <div class="absolute top-3/4 left-3/4 w-24 h-24 bg-blue-500/20 rounded-full blur-xl animate-pulse" style="animation-delay: 2s"></div>
+        </div>
+
+        <!-- Content will be loaded here -->
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4 bg-gray-900/50 backdrop-blur-sm border-t border-b border-green-500/30">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 px-4 bg-black border-t border-green-500/50">
+        <!-- Content will be loaded here -->
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script type="module" src="../js/loaders/gaming.js"></script>
+
+    <script>
+        // Gaming Matrix Background Effect
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrixBg');
+            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const columnCount = Math.floor(window.innerWidth / 20);
+
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = (i * 20) + 'px';
+                column.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                column.style.animationDelay = (Math.random() * 10) + 's';
+
+                let columnText = '';
+                const characterCount = Math.floor(Math.random() * 20) + 10;
+                for (let j = 0; j < characterCount; j++) {
+                    columnText += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = columnText;
+
+                matrixBg.appendChild(column);
+            }
+        }
+
+        // Gaming page interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize matrix background
+            createMatrixRain();
+
+            // Gaming page loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease';
+
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Gaming keyboard sound effects (optional)
+            let audioContext;
+
+            document.addEventListener('keydown', () => {
+                if (!audioContext) {
+                    try {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    } catch (e) {
+                        // Audio not supported
+                        return;
+                    }
+                }
+
+                // Create gaming beep sound
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            });
+
+            // Gaming scroll effects
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('#navigation');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollTop = window.pageYOffset;
+
+                if (currentScrollTop > 50) {
+                    navbar.classList.add('bg-black/95', 'border-green-500');
+                    navbar.classList.remove('bg-black/90', 'border-green-500/50');
+                } else {
+                    navbar.classList.add('bg-black/90', 'border-green-500/50');
+                    navbar.classList.remove('bg-black/95', 'border-green-500');
+                }
+
+                lastScrollTop = currentScrollTop;
+            });
+
+            // Gaming intersection observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0) scale(1)';
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            // Gaming card animations
+            const observeGamingCards = () => {
+                document.querySelectorAll('.gaming-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px) scale(0.95)';
+                    card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    observer.observe(card);
+
+                    // Add gaming hover glow effect
+                    card.addEventListener('mouseenter', () => {
+                        card.style.boxShadow = '0 0 20px #22c55e, 0 0 40px rgba(34, 197, 94, 0.3)';
+                        card.style.borderColor = '#22c55e';
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.boxShadow = '0 0 10px rgba(34, 197, 94, 0.3)';
+                        card.style.borderColor = 'rgba(107, 114, 128, 1)';
+                    });
+                });
+            };
+
+            // Initial observation and re-observe after content loads
+            setTimeout(observeGamingCards, 1000);
+
+            // Gaming smooth scrolling
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+
+            // Gaming button effects
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('a[class*="bg-green"]') || e.target.closest('a[class*="bg-green"]')) {
+                    const button = e.target.matches('a[class*="bg-green"]') ? e.target : e.target.closest('a[class*="bg-green"]');
+
+                    // Gaming flash effect
+                    const flash = document.createElement('div');
+                    flash.className = 'fixed pointer-events-none z-50 bg-green-400 opacity-20';
+                    flash.style.left = '0';
+                    flash.style.top = '0';
+                    flash.style.width = '100vw';
+                    flash.style.height = '100vh';
+                    flash.style.transition = 'opacity 0.2s ease';
+
+                    document.body.appendChild(flash);
+
+                    setTimeout(() => {
+                        flash.style.opacity = '0';
+                    }, 50);
+
+                    setTimeout(() => {
+                        flash.remove();
+                    }, 200);
+                }
+            });
+
+            // Gaming cursor trail effect
+            let cursorTrail = [];
+            document.addEventListener('mousemove', (e) => {
+                if (cursorTrail.length > 20) {
+                    const oldTrail = cursorTrail.shift();
+                    oldTrail.element.remove();
+                }
+
+                const trail = document.createElement('div');
+                trail.className = 'fixed pointer-events-none z-40';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.width = '4px';
+                trail.style.height = '4px';
+                trail.style.backgroundColor = '#22c55e';
+                trail.style.borderRadius = '50%';
+                trail.style.opacity = '0.8';
+                trail.style.transform = 'translate(-50%, -50%)';
+                trail.style.transition = 'all 0.5s ease';
+                trail.style.boxShadow = '0 0 5px #22c55e';
+
+                document.body.appendChild(trail);
+
+                cursorTrail.push({ element: trail });
+
+                setTimeout(() => {
+                    trail.style.opacity = '0';
+                    trail.style.transform = 'translate(-50%, -50%) scale(0)';
+                }, 50);
+            });
+
+            // Recreate matrix rain on window resize
+            window.addEventListener('resize', () => {
+                const matrixBg = document.getElementById('matrixBg');
+                matrixBg.innerHTML = '';
+                createMatrixRain();
+            });
+        });
+
+        // Gaming page transition
+        window.addEventListener('beforeunload', () => {
+            document.body.style.opacity = '0';
+            document.body.style.filter = 'brightness(0)';
+        });
+    </script>
+</body>
+</html>

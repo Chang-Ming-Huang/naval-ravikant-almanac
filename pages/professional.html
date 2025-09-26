@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - 金融專業版 | Professional Style</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Georgia:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        professional: {
+                            blue: '#1e3a8a',
+                            'blue-light': '#3b82f6',
+                            'blue-dark': '#1e40af',
+                            gold: '#f59e0b',
+                            'gold-light': '#fbbf24',
+                            'gold-dark': '#d97706',
+                            'gray-light': '#f8fafc',
+                            'gray-medium': '#6b7280',
+                            'gray-dark': '#374151',
+                            'gray-charcoal': '#1f2937'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'serif'],
+                        'sans': ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+                        'mono': ['IBM Plex Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease forwards',
+                        'fade-in-left': 'fadeInLeft 0.8s ease forwards',
+                        'fade-in-right': 'fadeInRight 0.8s ease forwards',
+                        'data-flow': 'dataFlow 3s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        dataFlow: {
+                            '0%, 100%': { opacity: '0.3', transform: 'translateX(-10px)' },
+                            '50%': { opacity: '0.8', transform: 'translateX(10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-600 { animation-delay: 0.6s; }
+        .animate-delay-800 { animation-delay: 0.8s; }
+
+        /* Financial grid pattern */
+        .financial-grid {
+            background-image:
+                linear-gradient(rgba(30, 58, 138, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 58, 138, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Professional data card effect */
+        .professional-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: linear-gradient(135deg, #1e3a8a 0%, #374151 100%);
+        }
+
+        .professional-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(30, 58, 138, 0.2);
+        }
+
+        /* Financial data visualization effect */
+        .data-viz::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+            animation: dataFlow 2s ease-in-out infinite;
+        }
+
+        /* Loading state styles */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Professional typography */
+        .professional-title {
+            background: linear-gradient(135deg, #1e3a8a 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gradient-to-br from-blue-900 to-gray-900 text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="navigation" class="fixed top-0 left-0 right-0 bg-professional-blue/95 backdrop-blur-md border-b border-blue-700/50 py-4 z-50 transition-all duration-300">
+        <!-- Content will be loaded here -->
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-blue-900 to-gray-900 relative overflow-hidden pt-20 pb-16 px-4 financial-grid">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-professional-gold/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-professional-blue/20 rounded-full blur-2xl"></div>
+            <!-- Financial data stream effect -->
+            <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-professional-gold/30 to-transparent data-viz"></div>
+        </div>
+
+        <!-- Content will be loaded here -->
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4 bg-gradient-to-br from-blue-900 to-gray-900">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 px-4 bg-professional-blue text-white border-t border-blue-700/50">
+        <!-- Content will be loaded here -->
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script type="module" src="../js/loaders/professional.js"></script>
+
+    <script>
+        // Professional financial interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add professional page loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Financial data navigation effects
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('#navigation');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollTop = window.pageYOffset;
+
+                if (currentScrollTop > 50) {
+                    navbar.classList.add('bg-professional-blue/98', 'backdrop-blur-lg', 'shadow-lg');
+                    navbar.classList.remove('bg-professional-blue/95');
+                } else {
+                    navbar.classList.add('bg-professional-blue/95');
+                    navbar.classList.remove('bg-professional-blue/98', 'backdrop-blur-lg', 'shadow-lg');
+                }
+
+                lastScrollTop = currentScrollTop;
+            });
+
+            // Professional intersection observer for data cards
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe professional cards when they're added to DOM
+            const observeCards = () => {
+                document.querySelectorAll('.professional-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    observer.observe(card);
+                });
+            };
+
+            // Initial observation and re-observe after content loads
+            setTimeout(observeCards, 1000);
+
+            // Professional smooth scrolling
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+
+            // Financial data animation effects
+            setInterval(() => {
+                const dataElements = document.querySelectorAll('.data-viz');
+                dataElements.forEach(element => {
+                    element.style.animation = 'none';
+                    setTimeout(() => {
+                        element.style.animation = 'dataFlow 2s ease-in-out infinite';
+                    }, 10);
+                });
+            }, 5000);
+        });
+
+        // Professional page transition
+        window.addEventListener('beforeunload', () => {
+            document.body.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>

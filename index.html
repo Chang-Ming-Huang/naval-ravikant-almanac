@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Style JSON Website - 同一份 JSON，多種視覺風格</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 載入風格系統模組 -->
+    <script type="module" src="./js/styles/index.js"></script>
+    
+    <meta name="description" content="展示如何用單一 JSON 資料檔案驅動多種完全不同的網站設計風格">
+    <meta name="keywords" content="JSON, multi-style, website, tailwind, zen, luxury, Naval Ravikant">
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+        .fade-in:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        /* Coordinate Grid Styles */
+        .coordinate-card {
+            aspect-ratio: 1;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coordinate-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            z-index: 10;
+        }
+
+        .coordinate-card::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .coordinate-card:hover::before {
+            opacity: 1;
+        }
+
+        .coordinate-position {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            font-size: 10px;
+            font-family: monospace;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(99, 102, 241, 0.9));
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        .coordinate-card:hover .coordinate-position {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Grid background pattern */
+        #styles-coordinate-grid {
+            background-image:
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 25% 25%;
+            border-radius: 12px;
+            padding: 8px;
+            background-color: rgba(0,0,0,0.01);
+        }
+
+        /* Dimension similarity highlighting */
+        .similar-colors { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+        .similar-typography { box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5); }
+        .similar-spacing { box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5); }
+        .similar-effects { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5); }
+
+        /* Coordinate animations */
+        .coordinate-enter {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            animation: coordinateEnter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes coordinateEnter {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Responsive Design for Coordinate Grid */
+        @media (max-width: 768px) {
+            #styles-coordinate-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                padding: 4px;
+            }
+
+            .coordinate-card {
+                aspect-ratio: 0.8;
+                padding: 8px;
+            }
+
+            .coordinate-card h3 {
+                font-size: 12px !important;
+            }
+
+            .coordinate-card p {
+                font-size: 10px !important;
+            }
+
+            .coordinate-card a {
+                font-size: 10px !important;
+                padding: 6px 8px !important;
+            }
+
+            .coordinate-card .w-10.h-10 {
+                width: 2rem !important;
+                height: 2rem !important;
+            }
+
+            .coordinate-card .text-xl {
+                font-size: 1rem !important;
+            }
+
+            .coordinate-position {
+                font-size: 8px;
+                top: 2px;
+                right: 2px;
+            }
+
+            /* Mobile grid adjustments */
+            .grid.grid-cols-5.grid-rows-5 {
+                grid-template-columns: 80px 1fr 1fr;
+                grid-template-rows: auto repeat(4, 1fr);
+                gap: 4px;
+            }
+
+            /* Hide some labels on very small screens */
+            .grid.grid-cols-5.grid-rows-5 .bg-blue-50,
+            .grid.grid-cols-5.grid-rows-5 .bg-green-50,
+            .grid.grid-cols-5.grid-rows-5 .bg-indigo-50 {
+                display: none;
+            }
+
+            /* Mobile coordinate explanation */
+            .coordinate-mobile-note {
+                display: block;
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                border-radius: 8px;
+                padding: 12px;
+                margin: 16px 0;
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .coordinate-mobile-note {
+                display: none;
+            }
+        }
+
+        /* Touch-friendly interactions */
+        @media (hover: none) {
+            .coordinate-card:hover {
+                transform: none;
+            }
+
+            .coordinate-card:active {
+                transform: translateY(-2px) scale(1.01);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen smooth-scroll">
+    <!-- Hero Section -->
+    <section id="hero" class="py-8 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <!-- Main Title -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-in">
+                <span class="gradient-text">Multi-Style</span><br>
+                <span class="text-gray-800">JSON Website</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- Style Demo Section -->
+    <section id="demo" class="py-8 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- 4x4 Style Coordinate Grid -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                    🗺️ 維度風格座標系統 v8.5
+                </h2>
+                <p class="text-center text-gray-600 mb-8 max-w-4xl mx-auto">
+                    透過 4 個設計維度的系統性組合，形成 2⁴ = 16 種獨特風格的二維座標空間。<br>
+                    相似的風格會排列在相近的位置，展現維度驅動設計的數學美感。
+                </p>
+
+                <!-- Mobile Note -->
+                <div class="coordinate-mobile-note">
+                    <p class="text-sm text-blue-700 font-medium">
+                        📱 移動版本：以 2x8 網格顯示，維持座標排列邏輯
+                    </p>
+                </div>
+
+                <!-- Loading State -->
+                <div id="coordinate-loading" class="text-center py-16">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">正在構建座標系統...</p>
+                </div>
+
+                <!-- Coordinate Grid Container -->
+                <div id="coordinate-grid" class="hidden">
+                    <!-- 5x5 Unified Coordinate Grid - 由 JavaScript 動態生成 -->
+                    <div id="styles-coordinate-grid" class="grid grid-cols-5 grid-rows-5 gap-3 max-w-5xl mx-auto">
+                        <!-- 所有 25 個位置將由 JavaScript 根據 coordinate-config.json 動態填入 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legacy container for comparison -->
+            <div id="styles-container" class="hidden">
+                <!-- 風格卡片將在這裡動態生成 -->
+            </div>
+            
+            <!-- Comparison Section -->
+            <div class="bg-gray-50 rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">🔄 相同資料，多種呈現</h3>
+                <p class="text-gray-600 mb-6">
+                    多種風格使用完全相同的 <code class="bg-white px-2 py-1 rounded text-sm">data/content.json</code> 檔案，
+                    但透過不同的內容載入器和樣式系統，呈現截然不同的視覺效果。
+                </p>
+                <div id="styles-flow" class="flex flex-wrap items-center justify-center bg-white px-6 py-4 rounded-lg shadow gap-2 mb-6">
+                    <span class="text-sm font-mono text-gray-600">data/content.json</span>
+                    <span class="text-gray-400">→</span>
+                    <!-- 風格流程將在這裡動態生成 -->
+                </div>
+                
+                <!-- 維度驅動系統核心展示 -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-8 border border-blue-200">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">🎯 核心系統特色</h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <div class="text-3xl mb-4">📐</div>
+                            <h4 class="font-bold text-gray-800 mb-2">維度驅動架構</h4>
+                            <p class="text-sm text-gray-600">4個設計維度的系統性組合，生成16種獨特風格</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <div class="text-3xl mb-4">🔄</div>
+                            <h4 class="font-bold text-gray-800 mb-2">內容與設計分離</h4>
+                            <p class="text-sm text-gray-600">單一JSON數據，多種視覺呈現，完美的OCP合規性</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <div class="text-3xl mb-4">🎨</div>
+                            <h4 class="font-bold text-gray-800 mb-2">專業設計標準</h4>
+                            <p class="text-sm text-gray-600">每個風格達到Awwwards參賽水準的視覺質感</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-20 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">🏗️ 系統架構</h2>
+                <p class="text-xl text-gray-600">深入了解 JSON 驅動多風格系統的技術實現</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Core Architecture -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">🧠</span>
+                        核心系統
+                    </h3>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">js/core/style-registry.js</code>
+                                <p class="text-xs text-gray-500">風格註冊與管理系統</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">js/core/unified-content-loader.js</code>
+                                <p class="text-xs text-gray-500">統一內容載入器</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">js/styles/index.js</code>
+                                <p class="text-xs text-gray-500">風格系統入口</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Dimension System -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">📐</span>
+                        維度系統
+                    </h3>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/colors.js</code>
+                                <p class="text-xs text-gray-500">Light/Dark 色彩維度</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/typography.js</code>
+                                <p class="text-xs text-gray-500">Formal/Casual 字體維度</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/spacing.js</code>
+                                <p class="text-xs text-gray-500">Compact/Loose 間距維度</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">dimensions/effects.js</code>
+                                <p class="text-xs text-gray-500">Flat/3D 效果維度</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Style Configurations -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">🎨</span>
+                        風格配置
+                    </h3>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">styles/*.js</code>
+                                <p class="text-xs text-gray-500">16 種風格維度組合</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">coordinate-config.json</code>
+                                <p class="text-xs text-gray-500">座標系統配置</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <div>
+                                維度數學組合 2⁴ = 16
+                                <p class="text-xs text-gray-500">精確的風格定位系統</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Content & Loaders -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-2xl mr-3">📊</span>
+                        內容系統
+                    </h3>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">data/content.json</code>
+                                <p class="text-xs text-gray-500">統一內容資料源</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">loaders/*.js</code>
+                                <p class="text-xs text-gray-500">專用風格載入器</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-2">•</span>
+                            <div>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">pages/*.html</code>
+                                <p class="text-xs text-gray-500">風格體驗頁面</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add interactive feedback for links
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // 動態載入風格系統 - 座標版本
+        async function initializeStyleSystem() {
+            try {
+                // 等待風格系統載入完成
+                await waitForStyleSystem();
+
+                // 載入座標配置
+                const coordinateConfig = await loadCoordinateConfig();
+
+                // 獲取所有風格
+                const styles = window.styleSystem.getAllStyles();
+
+                // 渲染座標表格
+                renderCoordinateGrid(styles, coordinateConfig);
+
+                // 渲染風格流程
+                renderStyleFlow(styles);
+
+                // 隱藏載入中，顯示座標表格
+                document.getElementById('coordinate-loading').classList.add('hidden');
+                document.getElementById('coordinate-grid').classList.remove('hidden');
+
+                // 重新綁定卡片的交互效果
+                bindCoordinateInteractions();
+
+                // console.log('✅ Style coordinate system initialized:', styles.length, 'styles');
+            } catch (error) {
+                // console.error('❌ Failed to initialize style system:', error);
+                showErrorMessage();
+            }
+        }
+
+        // 載入座標配置檔案
+        async function loadCoordinateConfig() {
+            try {
+                const response = await fetch('./data/coordinate-config.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                // console.error('❌ Failed to load coordinate config:', error);
+                // 返回預設配置
+                return {
+                    "grid": { "rows": 5, "cols": 5 },
+                    "positions": {}
+                };
+            }
+        }
+        
+        // 等待風格系統載入完成
+        function waitForStyleSystem(maxAttempts = 100) {
+            return new Promise((resolve, reject) => {
+                let attempts = 0;
+                const checkInterval = setInterval(() => {
+                    // console.log(`⏳ Checking style system... attempt ${attempts + 1}`);
+
+                    if (window.styleSystem) {
+                        // console.log('✓ Style system found');
+                        try {
+                            const styles = window.styleSystem.getAllStyles();
+                            // console.log(`✓ Found ${styles.length} styles`);
+
+                            if (styles.length > 0) {
+                                clearInterval(checkInterval);
+                                resolve();
+                                return;
+                            }
+                        } catch (error) {
+                            // console.log('⚠️ Error getting styles:', error);
+                        }
+                    }
+
+                    if (attempts >= maxAttempts) {
+                        clearInterval(checkInterval);
+                        // console.error('❌ Style system failed to load after', maxAttempts, 'attempts');
+                        reject(new Error('Style system failed to load'));
+                    }
+                    attempts++;
+                }, 200);
+            });
+        }
+        
+        // 渲染座標表格 - 統一卡片系統
+        function renderCoordinateGrid(styles, coordinateConfig) {
+            const container = document.getElementById('styles-coordinate-grid');
+            if (!container) return;
+
+            // console.log('📋 Rendering unified coordinate grid');
+            // console.log('📋 Available styles:', styles.map(s => s.id));
+
+            // 清空容器
+            container.innerHTML = '';
+
+            // 創建 25 個位置的網格映射 (5x5)
+            const gridMap = Array(25).fill(null);
+
+            // 放置標籤卡片
+            Object.entries(coordinateConfig.cards.labels).forEach(([labelId, labelConfig]) => {
+                const gridIndex = (labelConfig.row - 1) * 5 + (labelConfig.col - 1);
+                gridMap[gridIndex] = { type: 'label', config: labelConfig };
+            });
+
+            // 創建風格映射
+            const styleMap = {};
+            styles.forEach(style => {
+                styleMap[style.id] = style;
+            });
+
+            // 放置風格卡片
+            Object.entries(coordinateConfig.cards.styles).forEach(([styleId, styleConfig]) => {
+                const gridIndex = (styleConfig.row - 1) * 5 + (styleConfig.col - 1);
+                const style = styleMap[styleId];
+
+                if (!style) {
+                    // console.warn(`❌ Style not found: ${styleId}`);
+                    return;
+                }
+
+                gridMap[gridIndex] = { type: 'style', config: styleConfig, style: style };
+            });
+
+            // 渲染所有 25 個位置
+            gridMap.forEach((item, index) => {
+                if (!item) {
+                    // 空位置
+                    const emptyCard = document.createElement('div');
+                    emptyCard.className = 'aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center';
+                    emptyCard.innerHTML = '<span class="text-gray-400 text-xs">空位</span>';
+                    container.appendChild(emptyCard);
+                    return;
+                }
+
+                if (item.type === 'label') {
+                    // 標籤卡片
+                    renderLabelCard(item.config, container);
+                } else if (item.type === 'style') {
+                    // 風格卡片
+                    renderStyleCard(item.style, item.config, container, index);
+                }
+            });
+        }
+
+        // 渲染標籤卡片 - 統一淺背景樣式
+        function renderLabelCard(labelConfig, container) {
+            const labelElement = document.createElement('div');
+
+            // 統一所有標籤卡片的樣式為淺背景
+            if (labelConfig.type === 'corner') {
+                labelElement.className = 'flex items-center justify-center bg-gray-50 rounded-lg p-2';
+                labelElement.innerHTML = `<span class="text-xs text-gray-400 font-mono">${labelConfig.content}</span>`;
+            } else if (labelConfig.type === 'x_label') {
+                labelElement.className = 'flex items-center justify-center bg-gray-50 rounded-lg p-2 border border-gray-200';
+                labelElement.innerHTML = `<span class="text-xs font-medium text-gray-600 text-center leading-tight">${labelConfig.content}</span>`;
+            } else if (labelConfig.type === 'y_label') {
+                labelElement.className = 'flex items-center justify-center bg-gray-50 rounded-lg p-2 border border-gray-200';
+                labelElement.innerHTML = `<span class="text-xs font-medium text-gray-600 text-center leading-tight">${labelConfig.content}</span>`;
+            }
+
+            container.appendChild(labelElement);
+        }
+
+        // 渲染風格卡片
+        function renderStyleCard(style, styleConfig, container, index) {
+            const styleCSS = getStyleConfig(style.id);
+
+            const cardElement = document.createElement('div');
+            cardElement.className = `coordinate-card ${styleCSS.cardBg} rounded-lg p-3 shadow-md ${styleCSS.border} coordinate-enter aspect-square ${styleCSS.hover}`;
+            cardElement.style.animationDelay = `${index * 0.05}s`;
+            cardElement.dataset.styleId = style.id;
+            cardElement.dataset.coordinate = styleConfig.coordinates;
+
+            cardElement.innerHTML = `
+                <!-- 座標位置指示器 -->
+                <div class="coordinate-position">${styleConfig.coordinates}</div>
+
+                <!-- 風格內容 -->
+                <div class="text-center h-full flex flex-col justify-between p-1">
+                    <div class="flex-1 flex flex-col justify-center">
+                        <div class="w-8 h-8 ${styleCSS.iconBg} rounded-full mx-auto mb-2 flex items-center justify-center shadow-sm">
+                            <span class="text-lg">${style.icon}</span>
+                        </div>
+                        <h3 class="text-xs font-bold mb-1 ${styleCSS.titleColor} leading-tight">${style.name}</h3>
+                        <p class="text-xs ${styleCSS.textColor} mb-2 leading-relaxed px-1" title="${style.description}">${style.description.slice(0, 20)}${style.description.length > 20 ? '...' : ''}</p>
+                    </div>
+                    <a href="${style.url}" class="inline-block px-2 py-1 rounded text-xs font-medium transition-all duration-300 ${styleCSS.buttonStyle}">
+                        體驗
+                    </a>
+                </div>
+            `;
+
+            container.appendChild(cardElement);
+        }
+        
+        // 為每個風格設定專屬樣式配置
+        function getStyleConfig(styleId) {
+            const configs = {
+                'zen': {
+                    cardBg: 'bg-amber-50',
+                    border: 'border border-amber-200',
+                    hover: 'hover:shadow-xl hover:bg-amber-100',
+                    iconBg: 'bg-amber-200',
+                    titleColor: 'text-amber-900',
+                    textColor: 'text-amber-800', 
+                    buttonStyle: 'bg-amber-600 text-white hover:bg-amber-700'
+                },
+                'luxury': {
+                    cardBg: 'bg-gray-900',
+                    border: 'border border-yellow-400',
+                    hover: 'hover:shadow-2xl hover:shadow-yellow-400/20',
+                    iconBg: 'bg-yellow-400',
+                    titleColor: 'text-yellow-300',
+                    textColor: 'text-gray-200',
+                    buttonStyle: 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700'
+                },
+                'tech': {
+                    cardBg: 'bg-slate-900',
+                    border: 'border border-green-400',
+                    hover: 'hover:shadow-xl hover:shadow-green-400/20 hover:border-green-300',
+                    iconBg: 'bg-green-400',
+                    titleColor: 'text-green-300',
+                    textColor: 'text-gray-200',
+                    buttonStyle: 'bg-green-500 text-black hover:bg-green-400'
+                },
+                'retro': {
+                    cardBg: 'bg-gradient-to-br from-purple-100 to-pink-100',
+                    border: 'border border-purple-300',
+                    hover: 'hover:shadow-xl hover:from-purple-200 hover:to-pink-200',
+                    iconBg: 'bg-gradient-to-r from-purple-400 to-pink-400',
+                    titleColor: 'text-purple-800',
+                    textColor: 'text-purple-700',
+                    buttonStyle: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600'
+                },
+                'academic': { // Scholar Dark
+                    cardBg: 'bg-gray-800',
+                    border: 'border border-amber-600',
+                    hover: 'hover:shadow-xl hover:shadow-amber-600/20 hover:bg-gray-750',
+                    iconBg: 'bg-amber-600',
+                    titleColor: 'text-amber-200',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-amber-600 text-gray-900 hover:bg-amber-500'
+                },
+                'corporate': { // Fashion
+                    cardBg: 'bg-gradient-to-br from-pink-50 to-rose-50',
+                    border: 'border border-pink-200',
+                    hover: 'hover:shadow-xl hover:shadow-pink-200/50 hover:from-pink-100 hover:to-rose-100',
+                    iconBg: 'bg-gradient-to-r from-pink-400 to-rose-400',
+                    titleColor: 'text-pink-800',
+                    textColor: 'text-pink-700',
+                    buttonStyle: 'bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600'
+                },
+                'modern': {
+                    cardBg: 'bg-gradient-to-br from-blue-50 to-cyan-50',
+                    border: 'border border-blue-200',
+                    hover: 'hover:shadow-xl hover:shadow-blue-200/50',
+                    iconBg: 'bg-gradient-to-r from-blue-400 to-cyan-400',
+                    titleColor: 'text-blue-800',
+                    textColor: 'text-blue-700',
+                    buttonStyle: 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600'
+                },
+                'editorial': {
+                    cardBg: 'bg-gray-800',
+                    border: 'border border-red-500',
+                    hover: 'hover:shadow-xl hover:shadow-red-500/20',
+                    iconBg: 'bg-red-500',
+                    titleColor: 'text-red-400',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-red-500 text-white hover:bg-red-400'
+                },
+                'playful': {
+                    cardBg: 'bg-gradient-to-br from-yellow-50 to-orange-50',
+                    border: 'border border-yellow-300',
+                    hover: 'hover:shadow-xl hover:shadow-yellow-300/50',
+                    iconBg: 'bg-gradient-to-r from-yellow-400 to-orange-400',
+                    titleColor: 'text-yellow-800',
+                    textColor: 'text-yellow-700',
+                    buttonStyle: 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600'
+                },
+                'underground': {
+                    cardBg: 'bg-gray-900',
+                    border: 'border border-gray-600',
+                    hover: 'hover:shadow-xl hover:shadow-gray-600/20',
+                    iconBg: 'bg-gray-600',
+                    titleColor: 'text-gray-300',
+                    textColor: 'text-gray-400',
+                    buttonStyle: 'bg-gray-600 text-white hover:bg-gray-500'
+                },
+                'business': {
+                    cardBg: 'bg-gradient-to-br from-blue-50 to-slate-50',
+                    border: 'border border-blue-300',
+                    hover: 'hover:shadow-xl hover:shadow-blue-300/50',
+                    iconBg: 'bg-gradient-to-r from-blue-500 to-blue-700',
+                    titleColor: 'text-blue-800',
+                    textColor: 'text-blue-700',
+                    buttonStyle: 'bg-blue-600 text-white hover:bg-blue-700'
+                },
+                'creative': {
+                    cardBg: 'bg-gradient-to-br from-pink-50 to-purple-50',
+                    border: 'border border-pink-300',
+                    hover: 'hover:shadow-xl hover:shadow-pink-300/50',
+                    iconBg: 'bg-gradient-to-r from-pink-500 to-purple-600',
+                    titleColor: 'text-pink-700',
+                    textColor: 'text-pink-600',
+                    buttonStyle: 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:from-pink-600 hover:to-purple-700'
+                },
+                'gaming': {
+                    cardBg: 'bg-black',
+                    border: 'border border-green-500',
+                    hover: 'hover:shadow-xl hover:shadow-green-500/30',
+                    iconBg: 'bg-green-500',
+                    titleColor: 'text-green-400',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-green-500 text-black hover:bg-green-400'
+                },
+                'professional': {
+                    cardBg: 'bg-gradient-to-br from-blue-900 to-gray-900',
+                    border: 'border border-blue-600',
+                    hover: 'hover:shadow-xl hover:shadow-blue-600/30',
+                    iconBg: 'bg-blue-600',
+                    titleColor: 'text-blue-300',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-blue-600 text-white hover:bg-blue-500'
+                },
+                'executive': {
+                    cardBg: 'bg-gradient-to-br from-black to-gray-900',
+                    border: 'border border-yellow-600',
+                    hover: 'hover:shadow-xl hover:shadow-yellow-600/30',
+                    iconBg: 'bg-yellow-600',
+                    titleColor: 'text-yellow-400',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-yellow-600 text-black hover:bg-yellow-500'
+                },
+                'gallery': {
+                    cardBg: 'bg-gradient-to-br from-gray-50 to-white',
+                    border: 'border border-gray-300',
+                    hover: 'hover:shadow-xl hover:shadow-gray-300/50',
+                    iconBg: 'bg-gradient-to-r from-gray-400 to-gray-600',
+                    titleColor: 'text-gray-800',
+                    textColor: 'text-gray-600',
+                    buttonStyle: 'bg-gray-800 text-white hover:bg-gray-700'
+                }
+            };
+            
+            // 預設樣式
+            return configs[styleId] || {
+                cardBg: 'bg-white',
+                border: 'border border-gray-200',
+                hover: 'hover:shadow-xl',
+                iconBg: 'bg-blue-500',
+                titleColor: 'text-gray-800',
+                textColor: 'text-gray-600',
+                buttonStyle: 'bg-blue-500 text-white hover:bg-blue-600'
+            };
+        }
+        
+        // 渲染風格流程
+        function renderStyleFlow(styles) {
+            const flowContainer = document.getElementById('styles-flow');
+            if (!flowContainer) return;
+            
+            const dataSpan = flowContainer.querySelector('span');
+            const arrow = flowContainer.querySelector('.text-gray-400');
+            
+            const flowItems = styles.map(style => {
+                const color = getStyleFlowColor(style.id);
+                return `<span class="text-sm ${color} font-medium">${style.icon} ${style.name.split(' ')[0]}</span>`;
+            }).join('<span class="text-gray-400">|</span>');
+            
+            // 保留原有的資料來源和箭頭，添加風格項目
+            flowContainer.innerHTML = `
+                <span class="text-sm font-mono text-gray-600">data/content.json</span>
+                <span class="text-gray-400">→</span>
+                ${flowItems}
+            `;
+        }
+        
+        // 獲取風格流程顏色
+        function getStyleFlowColor(styleId) {
+            const colorMap = {
+                'zen': 'text-amber-600',
+                'luxury': 'text-yellow-600', 
+                'tech': 'text-green-500',
+                'retro': 'text-purple-600',
+                'academic': 'text-amber-400',
+                'corporate': 'text-pink-600'
+            };
+            return colorMap[styleId] || 'text-gray-600';
+        }
+        
+        // 綁定座標表格互動效果
+        function bindCoordinateInteractions() {
+            // 綁定座標卡片懸停效果
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const styleId = this.dataset.styleId;
+                    highlightSimilarStyles(styleId);
+
+                    // 顯示維度信息提示
+                    showDimensionTooltip(this, styleId);
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    clearSimilarityHighlights();
+                    hideDimensionTooltip();
+                });
+            });
+
+            // 綁定頁面連結的載入指示
+            document.querySelectorAll('a[href*="pages/"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.textContent = '載入中...';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 1000);
+                });
+            });
+        }
+
+        // 高亮相似風格
+        function highlightSimilarStyles(targetStyleId) {
+            const targetCard = document.querySelector(`[data-style-id="${targetStyleId}"]`);
+            if (!targetCard) return;
+
+            const targetCoord = targetCard.dataset.coordinate;
+            const [targetX, targetY] = targetCoord.replace(/[()]/g, '').split(',').map(Number);
+
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                const coord = card.dataset.coordinate;
+                const [x, y] = coord.replace(/[()]/g, '').split(',').map(Number);
+
+                // 相同行或列的風格
+                if (x === targetX || y === targetY) {
+                    card.style.transform = 'translateY(-2px) scale(1.01)';
+                    card.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.3)';
+                }
+
+                // 相鄰位置的風格
+                if (Math.abs(x - targetX) <= 1 && Math.abs(y - targetY) <= 1 && card !== targetCard) {
+                    card.style.opacity = '0.8';
+                }
+            });
+
+            // 高亮目標卡片
+            targetCard.style.transform = 'translateY(-4px) scale(1.02)';
+            targetCard.style.boxShadow = '0 12px 35px rgba(59, 130, 246, 0.5)';
+            targetCard.style.zIndex = '20';
+        }
+
+        // 清除相似性高亮
+        function clearSimilarityHighlights() {
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+                card.style.opacity = '';
+                card.style.zIndex = '';
+            });
+        }
+
+        // 顯示維度信息提示
+        function showDimensionTooltip(card, styleId) {
+            // 簡單的提示實現，可以後續增強
+            const coord = card.dataset.coordinate;
+            card.title = `座標: ${coord} | 風格: ${styleId}`;
+        }
+
+        // 隱藏維度信息提示
+        function hideDimensionTooltip() {
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                card.title = '';
+            });
+        }
+        
+        // 顯示錯誤訊息
+        function showErrorMessage() {
+            const container = document.getElementById('styles-loading');
+            if (container) {
+                container.innerHTML = `
+                    <div class="text-center py-16">
+                        <div class="text-4xl mb-4">❌</div>
+                        <h3 class="text-xl font-bold text-red-600 mb-2">載入失敗</h3>
+                        <p class="text-gray-600 mb-4">無法載入風格系統，請重新整理頁面</p>
+                        <button onclick="location.reload()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                            重新載入
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        // 當 DOM 載入完成時初始化
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeStyleSystem);
+        } else {
+            initializeStyleSystem();
+        }
+    </script>
+</body>
+</html>
