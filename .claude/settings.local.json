@@ -44,7 +44,8 @@
       "WebFetch(domain:www.awwwards.com)",
       "Bash(tree:*)",
       "Bash(awk:*)",
-      "Read(//home/jmhuang/.claude/**)"
+      "Read(//home/jmhuang/.claude/**)",
+      "WebFetch(domain:chang-ming-huang.github.io)"
     ],
     "defaultMode": "acceptEdits"
   }

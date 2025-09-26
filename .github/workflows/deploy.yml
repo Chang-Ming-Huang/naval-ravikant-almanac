@@ -46,7 +46,6 @@ jobs:
         cp -r pages/ build/pages/
         cp -r js/ build/js/
         cp -r data/ build/data/
-        cp -r tools/ build/tools/ || true
         cp LICENSE build/ || true
         cp README.md build/ || true
         cp CLAUDE.md build/ || true
