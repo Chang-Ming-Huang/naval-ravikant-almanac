@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - 高管尊享版 | Executive Style</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        executive: {
+                            black: '#1a1a1a',
+                            'black-light': '#374151',
+                            gold: '#d4af37',
+                            'gold-light': '#f4d03f',
+                            'gold-dark': '#b7950b',
+                            'gray-light': '#f8fafc',
+                            'gray-medium': '#6b7280',
+                            'gray-dark': '#374151',
+                            'gray-charcoal': '#1f2937'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Source Sans Pro', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease forwards',
+                        'fade-in-left': 'fadeInLeft 0.8s ease forwards',
+                        'fade-in-right': 'fadeInRight 0.8s ease forwards',
+                        'luxury-glow': 'luxuryGlow 3s ease-in-out infinite',
+                        'executive-float': 'executiveFloat 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        luxuryGlow: {
+                            '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' }
+                        },
+                        executiveFloat: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-600 { animation-delay: 0.6s; }
+        .animate-delay-800 { animation-delay: 0.8s; }
+
+        /* Executive luxury pattern */
+        .luxury-pattern {
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(212, 175, 55, 0.01) 0%, transparent 50%);
+            background-size: 60px 60px, 60px 60px, 100% 100%;
+        }
+
+        /* Executive 3D card effect */
+        .executive-card {
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .executive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .executive-card:hover::before {
+            left: 100%;
+        }
+
+        .executive-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 25px 50px rgba(212, 175, 55, 0.3),
+                0 0 50px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Executive luxury title effect */
+        .executive-title {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: luxuryGlow 3s ease-in-out infinite;
+        }
+
+        /* Executive floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: executiveFloat 6s ease-in-out infinite;
+        }
+
+        /* Loading state styles */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gradient-to-br from-black to-gray-900 text-white overflow-x-hidden luxury-pattern">
+    <!-- Navigation -->
+    <nav id="navigation" class="fixed top-0 left-0 right-0 bg-executive-black/95 backdrop-blur-md border-b border-executive-gold/30 py-4 z-50 transition-all duration-300">
+        <!-- Content will be loaded here -->
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-black to-gray-900 relative overflow-hidden pt-20 pb-16 px-4">
+        <!-- Floating luxury elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="floating-element top-1/4 left-1/4 w-96 h-96 bg-executive-gold rounded-full blur-3xl"></div>
+            <div class="floating-element bottom-1/4 right-1/4 w-80 h-80 bg-executive-gold rounded-full blur-2xl animation-delay-400"></div>
+            <div class="floating-element top-1/2 left-1/2 w-64 h-64 bg-executive-gold rounded-full blur-xl animation-delay-800"></div>
+        </div>
+
+        <!-- Luxury geometric patterns -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-20 w-32 h-32 border border-executive-gold/20 rotate-45 animate-executive-float"></div>
+            <div class="absolute bottom-20 right-20 w-24 h-24 border border-executive-gold/20 rotate-12 animate-executive-float animation-delay-600"></div>
+        </div>
+
+        <!-- Content will be loaded here -->
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4 bg-gradient-to-br from-black to-gray-900 relative">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 px-4 bg-executive-black text-white border-t border-executive-gold/30">
+        <!-- Content will be loaded here -->
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script type="module" src="../js/loaders/executive.js"></script>
+
+    <script>
+        // Executive luxury interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add executive page loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s ease';
+
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Executive luxury navigation effects
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('#navigation');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollTop = window.pageYOffset;
+
+                if (currentScrollTop > 50) {
+                    navbar.classList.add('bg-executive-black/98', 'backdrop-blur-lg', 'shadow-2xl');
+                    navbar.classList.remove('bg-executive-black/95');
+                } else {
+                    navbar.classList.add('bg-executive-black/95');
+                    navbar.classList.remove('bg-executive-black/98', 'backdrop-blur-lg', 'shadow-2xl');
+                }
+
+                lastScrollTop = currentScrollTop;
+            });
+
+            // Executive intersection observer for luxury cards
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe executive cards when they're added to DOM
+            const observeCards = () => {
+                document.querySelectorAll('.executive-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(40px)';
+                    card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    observer.observe(card);
+                });
+            };
+
+            // Initial observation and re-observe after content loads
+            setTimeout(observeCards, 1000);
+
+            // Executive smooth scrolling
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+
+            // Executive luxury particle effect
+            createLuxuryParticles();
+
+            function createLuxuryParticles() {
+                const particles = [];
+                const particleCount = 20;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'fixed w-1 h-1 bg-executive-gold rounded-full opacity-20 pointer-events-none z-10';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animation = `executiveFloat ${3 + Math.random() * 4}s ease-in-out infinite`;
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(particle);
+                    particles.push(particle);
+                }
+
+                // Clean up particles after some time
+                setTimeout(() => {
+                    particles.forEach(particle => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    });
+                }, 30000);
+            }
+        });
+
+        // Executive page transition
+        window.addEventListener('beforeunload', () => {
+            document.body.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>納瓦爾寶典 - 美術館典藏版 | Gallery Style</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Crimson+Text:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gallery: {
+                            gray: '#374151',
+                            'gray-light': '#6b7280',
+                            'gray-medium': '#9ca3af',
+                            gold: '#d4af37',
+                            'gold-light': '#f4d03f',
+                            'gold-dark': '#b7950b',
+                            cream: '#faf9f7',
+                            'cream-light': '#fefefe',
+                            'cream-dark': '#f5f5f0'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'text': ['Crimson Text', 'serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1.0s ease forwards',
+                        'fade-in-left': 'fadeInLeft 1.0s ease forwards',
+                        'fade-in-right': 'fadeInRight 1.0s ease forwards',
+                        'gallery-float': 'galleryFloat 8s ease-in-out infinite',
+                        'spotlight': 'spotlight 4s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        galleryFloat: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        },
+                        spotlight: {
+                            '0%, 100%': { opacity: '0.3' },
+                            '50%': { opacity: '0.6' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-600 { animation-delay: 0.6s; }
+        .animate-delay-800 { animation-delay: 0.8s; }
+        .animate-delay-1000 { animation-delay: 1.0s; }
+
+        /* Gallery museum pattern */
+        .museum-pattern {
+            background-image:
+                linear-gradient(90deg, rgba(116, 116, 116, 0.02) 1px, transparent 1px),
+                linear-gradient(rgba(116, 116, 116, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Gallery exhibition frame effect */
+        .gallery-frame {
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: linear-gradient(135deg, #faf9f7 0%, #fefefe 50%, #f5f5f0 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .gallery-frame::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4af37, transparent, #d4af37);
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+
+        .gallery-frame:hover::before {
+            opacity: 0.3;
+        }
+
+        .gallery-frame:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 25px 50px rgba(55, 65, 81, 0.15),
+                0 0 0 1px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        /* Gallery spotlight effect */
+        .spotlight-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+
+        .spotlight-effect:hover::after {
+            opacity: 1;
+        }
+
+        /* Museum typography */
+        .museum-title {
+            color: #374151;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .exhibit-label {
+            background: rgba(250, 249, 247, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Loading state styles */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="font-text bg-gallery-cream text-gallery-gray overflow-x-hidden museum-pattern">
+    <!-- Navigation -->
+    <nav id="navigation" class="fixed top-0 left-0 right-0 bg-gallery-cream/95 backdrop-blur-md border-b border-gallery-gold/20 py-4 z-50 transition-all duration-300">
+        <!-- Content will be loaded here -->
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-gallery-cream to-gallery-cream-light relative overflow-hidden pt-20 pb-16 px-4 spotlight-effect">
+        <!-- Museum lighting effects -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gallery-gold/5 rounded-full blur-3xl animate-spotlight"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gallery-gold/5 rounded-full blur-2xl animate-spotlight animation-delay-400"></div>
+            <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-gallery-gold/5 rounded-full blur-xl animate-spotlight animation-delay-800"></div>
+        </div>
+
+        <!-- Museum architectural elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-10 left-10 w-40 h-40 border-2 border-gallery-gray rotate-45 animate-gallery-float"></div>
+            <div class="absolute bottom-10 right-10 w-32 h-32 border-2 border-gallery-gray -rotate-12 animate-gallery-float animation-delay-600"></div>
+            <div class="absolute top-1/2 right-10 w-24 h-24 border-2 border-gallery-gray animate-gallery-float animation-delay-1000"></div>
+        </div>
+
+        <!-- Content will be loaded here -->
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Wealth Section -->
+        <section id="wealth" class="py-20 px-4 bg-gallery-cream relative">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 px-4 bg-gallery-gray text-gallery-cream border-t border-gallery-gold/20">
+        <!-- Content will be loaded here -->
+    </footer>
+
+    <!-- Content Loader Script -->
+    <script type="module" src="../js/loaders/gallery.js"></script>
+
+    <script>
+        // Gallery museum interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add gallery page loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1.0s ease';
+
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Gallery museum navigation effects
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('#navigation');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollTop = window.pageYOffset;
+
+                if (currentScrollTop > 50) {
+                    navbar.classList.add('bg-gallery-cream/98', 'backdrop-blur-lg', 'shadow-lg');
+                    navbar.classList.remove('bg-gallery-cream/95');
+                } else {
+                    navbar.classList.add('bg-gallery-cream/95');
+                    navbar.classList.remove('bg-gallery-cream/98', 'backdrop-blur-lg', 'shadow-lg');
+                }
+
+                lastScrollTop = currentScrollTop;
+            });
+
+            // Gallery intersection observer for exhibition frames
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -30px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe gallery frames when they're added to DOM
+            const observeFrames = () => {
+                document.querySelectorAll('.gallery-frame').forEach((frame, index) => {
+                    frame.style.opacity = '0';
+                    frame.style.transform = 'translateY(50px)';
+                    frame.style.transition = 'all 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    observer.observe(frame);
+                });
+            };
+
+            // Initial observation and re-observe after content loads
+            setTimeout(observeFrames, 1000);
+
+            // Gallery smooth scrolling
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+
+            // Museum ambient lighting effect
+            createAmbientLighting();
+
+            function createAmbientLighting() {
+                const lights = [];
+                const lightCount = 15;
+
+                for (let i = 0; i < lightCount; i++) {
+                    const light = document.createElement('div');
+                    light.className = 'fixed w-2 h-2 bg-gallery-gold/10 rounded-full pointer-events-none z-5';
+                    light.style.left = Math.random() * 100 + '%';
+                    light.style.top = Math.random() * 100 + '%';
+                    light.style.animation = `galleryFloat ${4 + Math.random() * 6}s ease-in-out infinite`;
+                    light.style.animationDelay = Math.random() * 3 + 's';
+                    document.body.appendChild(light);
+                    lights.push(light);
+                }
+
+                // Clean up lights after some time
+                setTimeout(() => {
+                    lights.forEach(light => {
+                        if (light.parentNode) {
+                            light.parentNode.removeChild(light);
+                        }
+                    });
+                }, 60000);
+            }
+
+            // Gallery exhibition info panels
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest('.gallery-frame')) {
+                    const frame = e.target.closest('.gallery-frame');
+                    // Add subtle glow effect
+                    frame.style.boxShadow = '0 25px 50px rgba(55, 65, 81, 0.15), 0 0 30px rgba(212, 175, 55, 0.2)';
+                }
+            });
+
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest('.gallery-frame')) {
+                    const frame = e.target.closest('.gallery-frame');
+                    // Remove glow effect
+                    frame.style.boxShadow = '';
+                }
+            });
+        });
+
+        // Gallery page transition
+        window.addEventListener('beforeunload', () => {
+            document.body.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>
