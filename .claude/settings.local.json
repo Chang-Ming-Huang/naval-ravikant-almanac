@@ -40,7 +40,10 @@
       "Bash(npm uninstall:*)",
       "WebFetch(domain:github.com)",
       "Bash(pkill:*)",
-      "Bash(npx @playwright/mcp:*)"
+      "Bash(npx @playwright/mcp:*)",
+      "WebFetch(domain:www.awwwards.com)",
+      "Bash(tree:*)",
+      "Bash(awk:*)"
     ],
     "defaultMode": "acceptEdits"
   }
