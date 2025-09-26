@@ -1,11 +1,11 @@
 /**
  * Executive Style Configuration
- * 組合: [深色, 正式, 緊湊, 立體] - 高端商務風格
+ * 組合: [深色, 正式, 寬鬆, 立體] - 高端商務風格
  */
 
 import { Dark } from '../dimensions/colors.js';
 import { Formal } from '../dimensions/typography.js';
-import { Compact } from '../dimensions/spacing.js';
+import { Loose } from '../dimensions/spacing.js';
 import { Dimensional } from '../dimensions/effects.js';
 
 export default {
@@ -16,7 +16,7 @@ export default {
   category: 'luxury',
 
   // 四個維度的組合
-  dimensions: [Dark, Formal, Compact, Dimensional],
+  dimensions: [Dark, Formal, Loose, Dimensional],
 
   // 頁面 URL
   url: 'pages/executive.html',
@@ -37,8 +37,8 @@ export default {
   // 卡片專用樣式配置
   cardStyle: {
     background: 'bg-gradient-to-br from-black to-gray-900',
-    hover: 'hover:shadow-2xl hover:shadow-yellow-500/30 hover:-translate-y-2 hover:scale-105',
-    transition: 'transition-all duration-500',
+    hover: 'hover:shadow-2xl hover:shadow-yellow-500/30 hover:-translate-y-3 hover:scale-102',
+    transition: 'transition-all duration-700',
     border: 'border border-yellow-600/30',
     iconBg: 'bg-gradient-to-br from-yellow-600 to-yellow-800'
   },
@@ -56,7 +56,7 @@ export default {
   characteristics: {
     brightness: 'dark',        // 深色
     typography: 'formal',      // 正式
-    spacing: 'compact',        // 緊湊
+    spacing: 'loose',          // 寬鬆
     effects: 'dimensional'     // 立體
   }
 };
