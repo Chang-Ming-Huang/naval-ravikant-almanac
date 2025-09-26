@@ -177,19 +177,14 @@
             }
 
             /* Hide Y-axis labels on mobile */
-            .mr-8.flex.flex-col.relative {
+            .mr-4.flex.flex-col.justify-center {
                 display: none;
             }
 
             /* Adjust X-axis labels for mobile */
-            .grid.grid-cols-4.gap-3 {
+            .grid.grid-cols-4.gap-2 {
                 grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-
-            .grid.grid-cols-4.gap-3 > div {
-                font-size: 10px !important;
-                padding: 8px 4px !important;
+                gap: 4px;
             }
 
             /* Mobile coordinate explanation */
@@ -277,62 +272,35 @@
                             </div>
                         </div>
                         <!-- X-axis scale -->
-                        <div class="grid grid-cols-4 gap-3 max-w-4xl mx-auto text-xs text-center mb-6">
-                            <div class="bg-gray-800 text-white px-3 py-2 rounded-md font-medium shadow-sm">
-                                <div class="text-gray-300 text-xs mb-1">🌙 Dark</div>
-                                <div>+ Formal</div>
-                            </div>
-                            <div class="bg-gray-700 text-white px-3 py-2 rounded-md font-medium shadow-sm">
-                                <div class="text-gray-300 text-xs mb-1">🌙 Dark</div>
-                                <div>+ Casual</div>
-                            </div>
-                            <div class="bg-gray-50 text-gray-800 border px-3 py-2 rounded-md font-medium shadow-sm">
-                                <div class="text-gray-500 text-xs mb-1">☀️ Light</div>
-                                <div>+ Formal</div>
-                            </div>
-                            <div class="bg-gray-100 text-gray-800 px-3 py-2 rounded-md font-medium shadow-sm">
-                                <div class="text-gray-500 text-xs mb-1">☀️ Light</div>
-                                <div>+ Casual</div>
-                            </div>
+                        <div class="grid grid-cols-4 gap-2 max-w-4xl mx-auto text-xs text-gray-500 text-center mb-4">
+                            <div class="font-medium">Dark + Formal</div>
+                            <div class="font-medium">Dark + Casual</div>
+                            <div class="font-medium">Light + Formal</div>
+                            <div class="font-medium">Light + Casual</div>
                         </div>
                     </div>
 
                     <!-- Main Grid with Y-axis labels -->
                     <div class="flex items-start max-w-5xl mx-auto">
                         <!-- Y-axis labels -->
-                        <div class="mr-8 flex flex-col relative">
-                            <div class="text-center mb-4 -rotate-90 origin-center w-4 absolute -top-6 left-1/2 transform -translate-x-1/2">
-                                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 px-4 py-2 rounded-lg shadow-sm whitespace-nowrap">
-                                    <svg class="w-4 h-4 text-green-600 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21l10-10L7 1"></path>
-                                    </svg>
-                                    <span class="text-sm font-semibold text-green-700">Y軸: Spacing + Effects</span>
-                                </div>
+                        <div class="mr-4 flex flex-col justify-center h-full">
+                            <div class="text-center mb-4 -rotate-90 origin-center w-4 absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">
+                                    Y軸: Spacing + Effects
+                                </span>
                             </div>
-                            <div class="grid grid-rows-4 gap-3 text-xs text-right w-32 mt-8" style="height: calc(100% - 2rem);">
-                                <div class="flex items-center justify-end">
-                                    <div class="bg-blue-50 border border-blue-200 px-3 py-2 rounded-md font-medium shadow-sm text-blue-800">
-                                        <div class="text-blue-600 text-xs mb-1">📐 Compact</div>
-                                        <div class="whitespace-nowrap">+ Flat</div>
-                                    </div>
+                            <div class="space-y-3 text-xs text-gray-500 text-right w-20 mt-8" style="height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+                                <div class="flex items-center justify-end h-full">
+                                    <span class="whitespace-nowrap font-medium">Compact + Flat</span>
                                 </div>
-                                <div class="flex items-center justify-end">
-                                    <div class="bg-purple-50 border border-purple-200 px-3 py-2 rounded-md font-medium shadow-sm text-purple-800">
-                                        <div class="text-purple-600 text-xs mb-1">📐 Compact</div>
-                                        <div class="whitespace-nowrap">+ 3D</div>
-                                    </div>
+                                <div class="flex items-center justify-end h-full">
+                                    <span class="whitespace-nowrap font-medium">Compact + 3D</span>
                                 </div>
-                                <div class="flex items-center justify-end">
-                                    <div class="bg-orange-50 border border-orange-200 px-3 py-2 rounded-md font-medium shadow-sm text-orange-800">
-                                        <div class="text-orange-600 text-xs mb-1">📏 Loose</div>
-                                        <div class="whitespace-nowrap">+ Flat</div>
-                                    </div>
+                                <div class="flex items-center justify-end h-full">
+                                    <span class="whitespace-nowrap font-medium">Loose + Flat</span>
                                 </div>
-                                <div class="flex items-center justify-end">
-                                    <div class="bg-pink-50 border border-pink-200 px-3 py-2 rounded-md font-medium shadow-sm text-pink-800">
-                                        <div class="text-pink-600 text-xs mb-1">📏 Loose</div>
-                                        <div class="whitespace-nowrap">+ 3D</div>
-                                    </div>
+                                <div class="flex items-center justify-end h-full">
+                                    <span class="whitespace-nowrap font-medium">Loose + 3D</span>
                                 </div>
                             </div>
                         </div>
@@ -626,37 +594,16 @@
                         <div class="coordinate-position">(${coord.x},${coord.y})</div>
 
                         <!-- 風格內容 -->
-                        <div class="text-center h-full flex flex-col justify-between p-1 relative">
-                            <!-- 風格特性標籤 -->
-                            <div class="absolute top-1 left-1 opacity-80">
-                                <div class="flex flex-col space-y-1">
-                                    ${style.characteristics?.brightness === 'dark' ?
-                                        '<div class="bg-gray-800 text-white text-xs px-2 py-1 rounded-full font-medium">🌙</div>' :
-                                        '<div class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">☀️</div>'
-                                    }
-                                    ${style.characteristics?.effects === 'dimensional' ?
-                                        '<div class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-medium">3D</div>' :
-                                        '<div class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">2D</div>'
-                                    }
-                                </div>
-                            </div>
-
+                        <div class="text-center h-full flex flex-col justify-between p-2">
                             <div class="flex-1 flex flex-col justify-center">
-                                <div class="w-10 h-10 ${styleConfig.iconBg} rounded-full mx-auto mb-3 flex items-center justify-center shadow-md border-2 border-white/20">
+                                <div class="w-10 h-10 ${styleConfig.iconBg} rounded-full mx-auto mb-3 flex items-center justify-center shadow-sm">
                                     <span class="text-xl">${style.icon}</span>
                                 </div>
-                                <h3 class="text-base font-bold mb-2 ${styleConfig.titleColor} leading-tight">${style.name}</h3>
-                                <p class="text-xs ${styleConfig.textColor} mb-3 leading-relaxed px-1" title="${style.description}">${style.description.slice(0, 35)}${style.description.length > 35 ? '...' : ''}</p>
-
-                                <!-- 維度組合標籤 -->
-                                <div class="flex justify-center mb-3">
-                                    <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full font-mono">
-                                        ${style.characteristics?.typography === 'formal' ? 'F' : 'C'}${style.characteristics?.spacing === 'compact' ? 'C' : 'L'}
-                                    </div>
-                                </div>
+                                <h3 class="text-sm font-bold mb-2 ${styleConfig.titleColor} leading-tight">${style.name}</h3>
+                                <p class="text-xs ${styleConfig.textColor} mb-3 leading-relaxed px-1" title="${style.description}">${style.description.slice(0, 30)}${style.description.length > 30 ? '...' : ''}</p>
                             </div>
-                            <a href="${style.url}" class="inline-block px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md ${styleConfig.buttonStyle}">
-                                體驗風格
+                            <a href="${style.url}" class="inline-block px-3 py-2 rounded text-xs font-medium transition-all duration-300 ${styleConfig.buttonStyle}">
+                                體驗
                             </a>
                         </div>
                     </div>
