@@ -1,13 +1,13 @@
 /**
  * Underground Style Configuration - 高級地下文化美學
- * 維度組合: [Dark, Casual, Loose, Flat] - 極簡暗黑藝術設計
+ * 維度組合: [Dark, Casual, Loose, Dimensional] - 極簡暗黑立體設計
  * 設計理念: 地下文化的精緻表達，反叛而不失品味
  */
 
 import { Dark } from '../dimensions/colors.js';
 import { Casual } from '../dimensions/typography.js';
 import { Loose } from '../dimensions/spacing.js';
-import { Flat } from '../dimensions/effects.js';
+import { Dimensional } from '../dimensions/effects.js';
 
 export default {
   id: 'underground',
@@ -17,7 +17,7 @@ export default {
   category: 'culture',
   
   // 四個維度的組合
-  dimensions: [Dark, Casual, Loose, Flat],
+  dimensions: [Dark, Casual, Loose, Dimensional],
   
   // 頁面 URL
   url: 'pages/underground.html',
@@ -121,9 +121,9 @@ export default {
   
   // 維度特性描述
   characteristics: {
-    brightness: 'dark',    // 極暗工業背景
-    typography: 'casual',  // 前衛現代字體
-    spacing: 'loose',      // 大量留白創造張力
-    effects: 'flat'        // 平面但有質感
+    brightness: 'dark',        // 極暗工業背景
+    typography: 'casual',      // 前衛現代字體
+    spacing: 'loose',          // 大量留白創造張力
+    effects: 'dimensional'     // 立體工業質感
   }
 };
