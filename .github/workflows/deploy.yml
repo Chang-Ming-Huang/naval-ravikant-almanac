@@ -3,15 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
-  actions: read
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -20,43 +17,54 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    # Tests are currently not implemented
-    # - name: Run tests
-    #   run: npm run test
+      # Tests are currently not implemented
+      # - name: Run tests
+      #   run: npm run test
 
-    - name: Build project
-      run: |
-        mkdir -p build
-        cp index.html build/
-        cp -r pages/ build/pages/
-        cp -r js/ build/js/
-        cp -r data/ build/data/
-        cp LICENSE build/ || true
-        cp README.md build/ || true
-        cp CLAUDE.md build/ || true
-        cp package.json build/ || true
+      - name: Build project
+        run: |
+          mkdir -p build
+          cp index.html build/
+          cp -r pages/ build/pages/
+          cp -r js/ build/js/
+          cp -r data/ build/data/
+          cp LICENSE build/ || true
+          cp README.md build/ || true
+          cp CLAUDE.md build/ || true
+          cp package.json build/ || true
 
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        force_orphan: true
-        enable_jekyll: false
-        cname: false
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './build'
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
