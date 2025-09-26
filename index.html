@@ -50,6 +50,158 @@
         .smooth-scroll {
             scroll-behavior: smooth;
         }
+
+        /* Coordinate Grid Styles */
+        .coordinate-card {
+            aspect-ratio: 1;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coordinate-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            z-index: 10;
+        }
+
+        .coordinate-card::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .coordinate-card:hover::before {
+            opacity: 1;
+        }
+
+        .coordinate-position {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 10px;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 1px 4px;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .coordinate-card:hover .coordinate-position {
+            opacity: 1;
+        }
+
+        /* Grid background pattern */
+        #styles-coordinate-grid {
+            background-image:
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 25% 25%;
+            border-radius: 12px;
+            padding: 8px;
+            background-color: rgba(0,0,0,0.01);
+        }
+
+        /* Dimension similarity highlighting */
+        .similar-colors { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+        .similar-typography { box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5); }
+        .similar-spacing { box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5); }
+        .similar-effects { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5); }
+
+        /* Coordinate animations */
+        .coordinate-enter {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            animation: coordinateEnter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes coordinateEnter {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Responsive Design for Coordinate Grid */
+        @media (max-width: 768px) {
+            #styles-coordinate-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                padding: 4px;
+            }
+
+            .coordinate-card {
+                aspect-ratio: 0.8;
+                padding: 8px;
+            }
+
+            .coordinate-card h3 {
+                font-size: 10px;
+            }
+
+            .coordinate-card p {
+                font-size: 8px;
+            }
+
+            .coordinate-card a {
+                font-size: 8px;
+                padding: 2px 6px;
+            }
+
+            .coordinate-position {
+                font-size: 8px;
+                top: 2px;
+                right: 2px;
+            }
+
+            /* Hide Y-axis labels on mobile */
+            .mr-4.mt-8 {
+                display: none;
+            }
+
+            /* Adjust X-axis labels */
+            .grid.grid-cols-4.gap-2 {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+
+            /* Mobile coordinate explanation */
+            .coordinate-mobile-note {
+                display: block;
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                border-radius: 8px;
+                padding: 12px;
+                margin: 16px 0;
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .coordinate-mobile-note {
+                display: none;
+            }
+        }
+
+        /* Touch-friendly interactions */
+        @media (hover: none) {
+            .coordinate-card:hover {
+                transform: none;
+            }
+
+            .coordinate-card:active {
+                transform: translateY(-2px) scale(1.01);
+            }
+        }
     </style>
 </head>
 
@@ -69,13 +221,76 @@
     <section id="demo" class="py-8 px-4 bg-white">
         <div class="max-w-6xl mx-auto">
             
-            <!-- Style Cards - 動態載入 -->
-            <div id="styles-loading" class="text-center py-16">
-                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <p class="text-gray-600">載入風格中...</p>
+            <!-- 4x4 Style Coordinate Grid -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                    🗺️ 維度風格座標系統
+                    <span class="text-lg font-normal text-gray-600">(16/16 完整)</span>
+                </h2>
+                <p class="text-center text-gray-600 mb-8 max-w-4xl mx-auto">
+                    透過 4 個設計維度的系統性組合，形成 2⁴ = 16 種獨特風格的二維座標空間。
+                    相似的風格會排列在相近的位置，展現維度驅動設計的數學美感。
+                </p>
+
+                <!-- Mobile Note -->
+                <div class="coordinate-mobile-note">
+                    <p class="text-sm text-blue-700 font-medium">
+                        📱 移動版本：以 2x8 網格顯示，維持座標排列邏輯
+                    </p>
+                </div>
+
+                <!-- Loading State -->
+                <div id="coordinate-loading" class="text-center py-16">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">正在構建座標系統...</p>
+                </div>
+
+                <!-- Coordinate Grid Container -->
+                <div id="coordinate-grid" class="hidden">
+                    <!-- Axis Labels -->
+                    <div class="mb-4">
+                        <!-- X-axis label -->
+                        <div class="text-center mb-2">
+                            <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+                                X軸: Colors + Typography
+                            </span>
+                        </div>
+                        <!-- X-axis scale -->
+                        <div class="grid grid-cols-4 gap-2 max-w-4xl mx-auto text-xs text-gray-500 text-center mb-4">
+                            <div>Dark + Formal</div>
+                            <div>Dark + Casual</div>
+                            <div>Light + Formal</div>
+                            <div>Light + Casual</div>
+                        </div>
+                    </div>
+
+                    <!-- Main Grid with Y-axis labels -->
+                    <div class="flex items-start max-w-5xl mx-auto">
+                        <!-- Y-axis labels -->
+                        <div class="mr-4 mt-8">
+                            <div class="text-center mb-4 -rotate-90 origin-center w-4">
+                                <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">
+                                    Y軸: Spacing + Effects
+                                </span>
+                            </div>
+                            <div class="space-y-4 text-xs text-gray-500 text-right w-20">
+                                <div class="h-16 flex items-center justify-end">Compact + Flat</div>
+                                <div class="h-16 flex items-center justify-end">Compact + Dimensional</div>
+                                <div class="h-16 flex items-center justify-end">Loose + Flat</div>
+                                <div class="h-16 flex items-center justify-end">Loose + Dimensional</div>
+                            </div>
+                        </div>
+
+                        <!-- 4x4 Grid -->
+                        <div id="styles-coordinate-grid" class="grid grid-cols-4 gap-3 flex-1 max-w-4xl">
+                            <!-- 16 style cards will be dynamically placed here -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div id="styles-container" class="grid md:grid-cols-2 gap-8 mb-16 hidden">
+
+            <!-- Legacy container for comparison -->
+            <div id="styles-container" class="hidden">
                 <!-- 風格卡片將在這裡動態生成 -->
             </div>
             
@@ -250,29 +465,29 @@
             });
         });
 
-        // 動態載入風格系統
+        // 動態載入風格系統 - 座標版本
         async function initializeStyleSystem() {
             try {
                 // 等待風格系統載入完成
                 await waitForStyleSystem();
-                
+
                 // 獲取所有風格
                 const styles = window.styleSystem.getAllStyles();
-                
-                // 渲染風格卡片
-                renderStyleCards(styles);
-                
+
+                // 渲染座標表格
+                renderCoordinateGrid(styles);
+
                 // 渲染風格流程
                 renderStyleFlow(styles);
-                
-                // 隱藏載入中，顯示內容
-                document.getElementById('styles-loading').classList.add('hidden');
-                document.getElementById('styles-container').classList.remove('hidden');
-                
+
+                // 隱藏載入中，顯示座標表格
+                document.getElementById('coordinate-loading').classList.add('hidden');
+                document.getElementById('coordinate-grid').classList.remove('hidden');
+
                 // 重新綁定卡片的交互效果
-                bindCardInteractions();
-                
-                console.log('✅ Style system initialized on homepage');
+                bindCoordinateInteractions();
+
+                console.log('✅ Style coordinate system initialized:', styles.length, 'styles');
             } catch (error) {
                 console.error('❌ Failed to initialize style system:', error);
                 showErrorMessage();
@@ -296,28 +511,78 @@
             });
         }
         
-        // 渲染風格卡片
-        function renderStyleCards(styles) {
-            const container = document.getElementById('styles-container');
+        // 座標排列算法
+        function calculateCoordinate(style) {
+            const characteristics = style.characteristics || {};
+
+            // X軸: Colors + Typography 組合 (0-3)
+            let x = 0;
+            if (characteristics.brightness === 'dark' && characteristics.typography === 'formal') x = 0;
+            else if (characteristics.brightness === 'dark' && characteristics.typography === 'casual') x = 1;
+            else if (characteristics.brightness === 'light' && characteristics.typography === 'formal') x = 2;
+            else if (characteristics.brightness === 'light' && characteristics.typography === 'casual') x = 3;
+
+            // Y軸: Spacing + Effects 組合 (0-3)
+            let y = 0;
+            if (characteristics.spacing === 'compact' && characteristics.effects === 'flat') y = 0;
+            else if (characteristics.spacing === 'compact' && characteristics.effects === 'dimensional') y = 1;
+            else if (characteristics.spacing === 'loose' && characteristics.effects === 'flat') y = 2;
+            else if (characteristics.spacing === 'loose' && characteristics.effects === 'dimensional') y = 3;
+
+            return { x, y, position: y * 4 + x };
+        }
+
+        // 渲染座標表格
+        function renderCoordinateGrid(styles) {
+            const container = document.getElementById('styles-coordinate-grid');
             if (!container) return;
-            
-            container.innerHTML = styles.map(style => {
-                // 為每個風格設定專屬樣式
-                const styleConfig = getStyleConfig(style.id);
-                
-                return `
-                <div class="card-hover ${styleConfig.cardBg} rounded-2xl p-8 shadow-lg transition-all duration-300 ${styleConfig.border} ${styleConfig.hover}">
-                    <div class="text-center">
-                        <div class="w-20 h-20 ${styleConfig.iconBg} rounded-full mx-auto mb-6 flex items-center justify-center">
-                            <span class="text-3xl">${style.icon}</span>
+
+            // 創建 4x4 空陣列
+            const grid = Array(16).fill(null);
+
+            // 根據座標排列風格
+            styles.forEach(style => {
+                const coord = calculateCoordinate(style);
+                grid[coord.position] = style;
+            });
+
+            // 渲染表格
+            container.innerHTML = grid.map((style, index) => {
+                if (!style) {
+                    // 空白位置
+                    return `
+                        <div class="aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
+                            <span class="text-gray-400 text-xs">空位</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-4 ${styleConfig.titleColor}">${style.name}</h3>
-                        <p class="mb-8 text-lg ${styleConfig.textColor}">${style.description}</p>
-                        <a href="${style.url}" class="inline-block px-8 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 ${styleConfig.buttonStyle}">
-                            ${style.buttonText}
-                        </a>
+                    `;
+                }
+
+                const styleConfig = getStyleConfig(style.id);
+                const coord = calculateCoordinate(style);
+
+                return `
+                    <div class="coordinate-card ${styleConfig.cardBg} rounded-lg p-4 shadow-md ${styleConfig.border} coordinate-enter"
+                         style="animation-delay: ${index * 0.1}s"
+                         data-style-id="${style.id}"
+                         data-coordinate="(${coord.x},${coord.y})">
+
+                        <!-- 座標位置指示器 -->
+                        <div class="coordinate-position">(${coord.x},${coord.y})</div>
+
+                        <!-- 風格內容 -->
+                        <div class="text-center h-full flex flex-col justify-between">
+                            <div>
+                                <div class="w-8 h-8 ${styleConfig.iconBg} rounded-full mx-auto mb-2 flex items-center justify-center">
+                                    <span class="text-lg">${style.icon}</span>
+                                </div>
+                                <h3 class="text-sm font-bold mb-1 ${styleConfig.titleColor} leading-tight">${style.name}</h3>
+                                <p class="text-xs ${styleConfig.textColor} mb-2 leading-tight">${style.description.slice(0, 30)}...</p>
+                            </div>
+                            <a href="${style.url}" class="inline-block px-3 py-1 rounded text-xs font-medium transition-all duration-300 ${styleConfig.buttonStyle}">
+                                體驗
+                            </a>
+                        </div>
                     </div>
-                </div>
                 `;
             }).join('');
         }
@@ -378,6 +643,96 @@
                     titleColor: 'text-pink-800',
                     textColor: 'text-pink-700',
                     buttonStyle: 'bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600'
+                },
+                'modern': {
+                    cardBg: 'bg-gradient-to-br from-blue-50 to-cyan-50',
+                    border: 'border border-blue-200',
+                    hover: 'hover:shadow-xl hover:shadow-blue-200/50',
+                    iconBg: 'bg-gradient-to-r from-blue-400 to-cyan-400',
+                    titleColor: 'text-blue-800',
+                    textColor: 'text-blue-700',
+                    buttonStyle: 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600'
+                },
+                'editorial': {
+                    cardBg: 'bg-gray-800',
+                    border: 'border border-red-500',
+                    hover: 'hover:shadow-xl hover:shadow-red-500/20',
+                    iconBg: 'bg-red-500',
+                    titleColor: 'text-red-400',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-red-500 text-white hover:bg-red-400'
+                },
+                'playful': {
+                    cardBg: 'bg-gradient-to-br from-yellow-50 to-orange-50',
+                    border: 'border border-yellow-300',
+                    hover: 'hover:shadow-xl hover:shadow-yellow-300/50',
+                    iconBg: 'bg-gradient-to-r from-yellow-400 to-orange-400',
+                    titleColor: 'text-yellow-800',
+                    textColor: 'text-yellow-700',
+                    buttonStyle: 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600'
+                },
+                'underground': {
+                    cardBg: 'bg-gray-900',
+                    border: 'border border-gray-600',
+                    hover: 'hover:shadow-xl hover:shadow-gray-600/20',
+                    iconBg: 'bg-gray-600',
+                    titleColor: 'text-gray-300',
+                    textColor: 'text-gray-400',
+                    buttonStyle: 'bg-gray-600 text-white hover:bg-gray-500'
+                },
+                'business': {
+                    cardBg: 'bg-gradient-to-br from-blue-50 to-slate-50',
+                    border: 'border border-blue-300',
+                    hover: 'hover:shadow-xl hover:shadow-blue-300/50',
+                    iconBg: 'bg-gradient-to-r from-blue-500 to-blue-700',
+                    titleColor: 'text-blue-800',
+                    textColor: 'text-blue-700',
+                    buttonStyle: 'bg-blue-600 text-white hover:bg-blue-700'
+                },
+                'creative': {
+                    cardBg: 'bg-gradient-to-br from-pink-50 to-purple-50',
+                    border: 'border border-pink-300',
+                    hover: 'hover:shadow-xl hover:shadow-pink-300/50',
+                    iconBg: 'bg-gradient-to-r from-pink-500 to-purple-600',
+                    titleColor: 'text-pink-700',
+                    textColor: 'text-pink-600',
+                    buttonStyle: 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:from-pink-600 hover:to-purple-700'
+                },
+                'gaming': {
+                    cardBg: 'bg-black',
+                    border: 'border border-green-500',
+                    hover: 'hover:shadow-xl hover:shadow-green-500/30',
+                    iconBg: 'bg-green-500',
+                    titleColor: 'text-green-400',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-green-500 text-black hover:bg-green-400'
+                },
+                'professional': {
+                    cardBg: 'bg-gradient-to-br from-blue-900 to-gray-900',
+                    border: 'border border-blue-600',
+                    hover: 'hover:shadow-xl hover:shadow-blue-600/30',
+                    iconBg: 'bg-blue-600',
+                    titleColor: 'text-blue-300',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-blue-600 text-white hover:bg-blue-500'
+                },
+                'executive': {
+                    cardBg: 'bg-gradient-to-br from-black to-gray-900',
+                    border: 'border border-yellow-600',
+                    hover: 'hover:shadow-xl hover:shadow-yellow-600/30',
+                    iconBg: 'bg-yellow-600',
+                    titleColor: 'text-yellow-400',
+                    textColor: 'text-gray-300',
+                    buttonStyle: 'bg-yellow-600 text-black hover:bg-yellow-500'
+                },
+                'gallery': {
+                    cardBg: 'bg-gradient-to-br from-gray-50 to-white',
+                    border: 'border border-gray-300',
+                    hover: 'hover:shadow-xl hover:shadow-gray-300/50',
+                    iconBg: 'bg-gradient-to-r from-gray-400 to-gray-600',
+                    titleColor: 'text-gray-800',
+                    textColor: 'text-gray-600',
+                    buttonStyle: 'bg-gray-800 text-white hover:bg-gray-700'
                 }
             };
             
@@ -427,27 +782,87 @@
             return colorMap[styleId] || 'text-gray-600';
         }
         
-        // 綁定卡片交互效果
-        function bindCardInteractions() {
-            // 重新綁定卡片懸停效果
-            document.querySelectorAll('.card-hover').forEach(card => {
+        // 綁定座標表格互動效果
+        function bindCoordinateInteractions() {
+            // 綁定座標卡片懸停效果
+            document.querySelectorAll('.coordinate-card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
+                    const styleId = this.dataset.styleId;
+                    highlightSimilarStyles(styleId);
+
+                    // 顯示維度信息提示
+                    showDimensionTooltip(this, styleId);
                 });
+
                 card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
+                    clearSimilarityHighlights();
+                    hideDimensionTooltip();
                 });
             });
-            
-            // 重新綁定外部連結的載入指示
+
+            // 綁定頁面連結的載入指示
             document.querySelectorAll('a[href*="pages/"]').forEach(link => {
                 link.addEventListener('click', function() {
-                    const loadingText = this.innerHTML;
-                    this.innerHTML = '載入中...';
+                    const originalText = this.textContent;
+                    this.textContent = '載入中...';
                     setTimeout(() => {
-                        this.innerHTML = loadingText;
+                        this.textContent = originalText;
                     }, 1000);
                 });
+            });
+        }
+
+        // 高亮相似風格
+        function highlightSimilarStyles(targetStyleId) {
+            const targetCard = document.querySelector(`[data-style-id="${targetStyleId}"]`);
+            if (!targetCard) return;
+
+            const targetCoord = targetCard.dataset.coordinate;
+            const [targetX, targetY] = targetCoord.replace(/[()]/g, '').split(',').map(Number);
+
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                const coord = card.dataset.coordinate;
+                const [x, y] = coord.replace(/[()]/g, '').split(',').map(Number);
+
+                // 相同行或列的風格
+                if (x === targetX || y === targetY) {
+                    card.style.transform = 'translateY(-2px) scale(1.01)';
+                    card.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.3)';
+                }
+
+                // 相鄰位置的風格
+                if (Math.abs(x - targetX) <= 1 && Math.abs(y - targetY) <= 1 && card !== targetCard) {
+                    card.style.opacity = '0.8';
+                }
+            });
+
+            // 高亮目標卡片
+            targetCard.style.transform = 'translateY(-4px) scale(1.02)';
+            targetCard.style.boxShadow = '0 12px 35px rgba(59, 130, 246, 0.5)';
+            targetCard.style.zIndex = '20';
+        }
+
+        // 清除相似性高亮
+        function clearSimilarityHighlights() {
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+                card.style.opacity = '';
+                card.style.zIndex = '';
+            });
+        }
+
+        // 顯示維度信息提示
+        function showDimensionTooltip(card, styleId) {
+            // 簡單的提示實現，可以後續增強
+            const coord = card.dataset.coordinate;
+            card.title = `座標: ${coord} | 風格: ${styleId}`;
+        }
+
+        // 隱藏維度信息提示
+        function hideDimensionTooltip() {
+            document.querySelectorAll('.coordinate-card').forEach(card => {
+                card.title = '';
             });
         }
         
